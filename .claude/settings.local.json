@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init)",
+      "Bash(gh repo create bookit-for-calcom --public --description \"WordPress plugin that integrates Cal.com booking widgets into WordPress\" --source=. --push=false)",
+      "Bash(where gh)",
+      "Bash(cmd //c \"where gh\")"
+    ]
+  }
+}

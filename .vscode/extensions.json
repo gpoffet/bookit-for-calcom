@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "bmewburn.vscode-intelephense-client",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "wordpresstoolbox.wordpress-toolbox",
+    "johnbillion.vscode-wordpress-hooks",
+    "austenc.wordpress-snippets",
+    "mehedidracula.php-namespace-resolver",
+    "neilbrayfield.php-docblocker",
+    "GitHub.copilot"
+  ]
+}
