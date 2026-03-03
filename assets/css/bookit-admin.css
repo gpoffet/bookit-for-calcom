@@ -1,0 +1,28 @@
+/**
+ * BookIt for Cal.com — Admin styles.
+ *
+ * Scoped to .bookit-admin-wrap to avoid leaking into WP core UI.
+ */
+
+.bookit-admin-wrap h1 {
+	margin-bottom: 24px;
+}
+
+.bookit-admin-wrap .form-table th {
+	width: 220px;
+}
+
+.bookit-admin-wrap #bookit-refresh-status {
+	display: inline-block;
+	vertical-align: middle;
+	font-style: italic;
+	color: #3c3c3c;
+}
+
+.bookit-admin-wrap #bookit-refresh-status.bookit-success {
+	color: #0a7227;
+}
+
+.bookit-admin-wrap #bookit-refresh-status.bookit-error {
+	color: #cc1818;
+}

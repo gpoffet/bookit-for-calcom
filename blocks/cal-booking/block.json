@@ -1,0 +1,65 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bookit/cal-booking",
+	"version": "1.0.0",
+	"title": "Cal.com Booking",
+	"category": "embed",
+	"icon": "calendar-alt",
+	"description": "Embed a Cal.com booking widget — popup button, popup text link, or inline calendar.",
+	"keywords": [ "cal.com", "booking", "calendar", "appointment" ],
+	"textdomain": "bookit-for-calcom",
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ]
+	},
+	"attributes": {
+		"eventType": {
+			"type": "string",
+			"default": ""
+		},
+		"displayType": {
+			"type": "string",
+			"default": "popup-button"
+		},
+		"label": {
+			"type": "string",
+			"default": "Book a meeting"
+		},
+		"inlineHeight": {
+			"type": "number",
+			"default": 600
+		},
+		"theme": {
+			"type": "string",
+			"default": "global"
+		},
+		"accentColor": {
+			"type": "string",
+			"default": ""
+		},
+		"hideDetails": {
+			"type": "boolean",
+			"default": false
+		},
+		"prefillUser": {
+			"type": "boolean",
+			"default": false
+		},
+		"btnBgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"btnTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"btnBorderRadius": {
+			"type": "number",
+			"default": 4
+		}
+	},
+	"render": "file:./render.php",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css"
+}

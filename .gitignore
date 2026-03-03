@@ -1,0 +1,17 @@
+# Node
+node_modules/
+
+# Build output
+blocks/cal-booking/build/
+
+# Composer
+vendor/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+
+# WordPress.org deployment
+*.zip

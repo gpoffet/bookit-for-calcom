@@ -1,0 +1,197 @@
+# French translation for BookIt for Cal.com
+# Copyright (C) 2024 Gaël Poffet
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: BookIt for Cal.com 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/gpoffet/bookit-for-calcom/issues\n"
+"POT-Creation-Date: 2024-01-01T00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-01T00:00:00+00:00\n"
+"Last-Translator: Gaël Poffet <gael@poffet.net>\n"
+"Language-Team: French\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Domain: bookit-for-calcom\n"
+
+msgid "BookIt for Cal.com"
+msgstr "BookIt pour Cal.com"
+
+msgid "Integrate Cal.com booking widgets into WordPress via a Gutenberg block, Elementor widget, and shortcode."
+msgstr "Intégrez les widgets de réservation Cal.com dans WordPress via un bloc Gutenberg, un widget Elementor et un shortcode."
+
+msgid "No Cal.com API key configured."
+msgstr "Aucune clé API Cal.com configurée."
+
+msgid "Cal.com API returned HTTP %d."
+msgstr "L'API Cal.com a retourné HTTP %d."
+
+msgid "Could not parse Cal.com API response."
+msgstr "Impossible d'analyser la réponse de l'API Cal.com."
+
+msgid "BookIt"
+msgstr "BookIt"
+
+msgid "Cal.com Account"
+msgstr "Compte Cal.com"
+
+msgid "API Key"
+msgstr "Clé API"
+
+msgid "Cal.com Username"
+msgstr "Nom d'utilisateur Cal.com"
+
+msgid "Widget Defaults"
+msgstr "Valeurs par défaut du widget"
+
+msgid "Cal.com JS Namespace"
+msgstr "Espace de noms JS Cal.com"
+
+msgid "Theme"
+msgstr "Thème"
+
+msgid "Accent Color"
+msgstr "Couleur d'accentuation"
+
+msgid "Hide Cal.com Branding"
+msgstr "Masquer la marque Cal.com"
+
+msgid "Performance"
+msgstr "Performance"
+
+msgid "Script Loading Strategy"
+msgstr "Stratégie de chargement des scripts"
+
+msgid "Your Cal.com API key. Found in Cal.com → Settings → Developer → API Keys."
+msgstr "Votre clé API Cal.com. Disponible dans Cal.com → Paramètres → Développeur → Clés API."
+
+msgid "Refresh event types"
+msgstr "Actualiser les types d'événements"
+
+msgid "Your Cal.com username (used as URL prefix when no API key is set)."
+msgstr "Votre nom d'utilisateur Cal.com (utilisé comme préfixe d'URL si aucune clé API n'est définie)."
+
+msgid "Cal.com JS namespace (default: cal). Change only if you have conflicts."
+msgstr "Espace de noms JS Cal.com (par défaut : cal). À modifier uniquement en cas de conflits."
+
+msgid "Auto (follow browser)"
+msgstr "Auto (selon le navigateur)"
+
+msgid "Light"
+msgstr "Clair"
+
+msgid "Dark"
+msgstr "Sombre"
+
+msgid "Hide \"Powered by Cal.com\" branding (requires Cal.com Pro)."
+msgstr "Masquer la mention « Propulsé par Cal.com » (nécessite Cal.com Pro)."
+
+msgid "Smart — only on pages with a booking widget"
+msgstr "Intelligent — uniquement sur les pages avec un widget de réservation"
+
+msgid "Always — on every frontend page"
+msgstr "Toujours — sur toutes les pages publiques"
+
+msgid "\"Smart\" reduces page weight by loading the Cal.com script only where needed."
+msgstr "Le mode « Intelligent » réduit le poids des pages en chargeant le script Cal.com uniquement là où nécessaire."
+
+msgid "Save Settings"
+msgstr "Enregistrer les réglages"
+
+msgid "Insufficient permissions."
+msgstr "Permissions insuffisantes."
+
+msgid "Event types refreshed successfully."
+msgstr "Types d'événements actualisés avec succès."
+
+msgid "Could not refresh event types."
+msgstr "Impossible d'actualiser les types d'événements."
+
+msgid "Book a meeting"
+msgstr "Réserver une réunion"
+
+msgid "Booking calendar"
+msgstr "Calendrier de réservation"
+
+msgid "Please configure a Cal.com event in the widget settings."
+msgstr "Veuillez configurer un événement Cal.com dans les paramètres du widget."
+
+msgid "Cal.com Booking"
+msgstr "Réservation Cal.com"
+
+msgid "— Select an event —"
+msgstr "— Sélectionner un événement —"
+
+msgid "Event type"
+msgstr "Type d'événement"
+
+msgid "Event slug"
+msgstr "Identifiant d'événement"
+
+msgid "Configure an API key in BookIt settings to use a dropdown."
+msgstr "Configurez une clé API dans les réglages BookIt pour utiliser une liste déroulante."
+
+msgid "Display type"
+msgstr "Type d'affichage"
+
+msgid "Popup button"
+msgstr "Bouton popup"
+
+msgid "Popup text link"
+msgstr "Lien texte popup"
+
+msgid "Inline calendar"
+msgstr "Calendrier intégré"
+
+msgid "Button / link label"
+msgstr "Libellé du bouton / lien"
+
+msgid "Inline height (px)"
+msgstr "Hauteur intégrée (px)"
+
+msgid "Cal.com options"
+msgstr "Options Cal.com"
+
+msgid "Use global setting"
+msgstr "Utiliser le réglage global"
+
+msgid "Accent color"
+msgstr "Couleur d'accentuation"
+
+msgid "Hide booking details"
+msgstr "Masquer les détails de réservation"
+
+msgid "Pre-fill logged-in user data"
+msgstr "Préremplir les données de l'utilisateur connecté"
+
+msgid "Yes"
+msgstr "Oui"
+
+msgid "No"
+msgstr "Non"
+
+msgid "Button style"
+msgstr "Style du bouton"
+
+msgid "Background color"
+msgstr "Couleur de fond"
+
+msgid "Text color"
+msgstr "Couleur du texte"
+
+msgid "Border radius (px)"
+msgstr "Rayon de bordure (px)"
+
+msgid "Select an event type in the sidebar to configure this block."
+msgstr "Sélectionnez un type d'événement dans la barre latérale pour configurer ce bloc."
+
+msgid "No API key configured. Enter the event slug manually."
+msgstr "Aucune clé API configurée. Entrez l'identifiant d'événement manuellement."
+
+msgid "Format: username/event-slug"
+msgstr "Format : nom-utilisateur/identifiant-evenement"
+
+msgid "Book an appointment"
+msgstr "Prendre rendez-vous"

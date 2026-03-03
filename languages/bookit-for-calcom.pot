@@ -1,0 +1,259 @@
+# Copyright (C) 2024 Gaël Poffet
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: BookIt for Cal.com 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/gpoffet/bookit-for-calcom/issues\n"
+"POT-Creation-Date: 2024-01-01T00:00:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: WP-CLI 2.x\n"
+"X-Domain: bookit-for-calcom\n"
+
+#. Plugin Name of the plugin
+msgid "BookIt for Cal.com"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/gpoffet/bookit-for-calcom"
+msgstr ""
+
+#. Description of the plugin
+msgid "Integrate Cal.com booking widgets into WordPress via a Gutenberg block, Elementor widget, and shortcode."
+msgstr ""
+
+#. Author of the plugin
+msgid "Gaël Poffet"
+msgstr ""
+
+#: includes/class-bookit-api.php
+msgid "No Cal.com API key configured."
+msgstr ""
+
+#: includes/class-bookit-api.php
+#. translators: %d: HTTP status code
+msgid "Cal.com API returned HTTP %d."
+msgstr ""
+
+#: includes/class-bookit-api.php
+msgid "Could not parse Cal.com API response."
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "BookIt for Cal.com"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "BookIt"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Cal.com Account"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "API Key"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Cal.com Username"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Widget Defaults"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Cal.com JS Namespace"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Theme"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Accent Color"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Hide Cal.com Branding"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Performance"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Script Loading Strategy"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Your Cal.com API key. Found in Cal.com → Settings → Developer → API Keys."
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Refresh event types"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Your Cal.com username (used as URL prefix when no API key is set)."
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Cal.com JS namespace (default: cal). Change only if you have conflicts."
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Auto (follow browser)"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Light"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Dark"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Hide \"Powered by Cal.com\" branding (requires Cal.com Pro)."
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Smart — only on pages with a booking widget"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Always — on every frontend page"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "\"Smart\" reduces page weight by loading the Cal.com script only where needed."
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Save Settings"
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Insufficient permissions."
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Event types refreshed successfully."
+msgstr ""
+
+#: includes/class-bookit-admin.php
+msgid "Could not refresh event types."
+msgstr ""
+
+#: includes/class-bookit-shortcode.php
+#: blocks/cal-booking/render.php
+#: elementor/class-bookit-elementor-widget.php
+msgid "Book a meeting"
+msgstr ""
+
+#: includes/class-bookit-shortcode.php
+msgid "Booking calendar"
+msgstr ""
+
+#: blocks/cal-booking/render.php
+#: elementor/class-bookit-elementor-widget.php
+msgid "Please configure a Cal.com event in the widget settings."
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Cal.com Booking"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "— Select an event —"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Event type"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Event slug"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Configure an API key in BookIt settings to use a dropdown."
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Display type"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Popup button"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Popup text link"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Inline calendar"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Button / link label"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Inline height (px)"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Cal.com options"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Use global setting"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Accent color"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Hide booking details"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Pre-fill logged-in user data"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Yes"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "No"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Button style"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Background color"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Text color"
+msgstr ""
+
+#: elementor/class-bookit-elementor-widget.php
+msgid "Border radius (px)"
+msgstr ""
+
+#: bookit-for-calcom.php
+msgid "BookIt"
+msgstr ""

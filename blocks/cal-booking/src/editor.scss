@@ -1,0 +1,30 @@
+/**
+ * BookIt for Cal.com — Editor styles (minimal).
+ *
+ * Only styles that are specific to the block editor preview.
+ * Frontend styles are generated inline by render.php.
+ */
+
+.wp-block-bookit-cal-booking {
+	.bookit-btn {
+		cursor: pointer;
+		padding: 10px 20px;
+		font-size: 14px;
+		border: none;
+	}
+
+	.bookit-link {
+		color: inherit;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+
+	.bookit-inline {
+		background: #f0f0f0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #888;
+		font-style: italic;
+	}
+}
