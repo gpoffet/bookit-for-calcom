@@ -50,11 +50,16 @@ class BookIt_Block {
 		$event_types = array();
 
 		if ( $has_api_key ) {
-			$result = BookIt_API::get_event_types( $settings['api_key'] );
+			$result = BookIt_API::get_event_types( $settings['api_key'], $settings['api_base'] );
 			if ( ! is_wp_error( $result ) ) {
 				$event_types = $result;
 			}
 		}
+
+		// Resolve username: manual setting takes priority, then auto-fetch from /me.
+		$username = ! empty( $settings['username'] )
+			? $settings['username']
+			: ( $has_api_key ? BookIt_API::get_username( $settings['api_key'], $settings['api_base'] ) : '' );
 
 		wp_localize_script(
 			'bookit-cal-booking-editor-script',
@@ -62,7 +67,7 @@ class BookIt_Block {
 			array(
 				'hasApiKey'  => $has_api_key,
 				'eventTypes' => $event_types,
-				'username'   => $settings['username'],
+				'username'   => $username,
 				'namespace'  => $settings['namespace'],
 			)
 		);

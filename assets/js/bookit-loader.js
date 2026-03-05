@@ -21,6 +21,8 @@
  *   data-ns          : Cal.com JS namespace (default "cal")
  */
 /* global Cal, bookitCalcomData */
+// Cal.com app origin — set by PHP via bookitCalcomData.calOrigin.
+// Falls back to the global instance so the file works standalone in tests.
 ( function () {
 	'use strict';
 
@@ -83,10 +85,11 @@
 			return;
 		}
 
-		var config  = buildConfig( el );
-		var prefill = buildPrefill( el );
+		var config     = buildConfig( el );
+		var prefill    = buildPrefill( el );
+		var calOrigin  = ( bookitCalcomData && bookitCalcomData.calOrigin ) ? bookitCalcomData.calOrigin : 'https://app.cal.com';
 
-		Cal( 'init', ns, { origin: 'https://cal.com' } );
+		Cal( 'init', ns, { origin: calOrigin } );
 
 		var uiConfig = Object.assign( {}, config );
 		Cal.ns[ ns ]( 'ui', uiConfig );
@@ -120,10 +123,11 @@
 			return;
 		}
 
-		var config  = buildConfig( el );
-		var prefill = buildPrefill( el );
+		var config     = buildConfig( el );
+		var prefill    = buildPrefill( el );
+		var calOrigin  = ( bookitCalcomData && bookitCalcomData.calOrigin ) ? bookitCalcomData.calOrigin : 'https://app.cal.com';
 
-		Cal( 'init', ns, { origin: 'https://cal.com' } );
+		Cal( 'init', ns, { origin: calOrigin } );
 		Cal.ns[ ns ]( 'ui', config );
 
 		trigger.addEventListener( 'click', function ( e ) {
@@ -148,16 +152,17 @@
 			return;
 		}
 
-		var config  = buildConfig( el );
-		var prefill = buildPrefill( el );
-		var height  = parseInt( el.dataset.height, 10 ) || 600;
+		var config    = buildConfig( el );
+		var prefill   = buildPrefill( el );
+		var height    = parseInt( el.dataset.height, 10 ) || 600;
+		var calOrigin = ( bookitCalcomData && bookitCalcomData.calOrigin ) ? bookitCalcomData.calOrigin : 'https://app.cal.com';
 
 		// Give the container a unique id if missing.
 		if ( ! container.id ) {
 			container.id = 'bookit-inline-' + Math.random().toString( 36 ).slice( 2, 9 );
 		}
 
-		Cal( 'init', ns, { origin: 'https://cal.com' } );
+		Cal( 'init', ns, { origin: calOrigin } );
 
 		var inlineOpts = Object.assign(
 			{ calLink: event, elementOrSelector: '#' + container.id },

@@ -80,13 +80,10 @@ final class BookIt_Plugin {
 	 */
 	private function load_dependencies(): void {
 		require_once BOOKIT_PLUGIN_DIR . 'includes/class-bookit-api.php';
+		require_once BOOKIT_PLUGIN_DIR . 'includes/class-bookit-admin.php'; // Always needed: get_settings() used in render.php (REST context).
 		require_once BOOKIT_PLUGIN_DIR . 'includes/class-bookit-assets.php';
 		require_once BOOKIT_PLUGIN_DIR . 'includes/class-bookit-shortcode.php';
 		require_once BOOKIT_PLUGIN_DIR . 'includes/class-bookit-block.php';
-
-		if ( is_admin() ) {
-			require_once BOOKIT_PLUGIN_DIR . 'includes/class-bookit-admin.php';
-		}
 	}
 
 	/**

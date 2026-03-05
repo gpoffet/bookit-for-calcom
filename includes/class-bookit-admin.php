@@ -82,6 +82,14 @@ class BookIt_Admin {
 		);
 
 		add_settings_field(
+			'bookit_api_base',
+			esc_html__( 'API Base URL', 'bookit-for-calcom' ),
+			array( __CLASS__, 'field_api_base' ),
+			'bookit-for-calcom',
+			'bookit_section_account'
+		);
+
+		add_settings_field(
 			'bookit_username',
 			esc_html__( 'Cal.com Username', 'bookit-for-calcom' ),
 			array( __CLASS__, 'field_username' ),
@@ -154,6 +162,7 @@ class BookIt_Admin {
 	public static function get_settings(): array {
 		$defaults = array(
 			'api_key'        => '',
+			'api_base'       => 'https://api.cal.com/v2',
 			'username'       => '',
 			'namespace'      => 'cal',
 			'theme'          => 'auto',
@@ -179,6 +188,7 @@ class BookIt_Admin {
 		$clean = array();
 
 		$clean['api_key']       = sanitize_text_field( $raw['api_key'] ?? '' );
+		$clean['api_base']      = esc_url_raw( rtrim( $raw['api_base'] ?? 'https://api.cal.com/v2', '/' ) ) ?: 'https://api.cal.com/v2';
 		$clean['username']      = sanitize_text_field( $raw['username'] ?? '' );
 		$clean['namespace']     = sanitize_key( $raw['namespace'] ?? 'cal' );
 		$clean['theme']         = in_array( $raw['theme'] ?? '', array( 'light', 'dark', 'auto' ), true )
@@ -190,9 +200,21 @@ class BookIt_Admin {
 			? $raw['load_strategy']
 			: 'smart';
 
-		// Flush cache when API key changes.
-		if ( $clean['api_key'] !== ( self::get_settings()['api_key'] ?? '' ) ) {
+		// Flush cache when API key or base URL changes.
+		$prev = self::get_settings();
+		if ( $clean['api_key'] !== $prev['api_key'] || $clean['api_base'] !== $prev['api_base'] ) {
 			BookIt_API::flush_cache();
+		}
+
+		// Auto-populate username when API key is set but username is empty.
+		// Uses event-types fetch (which we know works) to warm the username cache,
+		// then retrieves it. Runs only once — when username is blank.
+		if ( ! empty( $clean['api_key'] ) && empty( $clean['username'] ) ) {
+			BookIt_API::get_event_types( $clean['api_key'], $clean['api_base'] );
+			$auto = BookIt_API::get_username( $clean['api_key'], $clean['api_base'] );
+			if ( ! empty( $auto ) ) {
+				$clean['username'] = $auto;
+			}
 		}
 
 		return $clean;
@@ -235,12 +257,38 @@ class BookIt_Admin {
 	}
 
 	/**
+	 * Render the API Base URL field.
+	 *
+	 * @return void
+	 */
+	public static function field_api_base(): void {
+		$settings = self::get_settings();
+		?>
+		<input
+			type="url"
+			id="bookit_api_base"
+			name="bookit_settings[api_base]"
+			value="<?php echo esc_attr( $settings['api_base'] ); ?>"
+			class="regular-text"
+			placeholder="https://api.cal.com/v2"
+		/>
+		<p class="description">
+			<?php esc_html_e( 'Cal.com API endpoint. Leave default unless you use the EU region or self-host.', 'bookit-for-calcom' ); ?>
+			<br>
+			<strong><?php esc_html_e( 'EU region (app.cal.eu):', 'bookit-for-calcom' ); ?></strong>
+			<code>https://app.cal.eu/api/v2</code>
+		</p>
+		<?php
+	}
+
+	/**
 	 * Render the Username field.
 	 *
 	 * @return void
 	 */
 	public static function field_username(): void {
-		$settings = self::get_settings();
+		$settings    = self::get_settings();
+		$has_api_key = ! empty( $settings['api_key'] );
 		?>
 		<input
 			type="text"
@@ -248,9 +296,17 @@ class BookIt_Admin {
 			name="bookit_settings[username]"
 			value="<?php echo esc_attr( $settings['username'] ); ?>"
 			class="regular-text"
+			<?php if ( $has_api_key ) : ?>
+				readonly
+				style="background:#f0f0f1;color:#666;cursor:default;"
+			<?php endif; ?>
 		/>
-		<p class="description">
-			<?php esc_html_e( 'Your Cal.com username (used as URL prefix when no API key is set).', 'bookit-for-calcom' ); ?>
+		<p class="description" id="bookit-username-desc">
+			<?php if ( $has_api_key ) : ?>
+				<?php esc_html_e( 'Auto-detected from your API key. Click "Refresh event types" to update.', 'bookit-for-calcom' ); ?>
+			<?php else : ?>
+				<?php esc_html_e( 'Your Cal.com username (used as URL prefix). Required when no API key is set.', 'bookit-for-calcom' ); ?>
+			<?php endif; ?>
 		</p>
 		<?php
 	}
@@ -419,14 +475,21 @@ class BookIt_Admin {
 			true
 		);
 
+		$settings = self::get_settings();
+
 		wp_localize_script(
 			'bookit-admin',
 			'bookitAdminData',
 			array(
-				'ajaxUrl'      => admin_url( 'admin-ajax.php' ),
-				'refreshNonce' => wp_create_nonce( 'bookit_refresh_event_types' ),
-				'msgSuccess'   => __( 'Event types refreshed successfully.', 'bookit-for-calcom' ),
-				'msgError'     => __( 'Could not refresh event types.', 'bookit-for-calcom' ),
+				'ajaxUrl'          => admin_url( 'admin-ajax.php' ),
+				'refreshNonce'     => wp_create_nonce( 'bookit_refresh_event_types' ),
+				'hasApiKey'        => ! empty( $settings['api_key'] ) ? '1' : '0',
+				// Return cached username only — no HTTP call on page load.
+				'autoUsername'     => (string) ( get_transient( BookIt_API::TRANSIENT_USERNAME ) ?: '' ),
+				'msgSuccess'       => __( 'Event types refreshed successfully.', 'bookit-for-calcom' ),
+				'msgError'         => __( 'Could not refresh event types.', 'bookit-for-calcom' ),
+				'msgUsernameAuto'   => __( 'Auto-detected from your API key. Click "Refresh event types" to update.', 'bookit-for-calcom' ),
+				'msgUsernameManual' => __( 'Your Cal.com username (used as URL prefix). Required when no API key is set.', 'bookit-for-calcom' ),
 			)
 		);
 	}
@@ -449,17 +512,43 @@ class BookIt_Admin {
 
 		BookIt_API::flush_cache();
 
-		$settings    = self::get_settings();
-		$event_types = BookIt_API::get_event_types( $settings['api_key'] );
+		// Use form field values (not yet saved) if provided,
+		// otherwise fall back to stored settings.
+		$settings = self::get_settings();
+
+		$api_key  = sanitize_text_field( wp_unslash( $_POST['api_key'] ?? '' ) );
+		if ( empty( $api_key ) ) {
+			$api_key = $settings['api_key'];
+		}
+
+		$api_base = esc_url_raw( rtrim( wp_unslash( $_POST['api_base'] ?? '' ), '/' ) );
+		if ( empty( $api_base ) ) {
+			$api_base = $settings['api_base'];
+		}
+
+		$event_types = BookIt_API::get_event_types( $api_key, $api_base );
 
 		if ( is_wp_error( $event_types ) ) {
 			wp_send_json_error( $event_types->get_error_message() );
 		}
 
+		$username = BookIt_API::get_username( $api_key, $api_base );
+
+		// Persist the detected username immediately so render.php can use it
+		// even if the user hasn't clicked "Save Settings" yet.
+		if ( ! empty( $username ) ) {
+			$stored = self::get_settings();
+			if ( $stored['username'] !== $username ) {
+				$stored['username'] = $username;
+				update_option( self::OPTION_KEY, $stored );
+			}
+		}
+
 		wp_send_json_success(
 			array(
-				'count'  => count( $event_types ),
-				'events' => $event_types,
+				'count'    => count( $event_types ),
+				'events'   => $event_types,
+				'username' => $username,
 			)
 		);
 	}

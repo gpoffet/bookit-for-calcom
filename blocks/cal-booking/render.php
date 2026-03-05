@@ -34,6 +34,16 @@ if ( empty( $event_type ) ) {
 	return;
 }
 
+// If the event slug has no username prefix, resolve it from settings or the API.
+if ( false === strpos( $event_type, '/' ) ) {
+	$username = ! empty( $settings['username'] )
+		? $settings['username']
+		: BookIt_API::get_username( $settings['api_key'], $settings['api_base'] );
+	if ( ! empty( $username ) ) {
+		$event_type = $username . '/' . $event_type;
+	}
+}
+
 // Resolve "global" theme.
 if ( 'global' === $theme ) {
 	$theme = $settings['theme'] ?? 'auto';

@@ -5,6 +5,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import ServerSideRender from '@wordpress/server-side-render';
 import {
 	PanelBody,
 	SelectControl,
@@ -13,7 +14,6 @@ import {
 	ToggleControl,
 	ColorPicker,
 	Notice,
-	ServerSideRender,
 	__experimentalText as Text,
 } from '@wordpress/components';
 
@@ -60,10 +60,15 @@ export default function Edit( { attributes, setAttributes } ) {
 		{ label: __( 'Dark', 'bookit-for-calcom' ), value: 'dark' },
 	];
 
-	const eventOptions = eventTypes.map( ( et ) => ( {
-		label: et.title + ' \u2014 ' + et.slug,
-		value: et.username ? et.username + '/' + et.slug : et.slug,
-	} ) );
+	const configuredUsername = editorData.username || '';
+	const eventOptions = eventTypes.map( ( et ) => {
+		// Cal.com v2 API may return username at various levels.
+		const username = et.username || et.owner?.username || et.profile?.username || configuredUsername;
+		return {
+			label: et.title + ' \u2014 ' + et.slug,
+			value: username ? username + '/' + et.slug : et.slug,
+		};
+	} );
 
 	const showLabel = 'popup-button' === displayType || 'popup-text' === displayType;
 

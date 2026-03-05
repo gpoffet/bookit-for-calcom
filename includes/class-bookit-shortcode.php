@@ -79,6 +79,16 @@ class BookIt_Shortcode {
 			return '<!-- BookIt: no event specified -->';
 		}
 
+		// If the event slug has no username prefix, resolve it from settings or the API.
+		if ( false === strpos( $event, '/' ) ) {
+			$username = ! empty( $settings['username'] )
+				? $settings['username']
+				: BookIt_API::get_username( $settings['api_key'], $settings['api_base'] );
+			if ( ! empty( $username ) ) {
+				$event = $username . '/' . $event;
+			}
+		}
+
 		// Resolve "global" theme to the configured global theme.
 		if ( 'global' === $theme ) {
 			$theme = $settings['theme'] ?? 'auto';

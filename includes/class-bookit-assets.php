@@ -53,16 +53,27 @@ class BookIt_Assets {
 	 * @return void
 	 */
 	private static function enqueue( array $settings ): void {
-		// Cal.com embed script (external, loaded in footer).
-		wp_enqueue_script(
-			'calcom-embed',
-			'https://app.cal.com/embed/embed.js',
-			array(),
-			null, // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
-			true
-		);
+		$cal_origin = self::get_cal_origin( $settings['api_base'] ?? '' );
+		$embed_url  = $cal_origin . '/embed/embed.js';
 
-		// Plugin loader (depends on calcom-embed).
+		// Cal.com's embed cannot be loaded directly via <script src="embed.js">.
+		// It must be bootstrapped by an inline stub that creates window.Cal first,
+		// then dynamically loads embed.js. Registering a handle with src=false
+		// lets us attach the stub as an inline script in the footer.
+		if ( ! wp_script_is( 'calcom-embed', 'registered' ) ) {
+			wp_register_script( 'calcom-embed', false, array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters
+			wp_add_inline_script(
+				'calcom-embed',
+				sprintf(
+					// phpcs:ignore WordPress.WP.EnqueuedResourceParameters
+					'(function(C,A,L){let p=function(a,ar){a.q.push(ar);};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true;}if(ar[0]===L){const api=function(){p(api,arguments);};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,[L,namespace,ar[2]]);}else{p(cal,ar);cal.ns["__call"]=cal.ns["__call"]||api;}return;}p(cal,ar);};})(window,%s,"init");',
+					wp_json_encode( $embed_url )
+				)
+			);
+		}
+		wp_enqueue_script( 'calcom-embed' );
+
+		// Plugin loader (depends on calcom-embed stub).
 		wp_enqueue_script(
 			'bookit-loader',
 			BOOKIT_PLUGIN_URL . 'assets/js/bookit-loader.js',
@@ -80,8 +91,35 @@ class BookIt_Assets {
 			array(
 				'currentUser' => $current_user_data,
 				'namespace'   => $settings['namespace'],
+				'calOrigin'   => $cal_origin,
 			)
 		);
+	}
+
+	/**
+	 * Derive the Cal.com app origin URL from the configured API base URL.
+	 *
+	 * Examples:
+	 *   https://api.cal.com/v2      → https://app.cal.com
+	 *   https://app.cal.eu/api/v2   → https://app.cal.eu
+	 *
+	 * @param string $api_base Stored api_base setting.
+	 * @return string
+	 */
+	private static function get_cal_origin( string $api_base ): string {
+		$parsed = wp_parse_url( $api_base );
+		$scheme = $parsed['scheme'] ?? 'https';
+		$host   = $parsed['host']   ?? 'api.cal.com';
+
+		// When the API lives on an "api." subdomain, the embed app is on "app."
+		// e.g. api.cal.com → app.cal.com, api.cal.eu → app.cal.eu
+		if ( 0 === strpos( $host, 'api.' ) ) {
+			return $scheme . '://app.' . substr( $host, 4 );
+		}
+
+		// For instances where the API and app share the same host
+		// (e.g. app.cal.eu/api/v2), use the host directly.
+		return $scheme . '://' . $host;
 	}
 
 	/**
