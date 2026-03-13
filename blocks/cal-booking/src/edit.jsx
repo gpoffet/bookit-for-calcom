@@ -15,6 +15,8 @@ import {
 	ColorPicker,
 	Notice,
 	__experimentalText as Text,
+	__experimentalBoxControl as BoxControl,
+	__experimentalSpacer as Spacer,
 } from '@wordpress/components';
 
 /**
@@ -38,6 +40,22 @@ export default function Edit( { attributes, setAttributes } ) {
 		btnBgColor,
 		btnTextColor,
 		btnBorderRadius,
+		btnBorderWidth,
+		btnBorderStyle,
+		btnBorderColor,
+		btnPaddingTop,
+		btnPaddingRight,
+		btnPaddingBottom,
+		btnPaddingLeft,
+		btnFontSize,
+		btnFontWeight,
+		btnTextTransform,
+		btnLetterSpacing,
+		btnFullWidth,
+		btnHoverBgColor,
+		btnHoverTextColor,
+		btnHoverBorderColor,
+		btnTransitionDuration,
 	} = attributes;
 
 	const blockProps = useBlockProps();
@@ -71,6 +89,17 @@ export default function Edit( { attributes, setAttributes } ) {
 	} );
 
 	const showLabel = 'popup-button' === displayType || 'popup-text' === displayType;
+
+	/** Section title helper — small bold label to separate panel sub-sections. */
+	const SectionTitle = ( { children } ) => (
+		<Text
+			as="p"
+			weight="600"
+			style={ { marginTop: 16, marginBottom: 8, textTransform: 'uppercase', fontSize: 11, color: '#757575', letterSpacing: '0.5px' } }
+		>
+			{ children }
+		</Text>
+	);
 
 	return (
 		<>
@@ -162,9 +191,13 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 				</PanelBody>
 
-				{/* ── Button style (popup types only) ── */}
+				{/* ── Button style (popup-button only) ── */}
 				{ showLabel && 'popup-button' === displayType && (
 					<PanelBody title={ __( 'Button style', 'bookit-for-calcom' ) } initialOpen={ false }>
+
+						{/* — Couleurs — */}
+						<SectionTitle>{ __( 'Colors', 'bookit-for-calcom' ) }</SectionTitle>
+
 						<Text as="p" weight="600" style={ { marginBottom: 8 } }>
 							{ __( 'Background color', 'bookit-for-calcom' ) }
 						</Text>
@@ -183,13 +216,166 @@ export default function Edit( { attributes, setAttributes } ) {
 							enableAlpha={ false }
 						/>
 
+						{/* — Bordure — */}
+						<SectionTitle>{ __( 'Border', 'bookit-for-calcom' ) }</SectionTitle>
+
 						<RangeControl
-							label={ __( 'Border radius (px)', 'bookit-for-calcom' ) }
+							label={ __( 'Width (px)', 'bookit-for-calcom' ) }
+							value={ btnBorderWidth }
+							min={ 0 }
+							max={ 20 }
+							onChange={ ( val ) => setAttributes( { btnBorderWidth: val } ) }
+						/>
+
+						{ btnBorderWidth > 0 && (
+							<>
+								<SelectControl
+									label={ __( 'Style', 'bookit-for-calcom' ) }
+									value={ btnBorderStyle }
+									options={ [
+										{ label: __( 'Solid', 'bookit-for-calcom' ), value: 'solid' },
+										{ label: __( 'Dashed', 'bookit-for-calcom' ), value: 'dashed' },
+										{ label: __( 'Dotted', 'bookit-for-calcom' ), value: 'dotted' },
+									] }
+									onChange={ ( val ) => setAttributes( { btnBorderStyle: val } ) }
+								/>
+
+								<Text as="p" weight="600" style={ { marginBottom: 8 } }>
+									{ __( 'Color', 'bookit-for-calcom' ) }
+								</Text>
+								<ColorPicker
+									color={ btnBorderColor }
+									onChange={ ( val ) => setAttributes( { btnBorderColor: val } ) }
+									enableAlpha={ false }
+								/>
+							</>
+						) }
+
+						<RangeControl
+							label={ __( 'Radius (px)', 'bookit-for-calcom' ) }
 							value={ btnBorderRadius }
 							min={ 0 }
 							max={ 50 }
 							onChange={ ( val ) => setAttributes( { btnBorderRadius: val } ) }
 						/>
+
+						{/* — Espacement — */}
+						<SectionTitle>{ __( 'Padding', 'bookit-for-calcom' ) }</SectionTitle>
+
+						<BoxControl
+							label={ __( 'Padding', 'bookit-for-calcom' ) }
+							values={ {
+								top:    btnPaddingTop    + 'px',
+								right:  btnPaddingRight  + 'px',
+								bottom: btnPaddingBottom + 'px',
+								left:   btnPaddingLeft   + 'px',
+							} }
+							onChange={ ( val ) => setAttributes( {
+								btnPaddingTop:    parseInt( val.top    ) || 0,
+								btnPaddingRight:  parseInt( val.right  ) || 0,
+								btnPaddingBottom: parseInt( val.bottom ) || 0,
+								btnPaddingLeft:   parseInt( val.left   ) || 0,
+							} ) }
+						/>
+
+						{/* — Typographie — */}
+						<SectionTitle>{ __( 'Typography', 'bookit-for-calcom' ) }</SectionTitle>
+
+						<RangeControl
+							label={ __( 'Font size (px)', 'bookit-for-calcom' ) }
+							value={ btnFontSize }
+							min={ 10 }
+							max={ 36 }
+							onChange={ ( val ) => setAttributes( { btnFontSize: val } ) }
+						/>
+
+						<SelectControl
+							label={ __( 'Font weight', 'bookit-for-calcom' ) }
+							value={ btnFontWeight }
+							options={ [
+								{ label: __( 'Default', 'bookit-for-calcom' ), value: '' },
+								{ label: __( 'Normal (400)', 'bookit-for-calcom' ), value: '400' },
+								{ label: __( 'Medium (500)', 'bookit-for-calcom' ), value: '500' },
+								{ label: __( 'Semi-bold (600)', 'bookit-for-calcom' ), value: '600' },
+								{ label: __( 'Bold (700)', 'bookit-for-calcom' ), value: '700' },
+								{ label: __( 'Extra-bold (800)', 'bookit-for-calcom' ), value: '800' },
+							] }
+							onChange={ ( val ) => setAttributes( { btnFontWeight: val } ) }
+						/>
+
+						<SelectControl
+							label={ __( 'Text transform', 'bookit-for-calcom' ) }
+							value={ btnTextTransform }
+							options={ [
+								{ label: __( 'None', 'bookit-for-calcom' ), value: '' },
+								{ label: __( 'UPPERCASE', 'bookit-for-calcom' ), value: 'uppercase' },
+								{ label: __( 'lowercase', 'bookit-for-calcom' ), value: 'lowercase' },
+								{ label: __( 'Capitalize', 'bookit-for-calcom' ), value: 'capitalize' },
+							] }
+							onChange={ ( val ) => setAttributes( { btnTextTransform: val } ) }
+						/>
+
+						<RangeControl
+							label={ __( 'Letter spacing (px)', 'bookit-for-calcom' ) }
+							value={ btnLetterSpacing }
+							min={ 0 }
+							max={ 10 }
+							step={ 0.5 }
+							onChange={ ( val ) => setAttributes( { btnLetterSpacing: val } ) }
+						/>
+
+						{/* — Mise en page — */}
+						<SectionTitle>{ __( 'Layout', 'bookit-for-calcom' ) }</SectionTitle>
+
+						<ToggleControl
+							label={ __( 'Full width button', 'bookit-for-calcom' ) }
+							checked={ btnFullWidth }
+							onChange={ ( val ) => setAttributes( { btnFullWidth: val } ) }
+						/>
+
+						{/* — Effets au survol — */}
+						<SectionTitle>{ __( 'Hover effects', 'bookit-for-calcom' ) }</SectionTitle>
+
+						<RangeControl
+							label={ __( 'Transition duration (ms)', 'bookit-for-calcom' ) }
+							value={ btnTransitionDuration }
+							min={ 0 }
+							max={ 500 }
+							step={ 50 }
+							onChange={ ( val ) => setAttributes( { btnTransitionDuration: val } ) }
+						/>
+
+						<Text as="p" weight="600" style={ { marginBottom: 8 } }>
+							{ __( 'Hover background color', 'bookit-for-calcom' ) }
+						</Text>
+						<ColorPicker
+							color={ btnHoverBgColor }
+							onChange={ ( val ) => setAttributes( { btnHoverBgColor: val } ) }
+							enableAlpha={ false }
+						/>
+
+						<Text as="p" weight="600" style={ { marginBottom: 8 } }>
+							{ __( 'Hover text color', 'bookit-for-calcom' ) }
+						</Text>
+						<ColorPicker
+							color={ btnHoverTextColor }
+							onChange={ ( val ) => setAttributes( { btnHoverTextColor: val } ) }
+							enableAlpha={ false }
+						/>
+
+						{ btnBorderWidth > 0 && (
+							<>
+								<Text as="p" weight="600" style={ { marginBottom: 8 } }>
+									{ __( 'Hover border color', 'bookit-for-calcom' ) }
+								</Text>
+								<ColorPicker
+									color={ btnHoverBorderColor }
+									onChange={ ( val ) => setAttributes( { btnHoverBorderColor: val } ) }
+									enableAlpha={ false }
+								/>
+							</>
+						) }
+
 					</PanelBody>
 				) }
 

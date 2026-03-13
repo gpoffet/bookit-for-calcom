@@ -57,6 +57,70 @@
 		"btnBorderRadius": {
 			"type": "number",
 			"default": 4
+		},
+		"btnBorderWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"btnBorderStyle": {
+			"type": "string",
+			"default": "solid"
+		},
+		"btnBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"btnPaddingTop": {
+			"type": "number",
+			"default": 10
+		},
+		"btnPaddingRight": {
+			"type": "number",
+			"default": 20
+		},
+		"btnPaddingBottom": {
+			"type": "number",
+			"default": 10
+		},
+		"btnPaddingLeft": {
+			"type": "number",
+			"default": 20
+		},
+		"btnFontSize": {
+			"type": "number",
+			"default": 14
+		},
+		"btnFontWeight": {
+			"type": "string",
+			"default": ""
+		},
+		"btnTextTransform": {
+			"type": "string",
+			"default": ""
+		},
+		"btnLetterSpacing": {
+			"type": "number",
+			"default": 0
+		},
+		"btnFullWidth": {
+			"type": "boolean",
+			"default": false
+		},
+		"btnHoverBgColor": {
+			"type": "string",
+			"default": ""
+		},
+		"btnHoverTextColor": {
+			"type": "string",
+			"default": ""
+		},
+		"btnHoverBorderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"btnTransitionDuration": {
+			"type": "number",
+			"default": 200
 		}
 	},
 	"render": "file:./render.php",

@@ -8,9 +8,7 @@
 .wp-block-bookit-cal-booking {
 	.bookit-btn {
 		cursor: pointer;
-		padding: 10px 20px;
-		font-size: 14px;
-		border: none;
+		/* padding, font-size, border are now controlled by block attributes and rendered as inline styles */
 	}
 
 	.bookit-link {
