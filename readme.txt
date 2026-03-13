@@ -32,10 +32,12 @@ Embed Cal.com booking widgets in WordPress via a Gutenberg block, Elementor widg
 
 = External services =
 
-This plugin connects to two external services operated by Cal.com, Inc.:
+This plugin connects to external services operated by Cal.com, Inc.:
 
-* **Cal.com API** (`https://api.cal.com`) — used to fetch your event types when an API key is configured. Only called from the WordPress admin when you save settings or click "Refresh event types".
-* **Cal.com embed script** (`https://app.cal.com/embed/embed.js`) — loaded on the frontend to render booking widgets. Loaded only on pages that contain a booking widget (smart strategy) or on all pages (always strategy), depending on your settings.
+* **Cal.com API** (`https://api.cal.com` or `https://api.cal.eu` for the EU region) — used to fetch your event types when an API key is configured. Only called from the WordPress admin when you save settings or click "Refresh event types".
+* **Cal.com embed script** (`https://app.cal.com/embed/embed.js` or `https://app.cal.eu/embed/embed.js` for the EU region) — loaded on the frontend to render booking widgets. Loaded only on pages that contain a booking widget (smart strategy) or on all pages (always strategy), depending on your settings.
+
+The API base URL is configurable in Settings → BookIt. The default is the global Cal.com instance (`api.cal.com` / `app.cal.com`). Users on the Cal.com EU instance should set it to `https://api.cal.eu`.
 
 By using this plugin you agree to Cal.com's [Terms of Service](https://cal.com/terms) and [Privacy Policy](https://cal.com/privacy).
 

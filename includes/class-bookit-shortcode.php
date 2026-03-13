@@ -256,7 +256,7 @@ class BookIt_Shortcode {
 				$extra_class = '';
 				if ( $hover_css ) {
 					$unique_class = 'bookit-h' . substr( md5( $hover_css ), 0, 8 );
-					$style_block  = '<style>.' . $unique_class . ':hover{' . $hover_css . '}</style>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					$style_block  = '<style>.' . $unique_class . ':hover{' . $hover_css . '}</style>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $hover_css is composed exclusively of values already passed through sanitize_hex_color() and hard-coded CSS property names; no user-supplied strings are interpolated.
 					$extra_class  = ' ' . $unique_class;
 				}
 

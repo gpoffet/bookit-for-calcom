@@ -470,7 +470,7 @@ class BookIt_Admin {
 		wp_enqueue_script(
 			'bookit-admin',
 			BOOKIT_PLUGIN_URL . 'assets/js/bookit-admin.js',
-			array( 'jquery' ),
+			array(),
 			BOOKIT_VERSION,
 			true
 		);
