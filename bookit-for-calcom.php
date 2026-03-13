@@ -55,22 +55,8 @@ final class BookIt_Plugin {
 	 * Private constructor — use instance().
 	 */
 	private function __construct() {
-		$this->load_textdomain();
 		$this->load_dependencies();
 		$this->init_hooks();
-	}
-
-	/**
-	 * Load plugin text domain for i18n.
-	 *
-	 * @return void
-	 */
-	private function load_textdomain(): void {
-		load_plugin_textdomain(
-			'bookit-for-calcom',
-			false,
-			dirname( BOOKIT_PLUGIN_BASENAME ) . '/languages'
-		);
 	}
 
 	/**

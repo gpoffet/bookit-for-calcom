@@ -12,6 +12,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Variables in block render callbacks are file-scoped by WP design; they are not true globals and do not pollute the namespace.
+
 $settings = BookIt_Admin::get_settings();
 
 // --- Resolve attributes with fallbacks to global settings -------------------
@@ -71,7 +73,8 @@ if ( empty( $accent_color ) && ! empty( $settings['accent_color'] ) ) {
 }
 
 // Delegate to the shared HTML builder in BookIt_Shortcode.
-echo BookIt_Shortcode::build_html( array( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- build_html() escapes all output internally; every value passed here is sanitized above (sanitize_text_field, sanitize_hex_color, absint, sanitize_key).
+echo BookIt_Shortcode::build_html( array(
 	'event'        => $event_type,
 	'type'         => $display_type,
 	'label'        => $label,
@@ -101,3 +104,5 @@ echo BookIt_Shortcode::build_html( array( // phpcs:ignore WordPress.Security.Esc
 	'btn_transition_duration' => $btn_transition_duration,
 	'ns'                      => $ns,
 ) );
+// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound

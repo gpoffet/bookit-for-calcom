@@ -521,7 +521,7 @@ class BookIt_Admin {
 			$api_key = $settings['api_key'];
 		}
 
-		$api_base = esc_url_raw( rtrim( wp_unslash( $_POST['api_base'] ?? '' ), '/' ) );
+		$api_base = esc_url_raw( rtrim( wp_unslash( $_POST['api_base'] ?? '' ), '/' ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- esc_url_raw() is the correct sanitizer for URL inputs.
 		if ( empty( $api_base ) ) {
 			$api_base = $settings['api_base'];
 		}

@@ -19,9 +19,9 @@ delete_transient( 'bookit_cal_username' );
 
 // If multisite, clean up each site.
 if ( is_multisite() ) {
-	$sites = get_sites( array( 'fields' => 'ids', 'number' => 0 ) );
-	foreach ( $sites as $site_id ) {
-		switch_to_blog( $site_id );
+	$bookit_sites = get_sites( array( 'fields' => 'ids', 'number' => 0 ) );
+	foreach ( $bookit_sites as $bookit_site_id ) {
+		switch_to_blog( $bookit_site_id );
 		delete_option( 'bookit_settings' );
 		delete_transient( 'bookit_event_types' );
 		delete_transient( 'bookit_cal_username' );

@@ -308,7 +308,8 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 			$accent_color = $settings['accent_color'];
 		}
 
-		echo BookIt_Shortcode::build_html( array( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- build_html() escapes all output internally; every value passed here is sanitized above (sanitize_text_field, sanitize_hex_color, absint, sanitize_key).
+		echo BookIt_Shortcode::build_html( array(
 			'event'        => $event_type,
 			'type'         => $display_type,
 			'label'        => $label,
@@ -322,6 +323,7 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 			'btn_radius'   => $btn_radius,
 			'ns'           => $ns,
 		) );
+		// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		// Mark this post so BookIt_Assets knows to enqueue scripts.
 		if ( ! \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
