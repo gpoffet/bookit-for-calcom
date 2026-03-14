@@ -104,6 +104,14 @@
 							usernameField.value = json.data.username;
 							setUsernameMode( true );
 						}
+
+						// Sync shortcode helper event dropdown if active.
+						if ( typeof window.bookitShortcodeHelper !== 'undefined' ) {
+							window.bookitShortcodeHelper.refreshEventTypes(
+								json.data.events,
+								json.data.username
+							);
+						}
 					} else {
 						status.className   = 'bookit-error';
 						status.textContent = json.data || bookitAdminData.msgError;
