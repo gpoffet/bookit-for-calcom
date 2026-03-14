@@ -72,6 +72,17 @@ if ( empty( $accent_color ) && ! empty( $settings['accent_color'] ) ) {
 	$accent_color = $settings['accent_color'];
 }
 
+// Fall back to global hover colors.
+if ( empty( $btn_hover_bg ) && ! empty( $settings['btn_hover_bg'] ) ) {
+	$btn_hover_bg = $settings['btn_hover_bg'];
+}
+if ( empty( $btn_hover_text ) && ! empty( $settings['btn_hover_text'] ) ) {
+	$btn_hover_text = $settings['btn_hover_text'];
+}
+if ( empty( $btn_hover_border_color ) && ! empty( $settings['btn_hover_border_color'] ) ) {
+	$btn_hover_border_color = $settings['btn_hover_border_color'];
+}
+
 // Delegate to the shared HTML builder in BookIt_Shortcode.
 // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- build_html() escapes all output internally; every value passed here is sanitized above (sanitize_text_field, sanitize_hex_color, absint, sanitize_key).
 echo BookIt_Shortcode::build_html( array(

@@ -312,9 +312,9 @@ class BookIt_Shortcode {
 				// Build hover rule and inject a scoped <style> if any hover color is set.
 				// All values are already sanitized hex colors — no XSS risk.
 				$hover_css = '';
-				if ( $btn_hover_bg )           { $hover_css .= 'background-color:' . $btn_hover_bg . ';'; }
-				if ( $btn_hover_text )         { $hover_css .= 'color:' . $btn_hover_text . ';'; }
-				if ( $btn_hover_border_color ) { $hover_css .= 'border-color:' . $btn_hover_border_color . ';'; }
+				if ( $btn_hover_bg )           { $hover_css .= 'background-color:' . $btn_hover_bg . '!important;'; }
+				if ( $btn_hover_text )         { $hover_css .= 'color:' . $btn_hover_text . '!important;'; }
+				if ( $btn_hover_border_color ) { $hover_css .= 'border-color:' . $btn_hover_border_color . '!important;'; }
 
 				$style_block = '';
 				$extra_class = '';

@@ -260,6 +260,45 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'btn_hover_heading',
+			array(
+				'label'     => esc_html__( 'Hover state', 'bookit-for-calcom' ),
+				'type'      => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_control(
+			'btn_hover_bg_color',
+			array(
+				'label'   => esc_html__( 'Hover background color', 'bookit-for-calcom' ),
+				'type'    => \Elementor\Controls_Manager::COLOR,
+				'default' => '',
+			)
+		);
+
+		$this->add_control(
+			'btn_hover_text_color',
+			array(
+				'label'   => esc_html__( 'Hover text color', 'bookit-for-calcom' ),
+				'type'    => \Elementor\Controls_Manager::COLOR,
+				'default' => '',
+			)
+		);
+
+		$this->add_control(
+			'btn_transition_duration',
+			array(
+				'label'   => esc_html__( 'Hover transition (ms)', 'bookit-for-calcom' ),
+				'type'    => \Elementor\Controls_Manager::NUMBER,
+				'min'     => 0,
+				'max'     => 1000,
+				'step'    => 50,
+				'default' => 200,
+			)
+		);
+
 		// Typography (Elementor Pro only — safely wrapped).
 		if ( class_exists( '\Elementor\Group_Control_Typography' ) ) {
 			$this->add_group_control(
@@ -296,10 +335,13 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$accent_color  = sanitize_hex_color( $s['accent_color']    ?? '' ) ?? '';
 		$hide_details  = 'yes' === ( $s['hide_details'] ?? '' ) ? '1' : '0';
 		$prefill_user  = 'yes' === ( $s['prefill_user']  ?? '' ) ? '1' : '0';
-		$btn_bg        = sanitize_hex_color( $s['btn_bg_color']     ?? '' ) ?? '';
-		$btn_text      = sanitize_hex_color( $s['btn_text_color']   ?? '' ) ?? '';
-		$btn_radius    = absint( $s['btn_border_radius'] ?? 4 );
-		$ns            = sanitize_key( $settings['namespace'] ?: 'cal' );
+		$btn_bg              = sanitize_hex_color( $s['btn_bg_color']       ?? '' ) ?? '';
+		$btn_text            = sanitize_hex_color( $s['btn_text_color']     ?? '' ) ?? '';
+		$btn_radius          = absint( $s['btn_border_radius']              ?? 4 );
+		$btn_hover_bg        = sanitize_hex_color( $s['btn_hover_bg_color']   ?? '' ) ?? '';
+		$btn_hover_text      = sanitize_hex_color( $s['btn_hover_text_color'] ?? '' ) ?? '';
+		$btn_transition      = absint( $s['btn_transition_duration']          ?? 200 );
+		$ns                  = sanitize_key( $settings['namespace'] ?: 'cal' );
 
 		if ( 'global' === $theme ) {
 			$theme = $settings['theme'] ?? 'auto';
@@ -308,20 +350,31 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 			$accent_color = $settings['accent_color'];
 		}
 
+		// Fall back to global hover colors when not overridden in widget.
+		if ( empty( $btn_hover_bg ) && ! empty( $settings['btn_hover_bg'] ) ) {
+			$btn_hover_bg = $settings['btn_hover_bg'];
+		}
+		if ( empty( $btn_hover_text ) && ! empty( $settings['btn_hover_text'] ) ) {
+			$btn_hover_text = $settings['btn_hover_text'];
+		}
+
 		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- build_html() escapes all output internally; every value passed here is sanitized above (sanitize_text_field, sanitize_hex_color, absint, sanitize_key).
 		echo BookIt_Shortcode::build_html( array(
-			'event'        => $event_type,
-			'type'         => $display_type,
-			'label'        => $label,
-			'height'       => $inline_height,
-			'theme'        => $theme,
-			'accent'       => $accent_color,
-			'hide_details' => $hide_details,
-			'prefill'      => $prefill_user,
-			'btn_bg'       => $btn_bg,
-			'btn_text'     => $btn_text,
-			'btn_radius'   => $btn_radius,
-			'ns'           => $ns,
+			'event'                   => $event_type,
+			'type'                    => $display_type,
+			'label'                   => $label,
+			'height'                  => $inline_height,
+			'theme'                   => $theme,
+			'accent'                  => $accent_color,
+			'hide_details'            => $hide_details,
+			'prefill'                 => $prefill_user,
+			'btn_bg'                  => $btn_bg,
+			'btn_text'                => $btn_text,
+			'btn_radius'              => $btn_radius,
+			'btn_hover_bg'            => $btn_hover_bg,
+			'btn_hover_text'          => $btn_hover_text,
+			'btn_transition_duration' => $btn_transition,
+			'ns'                      => $ns,
 		) );
 		// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 
