@@ -1,7 +1,7 @@
 Add-Type -Assembly "System.IO.Compression"
 Add-Type -Assembly "System.IO.Compression.FileSystem"
 
-$src        = Split-Path -Parent $PSScriptRoot
+$src        = if ($PSScriptRoot) { Split-Path -Parent $PSScriptRoot } else { (Get-Location).Path }
 $dst        = "$HOME\Downloads\bookit-for-calcom.zip"
 $pluginSlug = "bookit-for-calcom"
 
