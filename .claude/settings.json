@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init)",
+      "Bash(gh repo create bookit-for-calcom --public --description \"WordPress plugin that integrates Cal.com booking widgets into WordPress\" --source=. --push=false)",
+      "Bash(where gh)",
+      "Bash(cmd //c \"where gh\")",
+      "Bash(npm install)",
+      "Bash(npm run build)",
+      "WebFetch(domain:cal.com)",
+      "WebFetch(domain:developer.cal.com)",
+      "WebFetch(domain:cal.eu)",
+      "WebFetch(domain:docs.n8n.io)",
+      "WebFetch(domain:app.cal.com)",
+      "WebFetch(domain:api.cal.eu)",
+      "WebFetch(domain:app.cal.eu)",
+      "Bash(php --version)",
+      "Bash(node \"c:/laragon/www/bookit-for-calcom/wp-content/plugins/bookit-for-calcom/languages/make-mo.js\")"
+    ]
+  }
+}
