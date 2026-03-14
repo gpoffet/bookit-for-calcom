@@ -281,85 +281,119 @@ class BookIt_Admin {
 			$raw = array();
 		}
 
+		// Which form tab submitted this data? The hidden _tab field tells us so
+		// that fields from the non-active tab are preserved, not wiped.
+		$tab             = sanitize_key( $raw['_tab'] ?? 'settings' );
+		$is_settings_tab = 'settings' === $tab;
+		$is_style_tab    = 'style' === $tab;
+
+		// Existing stored values — used when a field is absent from the active form.
+		$existing = self::get_settings();
+
 		$clean = array();
 
-		$clean['api_key']       = sanitize_text_field( $raw['api_key'] ?? '' );
+		// ── Settings tab fields ──────────────────────────────────────────────
 
-		$preset_urls = array(
-			'global' => 'https://api.cal.com/v2',
-			'eu'     => 'https://api.cal.eu/v2',
-		);
-		$api_instance = sanitize_key( $raw['api_instance'] ?? 'global' );
-		if ( isset( $preset_urls[ $api_instance ] ) ) {
-			$clean['api_base'] = $preset_urls[ $api_instance ];
+		if ( $is_settings_tab ) {
+			$clean['api_key'] = sanitize_text_field( $raw['api_key'] ?? '' );
+
+			$preset_urls  = array(
+				'global' => 'https://api.cal.com/v2',
+				'eu'     => 'https://api.cal.eu/v2',
+			);
+			$api_instance = sanitize_key( $raw['api_instance'] ?? 'global' );
+			if ( isset( $preset_urls[ $api_instance ] ) ) {
+				$clean['api_base'] = $preset_urls[ $api_instance ];
+			} else {
+				$clean['api_base'] = esc_url_raw( rtrim( $raw['api_base'] ?? 'https://api.cal.com/v2', '/' ) ) ?: 'https://api.cal.com/v2';
+			}
+
+			$clean['username']      = sanitize_text_field( $raw['username'] ?? '' );
+			$clean['namespace']     = sanitize_key( $raw['namespace'] ?? 'cal' );
+			$clean['theme']         = in_array( $raw['theme'] ?? '', array( 'light', 'dark', 'auto' ), true )
+				? $raw['theme']
+				: 'auto';
+			$clean['accent_color']  = sanitize_hex_color( $raw['accent_color'] ?? '#000000' ) ?? '#000000';
+			$clean['hide_branding'] = ! empty( $raw['hide_branding'] );
+			$clean['load_strategy'] = in_array( $raw['load_strategy'] ?? '', array( 'smart', 'always' ), true )
+				? $raw['load_strategy']
+				: 'smart';
 		} else {
-			$clean['api_base'] = esc_url_raw( rtrim( $raw['api_base'] ?? 'https://api.cal.com/v2', '/' ) ) ?: 'https://api.cal.com/v2';
-		}
-		$clean['username']      = sanitize_text_field( $raw['username'] ?? '' );
-		$clean['namespace']     = sanitize_key( $raw['namespace'] ?? 'cal' );
-		$clean['theme']         = in_array( $raw['theme'] ?? '', array( 'light', 'dark', 'auto' ), true )
-			? $raw['theme']
-			: 'auto';
-		$clean['accent_color']  = sanitize_hex_color( $raw['accent_color'] ?? '#000000' ) ?? '#000000';
-		$clean['hide_branding'] = ! empty( $raw['hide_branding'] );
-		$clean['load_strategy'] = in_array( $raw['load_strategy'] ?? '', array( 'smart', 'always' ), true )
-			? $raw['load_strategy']
-			: 'smart';
-
-		// Style defaults.
-		$clean['default_label'] = sanitize_text_field( $raw['default_label'] ?? '' );
-		$clean['btn_bg']        = sanitize_hex_color( $raw['btn_bg'] ?? '' ) ?: '';
-		$clean['btn_text']      = sanitize_hex_color( $raw['btn_text'] ?? '' ) ?: '';
-
-		$raw_radius              = $raw['btn_radius'] ?? '';
-		$clean['btn_radius']     = ( '' !== $raw_radius ) ? absint( $raw_radius ) : '';
-		$raw_bw                  = $raw['btn_border_width'] ?? '';
-		$clean['btn_border_width'] = ( '' !== $raw_bw ) ? absint( $raw_bw ) : '';
-		$clean['btn_border_style'] = in_array( $raw['btn_border_style'] ?? '', array( 'solid', 'dashed', 'dotted' ), true )
-			? $raw['btn_border_style']
-			: 'solid';
-		$clean['btn_border_color'] = sanitize_hex_color( $raw['btn_border_color'] ?? '' ) ?: '';
-
-		foreach ( array( 'btn_padding_top', 'btn_padding_right', 'btn_padding_bottom', 'btn_padding_left' ) as $pad_key ) {
-			$raw_val         = $raw[ $pad_key ] ?? '';
-			$clean[ $pad_key ] = ( '' !== $raw_val ) ? absint( $raw_val ) : '';
+			// Preserve existing main settings when the Style tab is saved.
+			foreach ( array( 'api_key', 'api_base', 'username', 'namespace', 'theme', 'accent_color', 'hide_branding', 'load_strategy' ) as $_k ) {
+				$clean[ $_k ] = $existing[ $_k ];
+			}
 		}
 
-		$raw_fs              = $raw['btn_font_size'] ?? '';
-		$clean['btn_font_size'] = ( '' !== $raw_fs ) ? absint( $raw_fs ) : '';
-		$clean['btn_font_weight'] = in_array( $raw['btn_font_weight'] ?? '', array( '', '300', '400', '500', '600', '700', '800' ), true )
-			? $raw['btn_font_weight']
-			: '';
-		$clean['btn_text_transform'] = in_array( $raw['btn_text_transform'] ?? '', array( '', 'uppercase', 'lowercase', 'capitalize' ), true )
-			? $raw['btn_text_transform']
-			: '';
-		$raw_ls                    = $raw['btn_letter_spacing'] ?? '';
-		$clean['btn_letter_spacing'] = ( '' !== $raw_ls && is_numeric( $raw_ls ) ) ? (float) $raw_ls : '';
+		// ── Style tab fields ─────────────────────────────────────────────────
 
-		$clean['btn_full_width']         = ! empty( $raw['btn_full_width'] );
-		$clean['btn_hover_bg']           = sanitize_hex_color( $raw['btn_hover_bg'] ?? '' ) ?: '';
-		$clean['btn_hover_text']         = sanitize_hex_color( $raw['btn_hover_text'] ?? '' ) ?: '';
-		$clean['btn_hover_border_color'] = sanitize_hex_color( $raw['btn_hover_border_color'] ?? '' ) ?: '';
+		if ( $is_style_tab ) {
+			$clean['default_label'] = sanitize_text_field( $raw['default_label'] ?? '' );
+			$clean['btn_bg']        = sanitize_hex_color( $raw['btn_bg'] ?? '' ) ?: '';
+			$clean['btn_text']      = sanitize_hex_color( $raw['btn_text'] ?? '' ) ?: '';
 
-		$raw_td                         = $raw['btn_transition_duration'] ?? '';
-		$clean['btn_transition_duration'] = ( '' !== $raw_td ) ? absint( $raw_td ) : '';
-		$raw_ih                = $raw['inline_height'] ?? '';
-		$clean['inline_height'] = ( '' !== $raw_ih ) ? absint( $raw_ih ) : '';
+			$raw_radius                = $raw['btn_radius'] ?? '';
+			$clean['btn_radius']       = ( '' !== $raw_radius ) ? absint( $raw_radius ) : '';
+			$raw_bw                    = $raw['btn_border_width'] ?? '';
+			$clean['btn_border_width'] = ( '' !== $raw_bw ) ? absint( $raw_bw ) : '';
+			$clean['btn_border_style'] = in_array( $raw['btn_border_style'] ?? '', array( 'solid', 'dashed', 'dotted' ), true )
+				? $raw['btn_border_style']
+				: 'solid';
+			$clean['btn_border_color'] = sanitize_hex_color( $raw['btn_border_color'] ?? '' ) ?: '';
 
-		// Flush cache when API key or base URL changes.
-		$prev = self::get_settings();
-		if ( $clean['api_key'] !== $prev['api_key'] || $clean['api_base'] !== $prev['api_base'] ) {
-			BookIt_API::flush_cache();
+			foreach ( array( 'btn_padding_top', 'btn_padding_right', 'btn_padding_bottom', 'btn_padding_left' ) as $pad_key ) {
+				$raw_val           = $raw[ $pad_key ] ?? '';
+				$clean[ $pad_key ] = ( '' !== $raw_val ) ? absint( $raw_val ) : '';
+			}
+
+			$raw_fs                      = $raw['btn_font_size'] ?? '';
+			$clean['btn_font_size']      = ( '' !== $raw_fs ) ? absint( $raw_fs ) : '';
+			$clean['btn_font_weight']    = in_array( $raw['btn_font_weight'] ?? '', array( '', '300', '400', '500', '600', '700', '800' ), true )
+				? $raw['btn_font_weight']
+				: '';
+			$clean['btn_text_transform'] = in_array( $raw['btn_text_transform'] ?? '', array( '', 'uppercase', 'lowercase', 'capitalize' ), true )
+				? $raw['btn_text_transform']
+				: '';
+			$raw_ls                      = $raw['btn_letter_spacing'] ?? '';
+			$clean['btn_letter_spacing'] = ( '' !== $raw_ls && is_numeric( $raw_ls ) ) ? (float) $raw_ls : '';
+
+			$clean['btn_full_width']          = ! empty( $raw['btn_full_width'] );
+			$clean['btn_hover_bg']            = sanitize_hex_color( $raw['btn_hover_bg'] ?? '' ) ?: '';
+			$clean['btn_hover_text']          = sanitize_hex_color( $raw['btn_hover_text'] ?? '' ) ?: '';
+			$clean['btn_hover_border_color']  = sanitize_hex_color( $raw['btn_hover_border_color'] ?? '' ) ?: '';
+
+			$raw_td                           = $raw['btn_transition_duration'] ?? '';
+			$clean['btn_transition_duration'] = ( '' !== $raw_td ) ? absint( $raw_td ) : '';
+			$raw_ih                           = $raw['inline_height'] ?? '';
+			$clean['inline_height']           = ( '' !== $raw_ih ) ? absint( $raw_ih ) : '';
+		} else {
+			// Preserve existing style settings when the Settings tab is saved.
+			$style_keys = array(
+				'default_label', 'btn_bg', 'btn_text', 'btn_radius', 'btn_border_width',
+				'btn_border_style', 'btn_border_color', 'btn_padding_top', 'btn_padding_right',
+				'btn_padding_bottom', 'btn_padding_left', 'btn_font_size', 'btn_font_weight',
+				'btn_text_transform', 'btn_letter_spacing', 'btn_full_width', 'btn_hover_bg',
+				'btn_hover_text', 'btn_hover_border_color', 'btn_transition_duration', 'inline_height',
+			);
+			foreach ( $style_keys as $_k ) {
+				$clean[ $_k ] = $existing[ $_k ];
+			}
 		}
 
-		// Auto-populate username when API key is set but username is empty.
-		// Uses event-types fetch (which we know works) to warm the username cache,
-		// then retrieves it. Runs only once — when username is blank.
-		if ( ! empty( $clean['api_key'] ) && empty( $clean['username'] ) ) {
-			BookIt_API::get_event_types( $clean['api_key'], $clean['api_base'] );
-			$auto = BookIt_API::get_username( $clean['api_key'], $clean['api_base'] );
-			if ( ! empty( $auto ) ) {
-				$clean['username'] = $auto;
+		// ── Side effects (only relevant when Settings tab credentials change) ─
+
+		if ( $is_settings_tab ) {
+			if ( $clean['api_key'] !== $existing['api_key'] || $clean['api_base'] !== $existing['api_base'] ) {
+				BookIt_API::flush_cache();
+			}
+
+			// Auto-populate username when API key is set but username is empty.
+			if ( ! empty( $clean['api_key'] ) && empty( $clean['username'] ) ) {
+				BookIt_API::get_event_types( $clean['api_key'], $clean['api_base'] );
+				$auto = BookIt_API::get_username( $clean['api_key'], $clean['api_base'] );
+				if ( ! empty( $auto ) ) {
+					$clean['username'] = $auto;
+				}
 			}
 		}
 
@@ -650,8 +684,9 @@ class BookIt_Admin {
 	private static function render_tab_settings(): void {
 		?>
 		<form method="post" action="options.php">
+			<?php settings_fields( 'bookit_settings_group' ); ?>
+			<input type="hidden" name="bookit_settings[_tab]" value="settings" />
 			<?php
-			settings_fields( 'bookit_settings_group' );
 			do_settings_sections( 'bookit-for-calcom' );
 			submit_button( esc_html__( 'Save Settings', 'bookit-for-calcom' ) );
 			?>
@@ -1227,8 +1262,9 @@ class BookIt_Admin {
 	private static function render_tab_style(): void {
 		?>
 		<form method="post" action="options.php">
+			<?php settings_fields( 'bookit_settings_group' ); ?>
+			<input type="hidden" name="bookit_settings[_tab]" value="style" />
 			<?php
-			settings_fields( 'bookit_settings_group' );
 			do_settings_sections( 'bookit-settings-style' );
 			submit_button( esc_html__( 'Save Style Defaults', 'bookit-for-calcom' ) );
 			?>

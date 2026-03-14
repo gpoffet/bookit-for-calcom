@@ -1,8 +1,9 @@
 /**
  * BookIt for Cal.com — Admin JS.
  *
- * Handles the "Refresh event types" AJAX button and the username field
- * auto-detection UX on the settings page.
+ * Handles the "Refresh event types" AJAX button, the username field
+ * auto-detection UX on the Settings tab, and the colour controls on the
+ * Style tab.
  */
 /* global bookitAdminData */
 ( function () {
@@ -86,70 +87,68 @@
 		}
 
 		// -----------------------------------------------------------------
-		// Refresh button.
+		// Refresh button — only present on the Settings tab.
 		// -----------------------------------------------------------------
+		if ( btn && status ) {
+			btn.addEventListener( 'click', function () {
+				btn.disabled       = true;
+				status.className   = '';
+				status.textContent = '\u29d7 \u2026';
 
-		if ( ! btn || ! status ) {
-			return;
+				// If an API key is present, switch to readonly mode immediately.
+				if ( apiKeyField && apiKeyField.value.trim() ) {
+					setUsernameMode( true );
+				}
+
+				var data = new FormData();
+				data.append( 'action',   'bookit_refresh_event_types' );
+				data.append( 'nonce',    bookitAdminData.refreshNonce );
+				data.append( 'api_key',  apiKeyField  ? apiKeyField.value  : '' );
+				data.append( 'api_base', apiBaseField ? apiBaseField.value : '' );
+
+				fetch( bookitAdminData.ajaxUrl, {
+					method:      'POST',
+					credentials: 'same-origin',
+					body:        data,
+				} )
+					.then( function ( response ) { return response.json(); } )
+					.then( function ( json ) {
+						if ( json.success ) {
+							status.className   = 'bookit-success';
+							status.textContent = bookitAdminData.msgSuccess +
+								' (' + json.data.count + ')';
+
+							// Auto-fill username and lock the field.
+							if ( json.data.username && usernameField ) {
+								usernameField.value = json.data.username;
+								setUsernameMode( true );
+							}
+
+							// Sync shortcode helper event dropdown if active.
+							if ( typeof window.bookitShortcodeHelper !== 'undefined' ) {
+								window.bookitShortcodeHelper.refreshEventTypes(
+									json.data.events,
+									json.data.username
+								);
+							}
+						} else {
+							status.className   = 'bookit-error';
+							status.textContent = json.data || bookitAdminData.msgError;
+						}
+					} )
+					.catch( function () {
+						status.className   = 'bookit-error';
+						status.textContent = bookitAdminData.msgError;
+					} )
+					.finally( function () {
+						btn.disabled = false;
+					} );
+			} );
 		}
 
-		btn.addEventListener( 'click', function () {
-			btn.disabled       = true;
-			status.className   = '';
-			status.textContent = '\u29d7 \u2026';
-
-			// If an API key is present, switch to readonly mode immediately.
-			if ( apiKeyField && apiKeyField.value.trim() ) {
-				setUsernameMode( true );
-			}
-
-			var data = new FormData();
-			data.append( 'action',   'bookit_refresh_event_types' );
-			data.append( 'nonce',    bookitAdminData.refreshNonce );
-			data.append( 'api_key',  apiKeyField  ? apiKeyField.value  : '' );
-			data.append( 'api_base', apiBaseField ? apiBaseField.value : '' );
-
-			fetch( bookitAdminData.ajaxUrl, {
-				method:      'POST',
-				credentials: 'same-origin',
-				body:        data,
-			} )
-				.then( function ( response ) { return response.json(); } )
-				.then( function ( json ) {
-					if ( json.success ) {
-						status.className   = 'bookit-success';
-						status.textContent = bookitAdminData.msgSuccess +
-							' (' + json.data.count + ')';
-
-						// Auto-fill username and lock the field.
-						if ( json.data.username && usernameField ) {
-							usernameField.value = json.data.username;
-							setUsernameMode( true );
-						}
-
-						// Sync shortcode helper event dropdown if active.
-						if ( typeof window.bookitShortcodeHelper !== 'undefined' ) {
-							window.bookitShortcodeHelper.refreshEventTypes(
-								json.data.events,
-								json.data.username
-							);
-						}
-					} else {
-						status.className   = 'bookit-error';
-						status.textContent = json.data || bookitAdminData.msgError;
-					}
-				} )
-				.catch( function () {
-					status.className   = 'bookit-error';
-					status.textContent = bookitAdminData.msgError;
-				} )
-				.finally( function () {
-					btn.disabled = false;
-				} );
-		} );
-
 		// -----------------------------------------------------------------
-		// Style tab — color controls (text input + native color picker + clear).
+		// Style tab — colour controls (text input + native colour picker + clear).
+		// Must run on every page load, not only when the refresh button exists.
 		// -----------------------------------------------------------------
 		document.querySelectorAll( '.bookit-color-control' ).forEach( function ( ctrl ) {
 			var textInput = ctrl.querySelector( '.bookit-color-text' );
