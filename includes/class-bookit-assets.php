@@ -47,6 +47,18 @@ class BookIt_Assets {
 	}
 
 	/**
+	 * Enqueue assets on demand (called from shortcode/block render when smart
+	 * detection missed the widget — e.g. inside Formidable Forms HTML fields).
+	 *
+	 * Safe to call multiple times: wp_enqueue_script() is idempotent.
+	 *
+	 * @return void
+	 */
+	public static function enqueue_now(): void {
+		self::enqueue( BookIt_Admin::get_settings() );
+	}
+
+	/**
 	 * Enqueue Cal.com embed script + BookIt loader + localised data.
 	 *
 	 * @param array<string, mixed> $settings Plugin settings.

@@ -111,6 +111,12 @@ class BookIt_Shortcode {
 			return '<!-- BookIt: no event specified -->';
 		}
 
+		// Ensure scripts are loaded even when the shortcode is rendered outside
+		// post_content (e.g. inside a Formidable Forms HTML field, a widget, or
+		// any other context the smart detection cannot scan at wp_enqueue_scripts
+		// time). wp_enqueue_script() is idempotent — no double-loading.
+		BookIt_Assets::enqueue_now();
+
 		// If the event slug has no username prefix, resolve it from settings or the API.
 		if ( false === strpos( $event, '/' ) ) {
 			$username = ! empty( $settings['username'] )
