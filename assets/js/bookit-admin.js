@@ -8,13 +8,35 @@
 ( function () {
 	'use strict';
 
+	var INSTANCE_URLS = {
+		global: 'https://api.cal.com/v2',
+		eu:     'https://api.cal.eu/v2',
+	};
+
 	document.addEventListener( 'DOMContentLoaded', function () {
-		var btn           = document.getElementById( 'bookit-refresh-event-types' );
-		var status        = document.getElementById( 'bookit-refresh-status' );
-		var apiKeyField   = document.getElementById( 'bookit_api_key' );
-		var apiBaseField  = document.getElementById( 'bookit_api_base' );
-		var usernameField = document.getElementById( 'bookit_username' );
-		var usernameDesc  = document.getElementById( 'bookit-username-desc' );
+		var btn            = document.getElementById( 'bookit-refresh-event-types' );
+		var status         = document.getElementById( 'bookit-refresh-status' );
+		var apiKeyField    = document.getElementById( 'bookit_api_key' );
+		var apiBaseField   = document.getElementById( 'bookit_api_base' );
+		var usernameField  = document.getElementById( 'bookit_username' );
+		var usernameDesc   = document.getElementById( 'bookit-username-desc' );
+		var instanceSelect = document.getElementById( 'bookit_api_instance' );
+
+		// -----------------------------------------------------------------
+		// Instance select — keep hidden URL input in sync.
+		// -----------------------------------------------------------------
+		if ( instanceSelect && apiBaseField ) {
+			instanceSelect.addEventListener( 'change', function () {
+				var val = instanceSelect.value;
+				if ( 'custom' === val ) {
+					apiBaseField.style.display = '';
+					apiBaseField.focus();
+				} else {
+					apiBaseField.value         = INSTANCE_URLS[ val ];
+					apiBaseField.style.display = 'none';
+				}
+			} );
+		}
 
 		// -----------------------------------------------------------------
 		// Username field — readonly when API key is present.

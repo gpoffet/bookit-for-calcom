@@ -263,20 +263,49 @@ class BookIt_Admin {
 	 */
 	public static function field_api_base(): void {
 		$settings = self::get_settings();
+		$api_base = $settings['api_base'];
+
+		$presets = array(
+			'global' => 'https://api.cal.com/v2',
+			'eu'     => 'https://api.cal.eu/v2',
+		);
+
+		$current_preset = 'custom';
+		foreach ( $presets as $key => $url ) {
+			if ( $api_base === $url ) {
+				$current_preset = $key;
+				break;
+			}
+		}
+		$is_custom = 'custom' === $current_preset;
 		?>
+
+		<!-- Instance selector — no name attribute, drives UX only -->
+		<select id="bookit_api_instance">
+			<option value="global" <?php selected( $current_preset, 'global' ); ?>>
+				<?php esc_html_e( 'Global — app.cal.com', 'bookit-for-calcom' ); ?>
+			</option>
+			<option value="eu" <?php selected( $current_preset, 'eu' ); ?>>
+				<?php esc_html_e( 'Europe — app.cal.eu', 'bookit-for-calcom' ); ?>
+			</option>
+			<option value="custom" <?php selected( $current_preset, 'custom' ); ?>>
+				<?php esc_html_e( 'Custom&hellip;', 'bookit-for-calcom' ); ?>
+			</option>
+		</select>
+
+		<!-- Hidden URL input — always submitted via Settings API -->
 		<input
 			type="url"
 			id="bookit_api_base"
 			name="bookit_settings[api_base]"
-			value="<?php echo esc_attr( $settings['api_base'] ); ?>"
+			value="<?php echo esc_attr( $api_base ); ?>"
 			class="regular-text"
 			placeholder="https://api.cal.com/v2"
+			<?php if ( ! $is_custom ) : ?>style="display:none;"<?php endif; ?>
 		/>
+
 		<p class="description">
-			<?php esc_html_e( 'Cal.com API endpoint. Leave default unless you use the EU region or self-host.', 'bookit-for-calcom' ); ?>
-			<br>
-			<strong><?php esc_html_e( 'EU region (app.cal.eu):', 'bookit-for-calcom' ); ?></strong>
-			<code>https://app.cal.eu/api/v2</code>
+			<?php esc_html_e( 'Select your Cal.com instance. To find out which one you use: log in to Cal.com — if your URL starts with app.cal.eu, choose "Europe", otherwise choose "Global".', 'bookit-for-calcom' ); ?>
 		</p>
 		<?php
 	}
