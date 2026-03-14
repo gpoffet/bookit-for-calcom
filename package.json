@@ -7,7 +7,8 @@
 		"start": "wp-scripts start --webpack-src-dir=blocks/cal-booking/src --output-path=blocks/cal-booking/build",
 		"build": "wp-scripts build --webpack-src-dir=blocks/cal-booking/src --output-path=blocks/cal-booking/build",
 		"lint:js": "wp-scripts lint-js blocks/cal-booking/src",
-		"lint:css": "wp-scripts lint-style blocks/cal-booking/src"
+		"lint:css": "wp-scripts lint-style blocks/cal-booking/src",
+		"zip": "powershell.exe -ExecutionPolicy Bypass -File bin/make-zip.ps1"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^30.0.0"
