@@ -121,3 +121,52 @@
 	border-radius: 3px;
 	font-size: 12px;
 }
+
+/* ── Style tab — color control ───────────────────────────────────────────── */
+
+.bookit-color-control {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.bookit-color-control .bookit-color-picker {
+	width: 36px;
+	height: 30px;
+	padding: 2px;
+	border: 1px solid #8c8f94;
+	border-radius: 3px;
+	cursor: pointer;
+	flex-shrink: 0;
+}
+
+.bookit-color-control .bookit-color-text {
+	width: 90px;
+}
+
+/* ── Style tab — padding row ─────────────────────────────────────────────── */
+
+.bookit-padding-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+.bookit-padding-row label {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
+/* ── Style tab — number + unit ───────────────────────────────────────────── */
+
+.bookit-number-unit {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.bookit-number-unit .bookit-unit {
+	color: #646970;
+	font-size: 12px;
+}

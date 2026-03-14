@@ -147,5 +147,37 @@
 					btn.disabled = false;
 				} );
 		} );
+
+		// -----------------------------------------------------------------
+		// Style tab — color controls (text input + native color picker + clear).
+		// -----------------------------------------------------------------
+		document.querySelectorAll( '.bookit-color-control' ).forEach( function ( ctrl ) {
+			var textInput = ctrl.querySelector( '.bookit-color-text' );
+			var picker    = ctrl.querySelector( '.bookit-color-picker' );
+			var clearBtn  = ctrl.querySelector( '.bookit-color-clear' );
+
+			if ( ! textInput || ! picker ) {
+				return;
+			}
+
+			// Picker → text.
+			picker.addEventListener( 'input', function () {
+				textInput.value = picker.value;
+			} );
+
+			// Text → picker (only when valid 6-digit hex).
+			textInput.addEventListener( 'input', function () {
+				if ( /^#[0-9a-fA-F]{6}$/.test( textInput.value ) ) {
+					picker.value = textInput.value;
+				}
+			} );
+
+			// Clear button.
+			if ( clearBtn ) {
+				clearBtn.addEventListener( 'click', function () {
+					textInput.value = '';
+				} );
+			}
+		} );
 	} );
 }() );

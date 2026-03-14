@@ -152,6 +152,80 @@ class BookIt_Admin {
 			'bookit-for-calcom',
 			'bookit_section_perf'
 		);
+
+		// ── Style tab sections (page: bookit-settings-style) ──────────────────────────
+
+		// Section: Button — General.
+		add_settings_section(
+			'bookit_section_style_button',
+			esc_html__( 'Button — General', 'bookit-for-calcom' ),
+			'__return_false',
+			'bookit-settings-style'
+		);
+
+		add_settings_field( 'bookit_default_label',  esc_html__( 'Default Label', 'bookit-for-calcom' ),       array( __CLASS__, 'field_default_label' ),  'bookit-settings-style', 'bookit_section_style_button' );
+		add_settings_field( 'bookit_btn_bg',         esc_html__( 'Background Color', 'bookit-for-calcom' ),    array( __CLASS__, 'field_btn_bg' ),         'bookit-settings-style', 'bookit_section_style_button' );
+		add_settings_field( 'bookit_btn_text',       esc_html__( 'Text Color', 'bookit-for-calcom' ),          array( __CLASS__, 'field_btn_text' ),       'bookit-settings-style', 'bookit_section_style_button' );
+		add_settings_field( 'bookit_btn_full_width', esc_html__( 'Full Width', 'bookit-for-calcom' ),          array( __CLASS__, 'field_btn_full_width' ), 'bookit-settings-style', 'bookit_section_style_button' );
+
+		// Section: Button — Border.
+		add_settings_section(
+			'bookit_section_style_border',
+			esc_html__( 'Button — Border', 'bookit-for-calcom' ),
+			'__return_false',
+			'bookit-settings-style'
+		);
+
+		add_settings_field( 'bookit_btn_border_width', esc_html__( 'Border Width', 'bookit-for-calcom' ),       array( __CLASS__, 'field_btn_border_width' ), 'bookit-settings-style', 'bookit_section_style_border' );
+		add_settings_field( 'bookit_btn_border_style', esc_html__( 'Border Style', 'bookit-for-calcom' ),       array( __CLASS__, 'field_btn_border_style' ), 'bookit-settings-style', 'bookit_section_style_border' );
+		add_settings_field( 'bookit_btn_border_color', esc_html__( 'Border Color', 'bookit-for-calcom' ),       array( __CLASS__, 'field_btn_border_color' ), 'bookit-settings-style', 'bookit_section_style_border' );
+		add_settings_field( 'bookit_btn_radius',       esc_html__( 'Border Radius', 'bookit-for-calcom' ),      array( __CLASS__, 'field_btn_radius' ),       'bookit-settings-style', 'bookit_section_style_border' );
+
+		// Section: Button — Typography.
+		add_settings_section(
+			'bookit_section_style_typo',
+			esc_html__( 'Button — Typography', 'bookit-for-calcom' ),
+			'__return_false',
+			'bookit-settings-style'
+		);
+
+		add_settings_field( 'bookit_btn_font_size',      esc_html__( 'Font Size', 'bookit-for-calcom' ),        array( __CLASS__, 'field_btn_font_size' ),      'bookit-settings-style', 'bookit_section_style_typo' );
+		add_settings_field( 'bookit_btn_font_weight',    esc_html__( 'Font Weight', 'bookit-for-calcom' ),      array( __CLASS__, 'field_btn_font_weight' ),    'bookit-settings-style', 'bookit_section_style_typo' );
+		add_settings_field( 'bookit_btn_text_transform', esc_html__( 'Text Transform', 'bookit-for-calcom' ),   array( __CLASS__, 'field_btn_text_transform' ), 'bookit-settings-style', 'bookit_section_style_typo' );
+		add_settings_field( 'bookit_btn_letter_spacing', esc_html__( 'Letter Spacing', 'bookit-for-calcom' ),   array( __CLASS__, 'field_btn_letter_spacing' ), 'bookit-settings-style', 'bookit_section_style_typo' );
+
+		// Section: Button — Padding.
+		add_settings_section(
+			'bookit_section_style_padding',
+			esc_html__( 'Button — Padding', 'bookit-for-calcom' ),
+			'__return_false',
+			'bookit-settings-style'
+		);
+
+		add_settings_field( 'bookit_btn_padding', esc_html__( 'Padding', 'bookit-for-calcom' ), array( __CLASS__, 'field_btn_padding' ), 'bookit-settings-style', 'bookit_section_style_padding' );
+
+		// Section: Button — Hover Effects.
+		add_settings_section(
+			'bookit_section_style_hover',
+			esc_html__( 'Button — Hover Effects', 'bookit-for-calcom' ),
+			'__return_false',
+			'bookit-settings-style'
+		);
+
+		add_settings_field( 'bookit_btn_hover_bg',           esc_html__( 'Hover Background Color', 'bookit-for-calcom' ), array( __CLASS__, 'field_btn_hover_bg' ),           'bookit-settings-style', 'bookit_section_style_hover' );
+		add_settings_field( 'bookit_btn_hover_text',         esc_html__( 'Hover Text Color', 'bookit-for-calcom' ),       array( __CLASS__, 'field_btn_hover_text' ),         'bookit-settings-style', 'bookit_section_style_hover' );
+		add_settings_field( 'bookit_btn_hover_border_color', esc_html__( 'Hover Border Color', 'bookit-for-calcom' ),     array( __CLASS__, 'field_btn_hover_border_color' ), 'bookit-settings-style', 'bookit_section_style_hover' );
+		add_settings_field( 'bookit_btn_transition_duration', esc_html__( 'Transition Duration', 'bookit-for-calcom' ),   array( __CLASS__, 'field_btn_transition_duration' ), 'bookit-settings-style', 'bookit_section_style_hover' );
+
+		// Section: Inline Calendar.
+		add_settings_section(
+			'bookit_section_style_inline',
+			esc_html__( 'Inline Calendar', 'bookit-for-calcom' ),
+			'__return_false',
+			'bookit-settings-style'
+		);
+
+		add_settings_field( 'bookit_inline_height', esc_html__( 'Default Height', 'bookit-for-calcom' ), array( __CLASS__, 'field_inline_height' ), 'bookit-settings-style', 'bookit_section_style_inline' );
 	}
 
 	/**
@@ -169,6 +243,28 @@ class BookIt_Admin {
 			'accent_color'   => '#000000',
 			'hide_branding'  => false,
 			'load_strategy'  => 'smart',
+			// Style defaults — '' means "fall back to hardcoded value in the render layer".
+			'default_label'           => '',
+			'btn_bg'                  => '',
+			'btn_text'                => '',
+			'btn_radius'              => '',
+			'btn_border_width'        => '',
+			'btn_border_style'        => 'solid',
+			'btn_border_color'        => '',
+			'btn_padding_top'         => '',
+			'btn_padding_right'       => '',
+			'btn_padding_bottom'      => '',
+			'btn_padding_left'        => '',
+			'btn_font_size'           => '',
+			'btn_font_weight'         => '',
+			'btn_text_transform'      => '',
+			'btn_letter_spacing'      => '',
+			'btn_full_width'          => false,
+			'btn_hover_bg'            => '',
+			'btn_hover_text'          => '',
+			'btn_hover_border_color'  => '',
+			'btn_transition_duration' => '',
+			'inline_height'           => '',
 		);
 		$stored = get_option( self::OPTION_KEY, array() );
 		return wp_parse_args( $stored, $defaults );
@@ -209,6 +305,46 @@ class BookIt_Admin {
 		$clean['load_strategy'] = in_array( $raw['load_strategy'] ?? '', array( 'smart', 'always' ), true )
 			? $raw['load_strategy']
 			: 'smart';
+
+		// Style defaults.
+		$clean['default_label'] = sanitize_text_field( $raw['default_label'] ?? '' );
+		$clean['btn_bg']        = sanitize_hex_color( $raw['btn_bg'] ?? '' ) ?: '';
+		$clean['btn_text']      = sanitize_hex_color( $raw['btn_text'] ?? '' ) ?: '';
+
+		$raw_radius              = $raw['btn_radius'] ?? '';
+		$clean['btn_radius']     = ( '' !== $raw_radius ) ? absint( $raw_radius ) : '';
+		$raw_bw                  = $raw['btn_border_width'] ?? '';
+		$clean['btn_border_width'] = ( '' !== $raw_bw ) ? absint( $raw_bw ) : '';
+		$clean['btn_border_style'] = in_array( $raw['btn_border_style'] ?? '', array( 'solid', 'dashed', 'dotted' ), true )
+			? $raw['btn_border_style']
+			: 'solid';
+		$clean['btn_border_color'] = sanitize_hex_color( $raw['btn_border_color'] ?? '' ) ?: '';
+
+		foreach ( array( 'btn_padding_top', 'btn_padding_right', 'btn_padding_bottom', 'btn_padding_left' ) as $pad_key ) {
+			$raw_val         = $raw[ $pad_key ] ?? '';
+			$clean[ $pad_key ] = ( '' !== $raw_val ) ? absint( $raw_val ) : '';
+		}
+
+		$raw_fs              = $raw['btn_font_size'] ?? '';
+		$clean['btn_font_size'] = ( '' !== $raw_fs ) ? absint( $raw_fs ) : '';
+		$clean['btn_font_weight'] = in_array( $raw['btn_font_weight'] ?? '', array( '', '300', '400', '500', '600', '700', '800' ), true )
+			? $raw['btn_font_weight']
+			: '';
+		$clean['btn_text_transform'] = in_array( $raw['btn_text_transform'] ?? '', array( '', 'uppercase', 'lowercase', 'capitalize' ), true )
+			? $raw['btn_text_transform']
+			: '';
+		$raw_ls                    = $raw['btn_letter_spacing'] ?? '';
+		$clean['btn_letter_spacing'] = ( '' !== $raw_ls && is_numeric( $raw_ls ) ) ? (float) $raw_ls : '';
+
+		$clean['btn_full_width']         = ! empty( $raw['btn_full_width'] );
+		$clean['btn_hover_bg']           = sanitize_hex_color( $raw['btn_hover_bg'] ?? '' ) ?: '';
+		$clean['btn_hover_text']         = sanitize_hex_color( $raw['btn_hover_text'] ?? '' ) ?: '';
+		$clean['btn_hover_border_color'] = sanitize_hex_color( $raw['btn_hover_border_color'] ?? '' ) ?: '';
+
+		$raw_td                         = $raw['btn_transition_duration'] ?? '';
+		$clean['btn_transition_duration'] = ( '' !== $raw_td ) ? absint( $raw_td ) : '';
+		$raw_ih                = $raw['inline_height'] ?? '';
+		$clean['inline_height'] = ( '' !== $raw_ih ) ? absint( $raw_ih ) : '';
 
 		// Flush cache when API key or base URL changes.
 		$prev = self::get_settings();
@@ -487,11 +623,17 @@ class BookIt_Admin {
 				   class="nav-tab<?php echo 'shortcode' === $current_tab ? ' nav-tab-active' : ''; ?>">
 					<?php esc_html_e( 'Shortcode Helper', 'bookit-for-calcom' ); ?>
 				</a>
+				<a href="<?php echo esc_url( admin_url( 'options-general.php?page=' . $page . '&tab=style' ) ); ?>"
+				   class="nav-tab<?php echo 'style' === $current_tab ? ' nav-tab-active' : ''; ?>">
+					<?php esc_html_e( 'Style', 'bookit-for-calcom' ); ?>
+				</a>
 			</nav>
 
 			<?php
 			if ( 'shortcode' === $current_tab ) {
 				self::render_tab_shortcode();
+			} elseif ( 'style' === $current_tab ) {
+				self::render_tab_style();
 			} else {
 				self::render_tab_settings();
 			}
@@ -1071,5 +1213,376 @@ class BookIt_Admin {
 				'username' => $username,
 			)
 		);
+	}
+
+	// -------------------------------------------------------------------------
+	// Style tab — render.
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Render the Style tab (button / widget global style defaults).
+	 *
+	 * @return void
+	 */
+	private static function render_tab_style(): void {
+		?>
+		<form method="post" action="options.php">
+			<?php
+			settings_fields( 'bookit_settings_group' );
+			do_settings_sections( 'bookit-settings-style' );
+			submit_button( esc_html__( 'Save Style Defaults', 'bookit-for-calcom' ) );
+			?>
+		</form>
+		<?php
+	}
+
+	// -------------------------------------------------------------------------
+	// Style tab — field renderers.
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Helper: render a colour control (text input + native colour picker + clear button).
+	 *
+	 * @param string $id      Field id / name key inside bookit_settings[].
+	 * @param string $value   Current stored value (hex or empty string).
+	 * @return void
+	 */
+	private static function render_color_control( string $id, string $value ): void {
+		$picker_value = $value ?: '#000000';
+		?>
+		<span class="bookit-color-control">
+			<input
+				type="text"
+				id="<?php echo esc_attr( $id ); ?>"
+				name="bookit_settings[<?php echo esc_attr( $id ); ?>]"
+				value="<?php echo esc_attr( $value ); ?>"
+				class="bookit-color-text small-text"
+				placeholder="#rrggbb"
+				maxlength="7"
+			/>
+			<input
+				type="color"
+				class="bookit-color-picker"
+				value="<?php echo esc_attr( $picker_value ); ?>"
+				aria-hidden="true"
+				tabindex="-1"
+			/>
+			<button type="button" class="button button-small bookit-color-clear">
+				<?php esc_html_e( 'Clear', 'bookit-for-calcom' ); ?>
+			</button>
+		</span>
+		<?php
+	}
+
+	/**
+	 * Helper: render a number input with a unit label.
+	 *
+	 * @param string     $id          Field id / name key inside bookit_settings[].
+	 * @param string|int $value       Current stored value (number or empty string).
+	 * @param string     $unit        Unit label to display after the input (e.g. 'px').
+	 * @param int        $min         Minimum value.
+	 * @param int        $max         Maximum value.
+	 * @param string     $placeholder Placeholder shown when value is empty.
+	 * @param float      $step        Step increment (default 1).
+	 * @return void
+	 */
+	private static function render_number_unit( string $id, $value, string $unit, int $min = 0, int $max = 9999, string $placeholder = '', float $step = 1 ): void {
+		?>
+		<span class="bookit-number-unit">
+			<input
+				type="number"
+				id="<?php echo esc_attr( $id ); ?>"
+				name="bookit_settings[<?php echo esc_attr( $id ); ?>]"
+				value="<?php echo esc_attr( (string) $value ); ?>"
+				class="small-text"
+				min="<?php echo esc_attr( (string) $min ); ?>"
+				max="<?php echo esc_attr( (string) $max ); ?>"
+				step="<?php echo esc_attr( (string) $step ); ?>"
+				<?php if ( '' !== $placeholder ) : ?>
+					placeholder="<?php echo esc_attr( $placeholder ); ?>"
+				<?php endif; ?>
+			/>
+			<span class="bookit-unit"><?php echo esc_html( $unit ); ?></span>
+		</span>
+		<?php
+	}
+
+	/**
+	 * Render the Default Label field.
+	 *
+	 * @return void
+	 */
+	public static function field_default_label(): void {
+		$settings = self::get_settings();
+		?>
+		<input
+			type="text"
+			id="bookit_default_label"
+			name="bookit_settings[default_label]"
+			value="<?php echo esc_attr( $settings['default_label'] ); ?>"
+			class="regular-text"
+			placeholder="<?php esc_attr_e( 'Book a meeting', 'bookit-for-calcom' ); ?>"
+		/>
+		<p class="description">
+			<?php esc_html_e( 'Default button / link label. Leave empty to use "Book a meeting".', 'bookit-for-calcom' ); ?>
+		</p>
+		<?php
+	}
+
+	/**
+	 * Render the Button Background Color field.
+	 *
+	 * @return void
+	 */
+	public static function field_btn_bg(): void {
+		$settings = self::get_settings();
+		self::render_color_control( 'btn_bg', $settings['btn_bg'] );
+		echo '<p class="description">' . esc_html__( 'Leave empty to inherit theme default.', 'bookit-for-calcom' ) . '</p>';
+	}
+
+	/**
+	 * Render the Button Text Color field.
+	 *
+	 * @return void
+	 */
+	public static function field_btn_text(): void {
+		$settings = self::get_settings();
+		self::render_color_control( 'btn_text', $settings['btn_text'] );
+		echo '<p class="description">' . esc_html__( 'Leave empty to inherit theme default.', 'bookit-for-calcom' ) . '</p>';
+	}
+
+	/**
+	 * Render the Button Full Width checkbox.
+	 *
+	 * @return void
+	 */
+	public static function field_btn_full_width(): void {
+		$settings = self::get_settings();
+		?>
+		<label>
+			<input
+				type="checkbox"
+				id="bookit_btn_full_width"
+				name="bookit_settings[btn_full_width]"
+				value="1"
+				<?php checked( $settings['btn_full_width'] ); ?>
+			/>
+			<?php esc_html_e( 'Stretch button to full container width by default.', 'bookit-for-calcom' ); ?>
+		</label>
+		<?php
+	}
+
+	/**
+	 * Render the Button Border Width field.
+	 *
+	 * @return void
+	 */
+	public static function field_btn_border_width(): void {
+		$settings = self::get_settings();
+		self::render_number_unit( 'btn_border_width', $settings['btn_border_width'], 'px', 0, 20, '0' );
+	}
+
+	/**
+	 * Render the Button Border Style select.
+	 *
+	 * @return void
+	 */
+	public static function field_btn_border_style(): void {
+		$settings = self::get_settings();
+		$options  = array(
+			'solid'  => __( 'Solid', 'bookit-for-calcom' ),
+			'dashed' => __( 'Dashed', 'bookit-for-calcom' ),
+			'dotted' => __( 'Dotted', 'bookit-for-calcom' ),
+		);
+		?>
+		<select id="bookit_btn_border_style" name="bookit_settings[btn_border_style]">
+			<?php foreach ( $options as $value => $label ) : ?>
+				<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $settings['btn_border_style'], $value ); ?>>
+					<?php echo esc_html( $label ); ?>
+				</option>
+			<?php endforeach; ?>
+		</select>
+		<?php
+	}
+
+	/**
+	 * Render the Button Border Color field.
+	 *
+	 * @return void
+	 */
+	public static function field_btn_border_color(): void {
+		$settings = self::get_settings();
+		self::render_color_control( 'btn_border_color', $settings['btn_border_color'] );
+	}
+
+	/**
+	 * Render the Button Border Radius field.
+	 *
+	 * @return void
+	 */
+	public static function field_btn_radius(): void {
+		$settings = self::get_settings();
+		self::render_number_unit( 'btn_radius', $settings['btn_radius'], 'px', 0, 100, '4' );
+	}
+
+	/**
+	 * Render the Button Font Size field.
+	 *
+	 * @return void
+	 */
+	public static function field_btn_font_size(): void {
+		$settings = self::get_settings();
+		self::render_number_unit( 'btn_font_size', $settings['btn_font_size'], 'px', 10, 36, '14' );
+	}
+
+	/**
+	 * Render the Button Font Weight select.
+	 *
+	 * @return void
+	 */
+	public static function field_btn_font_weight(): void {
+		$settings = self::get_settings();
+		$options  = array(
+			''    => __( 'Default (inherit)', 'bookit-for-calcom' ),
+			'300' => __( '300 — Light', 'bookit-for-calcom' ),
+			'400' => __( '400 — Normal', 'bookit-for-calcom' ),
+			'500' => __( '500 — Medium', 'bookit-for-calcom' ),
+			'600' => __( '600 — Semi Bold', 'bookit-for-calcom' ),
+			'700' => __( '700 — Bold', 'bookit-for-calcom' ),
+			'800' => __( '800 — Extra Bold', 'bookit-for-calcom' ),
+		);
+		?>
+		<select id="bookit_btn_font_weight" name="bookit_settings[btn_font_weight]">
+			<?php foreach ( $options as $value => $label ) : ?>
+				<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $settings['btn_font_weight'], $value ); ?>>
+					<?php echo esc_html( $label ); ?>
+				</option>
+			<?php endforeach; ?>
+		</select>
+		<?php
+	}
+
+	/**
+	 * Render the Button Text Transform select.
+	 *
+	 * @return void
+	 */
+	public static function field_btn_text_transform(): void {
+		$settings = self::get_settings();
+		$options  = array(
+			''           => __( 'None', 'bookit-for-calcom' ),
+			'uppercase'  => __( 'Uppercase', 'bookit-for-calcom' ),
+			'lowercase'  => __( 'Lowercase', 'bookit-for-calcom' ),
+			'capitalize' => __( 'Capitalize', 'bookit-for-calcom' ),
+		);
+		?>
+		<select id="bookit_btn_text_transform" name="bookit_settings[btn_text_transform]">
+			<?php foreach ( $options as $value => $label ) : ?>
+				<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $settings['btn_text_transform'], $value ); ?>>
+					<?php echo esc_html( $label ); ?>
+				</option>
+			<?php endforeach; ?>
+		</select>
+		<?php
+	}
+
+	/**
+	 * Render the Button Letter Spacing field.
+	 *
+	 * @return void
+	 */
+	public static function field_btn_letter_spacing(): void {
+		$settings = self::get_settings();
+		self::render_number_unit( 'btn_letter_spacing', $settings['btn_letter_spacing'], 'px', 0, 10, '0', 0.5 );
+	}
+
+	/**
+	 * Render the Button Padding fields (all 4 sides in one row).
+	 *
+	 * @return void
+	 */
+	public static function field_btn_padding(): void {
+		$settings = self::get_settings();
+		$sides    = array(
+			'btn_padding_top'    => __( 'Top', 'bookit-for-calcom' ),
+			'btn_padding_right'  => __( 'Right', 'bookit-for-calcom' ),
+			'btn_padding_bottom' => __( 'Bottom', 'bookit-for-calcom' ),
+			'btn_padding_left'   => __( 'Left', 'bookit-for-calcom' ),
+		);
+		$placeholders = array( 'btn_padding_top' => '10', 'btn_padding_right' => '20', 'btn_padding_bottom' => '10', 'btn_padding_left' => '20' );
+		?>
+		<div class="bookit-padding-row">
+			<?php foreach ( $sides as $key => $label ) : ?>
+			<label for="bookit_<?php echo esc_attr( $key ); ?>">
+				<?php echo esc_html( $label ); ?>
+				<input
+					type="number"
+					id="bookit_<?php echo esc_attr( $key ); ?>"
+					name="bookit_settings[<?php echo esc_attr( $key ); ?>]"
+					value="<?php echo esc_attr( (string) $settings[ $key ] ); ?>"
+					class="small-text"
+					min="0"
+					placeholder="<?php echo esc_attr( $placeholders[ $key ] ); ?>"
+				/>
+				<span class="bookit-unit">px</span>
+			</label>
+			<?php endforeach; ?>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Render the Button Hover Background Color field.
+	 *
+	 * @return void
+	 */
+	public static function field_btn_hover_bg(): void {
+		$settings = self::get_settings();
+		self::render_color_control( 'btn_hover_bg', $settings['btn_hover_bg'] );
+		echo '<p class="description">' . esc_html__( 'Leave empty to disable hover background change.', 'bookit-for-calcom' ) . '</p>';
+	}
+
+	/**
+	 * Render the Button Hover Text Color field.
+	 *
+	 * @return void
+	 */
+	public static function field_btn_hover_text(): void {
+		$settings = self::get_settings();
+		self::render_color_control( 'btn_hover_text', $settings['btn_hover_text'] );
+		echo '<p class="description">' . esc_html__( 'Leave empty to disable hover text colour change.', 'bookit-for-calcom' ) . '</p>';
+	}
+
+	/**
+	 * Render the Button Hover Border Color field.
+	 *
+	 * @return void
+	 */
+	public static function field_btn_hover_border_color(): void {
+		$settings = self::get_settings();
+		self::render_color_control( 'btn_hover_border_color', $settings['btn_hover_border_color'] );
+		echo '<p class="description">' . esc_html__( 'Leave empty to disable hover border colour change.', 'bookit-for-calcom' ) . '</p>';
+	}
+
+	/**
+	 * Render the Button Transition Duration field.
+	 *
+	 * @return void
+	 */
+	public static function field_btn_transition_duration(): void {
+		$settings = self::get_settings();
+		self::render_number_unit( 'btn_transition_duration', $settings['btn_transition_duration'], 'ms', 0, 1000, '200', 50 );
+		echo '<p class="description">' . esc_html__( 'Duration of the hover transition. Set 0 to disable.', 'bookit-for-calcom' ) . '</p>';
+	}
+
+	/**
+	 * Render the Inline Calendar Default Height field.
+	 *
+	 * @return void
+	 */
+	public static function field_inline_height(): void {
+		$settings = self::get_settings();
+		self::render_number_unit( 'inline_height', $settings['inline_height'], 'px', 100, 2000, '600' );
+		echo '<p class="description">' . esc_html__( 'Default iframe height for inline embeds.', 'bookit-for-calcom' ) . '</p>';
 	}
 }

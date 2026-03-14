@@ -137,6 +137,64 @@ class BookIt_Shortcode {
 			$accent = $settings['accent_color'];
 		}
 
+		// Apply global style defaults (Style tab in settings).
+		// Each attribute falls back only when it still matches the original
+		// hardcoded default — an explicit override in the shortcode always wins.
+
+		// Label.
+		$default_label_hardcoded = __( 'Book a meeting', 'bookit-for-calcom' );
+		if ( $label === $default_label_hardcoded && ! empty( $settings['default_label'] ) ) {
+			$label = $settings['default_label'];
+		}
+
+		// Inline height.
+		if ( 600 === $height && '' !== ( $settings['inline_height'] ?? '' ) ) {
+			$height = absint( $settings['inline_height'] );
+		}
+
+		// Colour fields: empty → use global if set.
+		foreach ( array( 'btn_bg', 'btn_text', 'btn_border_color', 'btn_hover_bg', 'btn_hover_text', 'btn_hover_border_color' ) as $_ckey ) {
+			if ( empty( $$_ckey ) && ! empty( $settings[ $_ckey ] ) ) {
+				$$_ckey = $settings[ $_ckey ];
+			}
+		}
+
+		// Numeric fields: if still at the hardcoded default AND a global is set → use global.
+		$num_fallbacks = array(
+			'btn_radius'              => 4,
+			'btn_border_width'        => 0,
+			'btn_padding_top'         => 10,
+			'btn_padding_right'       => 20,
+			'btn_padding_bottom'      => 10,
+			'btn_padding_left'        => 20,
+			'btn_font_size'           => 14,
+			'btn_letter_spacing'      => 0,
+			'btn_transition_duration' => 200,
+		);
+		foreach ( $num_fallbacks as $_nkey => $_ndefault ) {
+			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- int/float comparison is intentional here.
+			if ( $$_nkey == $_ndefault && '' !== ( $settings[ $_nkey ] ?? '' ) ) {
+				$$_nkey = $settings[ $_nkey ];
+			}
+		}
+		// Re-cast after possible float assignment from settings.
+		$btn_font_size           = absint( $btn_font_size ) ?: 14;
+		$btn_letter_spacing      = (float) $btn_letter_spacing;
+		$btn_transition_duration = absint( $btn_transition_duration );
+
+		// String fields: empty → use global if set.
+		if ( '' === $btn_font_weight && ! empty( $settings['btn_font_weight'] ) ) {
+			$btn_font_weight = $settings['btn_font_weight'];
+		}
+		if ( '' === $btn_text_transform && ! empty( $settings['btn_text_transform'] ) ) {
+			$btn_text_transform = $settings['btn_text_transform'];
+		}
+
+		// Boolean: full-width defaults to false → use global if global is true.
+		if ( ! $btn_full_width && ! empty( $settings['btn_full_width'] ) ) {
+			$btn_full_width = true;
+		}
+
 		return self::build_html( array(
 			'event'             => $event,
 			'type'              => $type,
