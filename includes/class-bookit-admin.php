@@ -188,7 +188,17 @@ class BookIt_Admin {
 		$clean = array();
 
 		$clean['api_key']       = sanitize_text_field( $raw['api_key'] ?? '' );
-		$clean['api_base']      = esc_url_raw( rtrim( $raw['api_base'] ?? 'https://api.cal.com/v2', '/' ) ) ?: 'https://api.cal.com/v2';
+
+		$preset_urls = array(
+			'global' => 'https://api.cal.com/v2',
+			'eu'     => 'https://api.cal.eu/v2',
+		);
+		$api_instance = sanitize_key( $raw['api_instance'] ?? 'global' );
+		if ( isset( $preset_urls[ $api_instance ] ) ) {
+			$clean['api_base'] = $preset_urls[ $api_instance ];
+		} else {
+			$clean['api_base'] = esc_url_raw( rtrim( $raw['api_base'] ?? 'https://api.cal.com/v2', '/' ) ) ?: 'https://api.cal.com/v2';
+		}
 		$clean['username']      = sanitize_text_field( $raw['username'] ?? '' );
 		$clean['namespace']     = sanitize_key( $raw['namespace'] ?? 'cal' );
 		$clean['theme']         = in_array( $raw['theme'] ?? '', array( 'light', 'dark', 'auto' ), true )
@@ -280,8 +290,8 @@ class BookIt_Admin {
 		$is_custom = 'custom' === $current_preset;
 		?>
 
-		<!-- Instance selector — no name attribute, drives UX only -->
-		<select id="bookit_api_instance">
+		<!-- Instance selector — name attribute lets PHP derive api_base on save -->
+		<select id="bookit_api_instance" name="bookit_settings[api_instance]">
 			<option value="global" <?php selected( $current_preset, 'global' ); ?>>
 				<?php esc_html_e( 'Global — app.cal.com', 'bookit-for-calcom' ); ?>
 			</option>
