@@ -61,9 +61,25 @@ export default function Edit( { attributes, setAttributes } ) {
 	const blockProps = useBlockProps();
 
 	// bookitEditorData is passed by wp_localize_script from class-bookit-block.php.
-	const editorData = window.bookitEditorData || {};
-	const eventTypes = editorData.eventTypes || [];
-	const hasApiKey  = editorData.hasApiKey   || false;
+	const editorData     = window.bookitEditorData || {};
+	const eventTypes     = editorData.eventTypes    || [];
+	const hasApiKey      = editorData.hasApiKey     || false;
+	const globalSettings = editorData.globalSettings || {};
+
+	// Effective values: block attribute (if set) → global setting → hardcoded fallback.
+	// These are used as control values so the editor always shows a meaningful number/string.
+	const effectiveInlineHeight    = inlineHeight          ?? globalSettings.inlineHeight    ?? 600;
+	const effectiveBtnRadius       = btnBorderRadius       ?? globalSettings.btnRadius       ?? 4;
+	const effectiveBtnBorderWidth  = btnBorderWidth        ?? globalSettings.btnBorderWidth  ?? 0;
+	const effectiveBtnBorderStyle  = btnBorderStyle  || globalSettings.btnBorderStyle  || 'solid';
+	const effectiveBtnPaddingTop    = btnPaddingTop    ?? globalSettings.btnPaddingTop    ?? 10;
+	const effectiveBtnPaddingRight  = btnPaddingRight  ?? globalSettings.btnPaddingRight  ?? 20;
+	const effectiveBtnPaddingBottom = btnPaddingBottom ?? globalSettings.btnPaddingBottom ?? 10;
+	const effectiveBtnPaddingLeft   = btnPaddingLeft   ?? globalSettings.btnPaddingLeft   ?? 20;
+	const effectiveBtnFontSize      = btnFontSize      ?? globalSettings.btnFontSize      ?? 14;
+	const effectiveBtnLetterSpacing = btnLetterSpacing ?? globalSettings.btnLetterSpacing ?? 0;
+	const effectiveBtnFullWidth     = btnFullWidth     ?? globalSettings.btnFullWidth     ?? false;
+	const effectiveBtnTransition    = btnTransitionDuration ?? globalSettings.btnTransitionDuration ?? 200;
 
 	const displayTypes = [
 		{ label: __( 'Popup button', 'bookit-for-calcom' ), value: 'popup-button' },
@@ -144,6 +160,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						<TextControl
 							label={ __( 'Button / link label', 'bookit-for-calcom' ) }
 							value={ label }
+							placeholder={ globalSettings.label || __( 'Book a meeting', 'bookit-for-calcom' ) }
 							onChange={ ( val ) => setAttributes( { label: val } ) }
 						/>
 					) }
@@ -151,7 +168,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					{ 'inline' === displayType && (
 						<RangeControl
 							label={ __( 'Inline height (px)', 'bookit-for-calcom' ) }
-							value={ inlineHeight }
+							value={ effectiveInlineHeight }
 							min={ 300 }
 							max={ 1200 }
 							step={ 50 }
@@ -221,17 +238,17 @@ export default function Edit( { attributes, setAttributes } ) {
 
 						<RangeControl
 							label={ __( 'Width (px)', 'bookit-for-calcom' ) }
-							value={ btnBorderWidth }
+							value={ effectiveBtnBorderWidth }
 							min={ 0 }
 							max={ 20 }
 							onChange={ ( val ) => setAttributes( { btnBorderWidth: val } ) }
 						/>
 
-						{ btnBorderWidth > 0 && (
+						{ effectiveBtnBorderWidth > 0 && (
 							<>
 								<SelectControl
 									label={ __( 'Style', 'bookit-for-calcom' ) }
-									value={ btnBorderStyle }
+									value={ effectiveBtnBorderStyle }
 									options={ [
 										{ label: __( 'Solid', 'bookit-for-calcom' ), value: 'solid' },
 										{ label: __( 'Dashed', 'bookit-for-calcom' ), value: 'dashed' },
@@ -253,7 +270,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 						<RangeControl
 							label={ __( 'Radius (px)', 'bookit-for-calcom' ) }
-							value={ btnBorderRadius }
+							value={ effectiveBtnRadius }
 							min={ 0 }
 							max={ 50 }
 							onChange={ ( val ) => setAttributes( { btnBorderRadius: val } ) }
@@ -265,10 +282,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						<BoxControl
 							label={ __( 'Padding', 'bookit-for-calcom' ) }
 							values={ {
-								top:    btnPaddingTop    + 'px',
-								right:  btnPaddingRight  + 'px',
-								bottom: btnPaddingBottom + 'px',
-								left:   btnPaddingLeft   + 'px',
+								top:    effectiveBtnPaddingTop    + 'px',
+								right:  effectiveBtnPaddingRight  + 'px',
+								bottom: effectiveBtnPaddingBottom + 'px',
+								left:   effectiveBtnPaddingLeft   + 'px',
 							} }
 							onChange={ ( val ) => setAttributes( {
 								btnPaddingTop:    parseInt( val.top    ) || 0,
@@ -283,7 +300,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 						<RangeControl
 							label={ __( 'Font size (px)', 'bookit-for-calcom' ) }
-							value={ btnFontSize }
+							value={ effectiveBtnFontSize }
 							min={ 10 }
 							max={ 36 }
 							onChange={ ( val ) => setAttributes( { btnFontSize: val } ) }
@@ -317,7 +334,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 						<RangeControl
 							label={ __( 'Letter spacing (px)', 'bookit-for-calcom' ) }
-							value={ btnLetterSpacing }
+							value={ effectiveBtnLetterSpacing }
 							min={ 0 }
 							max={ 10 }
 							step={ 0.5 }
@@ -329,7 +346,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 						<ToggleControl
 							label={ __( 'Full width button', 'bookit-for-calcom' ) }
-							checked={ btnFullWidth }
+							checked={ effectiveBtnFullWidth }
 							onChange={ ( val ) => setAttributes( { btnFullWidth: val } ) }
 						/>
 
@@ -338,7 +355,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 						<RangeControl
 							label={ __( 'Transition duration (ms)', 'bookit-for-calcom' ) }
-							value={ btnTransitionDuration }
+							value={ effectiveBtnTransition }
 							min={ 0 }
 							max={ 500 }
 							step={ 50 }
@@ -363,7 +380,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							enableAlpha={ false }
 						/>
 
-						{ btnBorderWidth > 0 && (
+						{ effectiveBtnBorderWidth > 0 && (
 							<>
 								<Text as="p" weight="600" style={ { marginBottom: 8 } }>
 									{ __( 'Hover border color', 'bookit-for-calcom' ) }

@@ -24,11 +24,10 @@
 		},
 		"label": {
 			"type": "string",
-			"default": "Book a meeting"
+			"default": ""
 		},
 		"inlineHeight": {
-			"type": "number",
-			"default": 600
+			"type": "number"
 		},
 		"theme": {
 			"type": "string",
@@ -55,40 +54,33 @@
 			"default": ""
 		},
 		"btnBorderRadius": {
-			"type": "number",
-			"default": 4
+			"type": "number"
 		},
 		"btnBorderWidth": {
-			"type": "number",
-			"default": 0
+			"type": "number"
 		},
 		"btnBorderStyle": {
 			"type": "string",
-			"default": "solid"
+			"default": ""
 		},
 		"btnBorderColor": {
 			"type": "string",
 			"default": ""
 		},
 		"btnPaddingTop": {
-			"type": "number",
-			"default": 10
+			"type": "number"
 		},
 		"btnPaddingRight": {
-			"type": "number",
-			"default": 20
+			"type": "number"
 		},
 		"btnPaddingBottom": {
-			"type": "number",
-			"default": 10
+			"type": "number"
 		},
 		"btnPaddingLeft": {
-			"type": "number",
-			"default": 20
+			"type": "number"
 		},
 		"btnFontSize": {
-			"type": "number",
-			"default": 14
+			"type": "number"
 		},
 		"btnFontWeight": {
 			"type": "string",
@@ -99,12 +91,10 @@
 			"default": ""
 		},
 		"btnLetterSpacing": {
-			"type": "number",
-			"default": 0
+			"type": "number"
 		},
 		"btnFullWidth": {
-			"type": "boolean",
-			"default": false
+			"type": "boolean"
 		},
 		"btnHoverBgColor": {
 			"type": "string",
@@ -119,8 +109,7 @@
 			"default": ""
 		},
 		"btnTransitionDuration": {
-			"type": "number",
-			"default": 200
+			"type": "number"
 		}
 	},
 	"render": "file:./render.php",

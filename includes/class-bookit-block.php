@@ -61,14 +61,42 @@ class BookIt_Block {
 			? $settings['username']
 			: ( $has_api_key ? BookIt_API::get_username( $settings['api_key'], $settings['api_base'] ) : '' );
 
+		// Helper: return the setting value as int if non-empty, or null.
+		$int_or_null = static function ( $val ) {
+			return ( '' !== (string) $val ) ? (int) $val : null;
+		};
+
 		wp_localize_script(
 			'bookit-cal-booking-editor-script',
 			'bookitEditorData',
 			array(
-				'hasApiKey'  => $has_api_key,
-				'eventTypes' => $event_types,
-				'username'   => $username,
-				'namespace'  => $settings['namespace'],
+				'hasApiKey'      => $has_api_key,
+				'eventTypes'     => $event_types,
+				'username'       => $username,
+				'namespace'      => $settings['namespace'],
+				'globalSettings' => array(
+					'label'               => $settings['default_label'],
+					'inlineHeight'        => $int_or_null( $settings['inline_height'] ),
+					'btnBg'               => $settings['btn_bg'],
+					'btnText'             => $settings['btn_text'],
+					'btnRadius'           => $int_or_null( $settings['btn_radius'] ),
+					'btnBorderWidth'      => $int_or_null( $settings['btn_border_width'] ),
+					'btnBorderStyle'      => $settings['btn_border_style'],
+					'btnBorderColor'      => $settings['btn_border_color'],
+					'btnPaddingTop'       => $int_or_null( $settings['btn_padding_top'] ),
+					'btnPaddingRight'     => $int_or_null( $settings['btn_padding_right'] ),
+					'btnPaddingBottom'    => $int_or_null( $settings['btn_padding_bottom'] ),
+					'btnPaddingLeft'      => $int_or_null( $settings['btn_padding_left'] ),
+					'btnFontSize'         => $int_or_null( $settings['btn_font_size'] ),
+					'btnFontWeight'       => $settings['btn_font_weight'],
+					'btnTextTransform'    => $settings['btn_text_transform'],
+					'btnLetterSpacing'    => ( '' !== (string) $settings['btn_letter_spacing'] ) ? (float) $settings['btn_letter_spacing'] : null,
+					'btnFullWidth'        => (bool) $settings['btn_full_width'],
+					'btnHoverBg'          => $settings['btn_hover_bg'],
+					'btnHoverText'        => $settings['btn_hover_text'],
+					'btnHoverBorderColor' => $settings['btn_hover_border_color'],
+					'btnTransitionDuration' => $int_or_null( $settings['btn_transition_duration'] ),
+				),
 			)
 		);
 	}

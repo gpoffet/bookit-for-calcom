@@ -5,7 +5,15 @@ $src        = if ($PSScriptRoot) { Split-Path -Parent $PSScriptRoot } else { (Ge
 $dst        = "$HOME\Downloads\bookit-for-calcom.zip"
 $pluginSlug = "bookit-for-calcom"
 
-$excludeDirs  = @('.git', 'node_modules', '.claude', '.vscode', 'bin')
+# Build JS assets before packaging.
+Write-Host "Building assets..."
+Push-Location $src
+npm run build
+if ($LASTEXITCODE -ne 0) { Write-Error "Build failed. Aborting."; Pop-Location; exit 1 }
+Pop-Location
+Write-Host "Build complete."
+
+$excludeDirs  = @('.git', 'node_modules', '.claude', '.vscode', 'bin', 'src')
 $excludeFiles = @('.gitignore', 'package.json', 'package-lock.json', 'CLAUDE.md', 'README.md')
 
 if (Test-Path $dst) { Remove-Item $dst }

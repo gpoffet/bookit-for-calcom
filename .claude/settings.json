@@ -15,7 +15,13 @@
       "WebFetch(domain:api.cal.eu)",
       "WebFetch(domain:app.cal.eu)",
       "Bash(php --version)",
-      "Bash(node \"c:/laragon/www/bookit-for-calcom/wp-content/plugins/bookit-for-calcom/languages/make-mo.js\")"
+      "Bash(node \"c:/laragon/www/bookit-for-calcom/wp-content/plugins/bookit-for-calcom/languages/make-mo.js\")",
+      "Bash(git -C /c/laragon/www/bookit-for-calcom/wp-content/plugins/bookit-for-calcom log --oneline -5)",
+      "Bash(npm run:*)",
+      "Bash(powershell.exe -Command \"Add-Type -Assembly ''System.IO.Compression.FileSystem''; [System.IO.Compression.ZipFile]::OpenRead\\(''C:/Users/gael/Downloads/bookit-for-calcom.zip''\\).Entries | Select-Object -First 10 FullName\")",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }
