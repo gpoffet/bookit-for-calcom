@@ -14,10 +14,11 @@ WordPress.org.
 | Context         | Value                  |
 |-----------------|------------------------|
 | Plugin slug     | `bookit-for-calcom`    |
+| WP.org slug     | `bookit-for-cal-com`   |
 | PHP prefix      | `bookit_`              |
 | PHP classes     | `BookIt_`              |
 | JS global       | `bookitCalcom`         |
-| Text domain     | `bookit-for-calcom`    |
+| Text domain     | `bookit-for-cal-com`   |
 | Option key      | `bookit_settings`      |
 | Transient key   | `bookit_event_types`   |
 | Constant prefix | `BOOKIT_`              |
@@ -88,8 +89,8 @@ bookit-for-calcom/
 │       └── bookit-admin.css       # Admin page styles only
 │
 └── languages/
-    ├── bookit-for-calcom.pot
-    └── bookit-for-calcom-fr_FR.po
+    ├── bookit-for-cal-com.pot
+    └── bookit-for-cal-com-fr_FR.po
 ```
 
 ---
@@ -184,7 +185,7 @@ Missing attributes fall back to global settings.
 ## i18n
 
 - All user-facing strings wrapped in `__()`, `_e()`, `esc_html__()`, etc.
-- Text domain: `bookit-for-calcom`
+- Text domain: `bookit-for-cal-com`
 - `.pot` file generated via `wp i18n make-pot`.
 - Provide `fr_FR` translation for all strings.
 - JS strings passed via `wp_localize_script` under `bookitCalcomData` object.
@@ -215,7 +216,7 @@ npm run start
 npm run build
 
 # Generate .pot file
-wp i18n make-pot . languages/bookit-for-calcom.pot
+wp i18n make-pot . languages/bookit-for-cal-com.pot
 
 # PHP linting (if phpcs installed)
 phpcs --standard=WordPress .

@@ -46,7 +46,7 @@ class BookIt_Shortcode {
 			array(
 				'event'             => '',
 				'type'              => 'popup-button',
-				'label'             => __( 'Book a meeting', 'bookit-for-calcom' ),
+				'label'             => __( 'Book a meeting', 'bookit-for-cal-com' ),
 				'height'            => 600,
 				'theme'             => 'global',
 				'accent'            => '',
@@ -142,7 +142,7 @@ class BookIt_Shortcode {
 		// hardcoded default — an explicit override in the shortcode always wins.
 
 		// Label.
-		$default_label_hardcoded = __( 'Book a meeting', 'bookit-for-calcom' );
+		$default_label_hardcoded = __( 'Book a meeting', 'bookit-for-cal-com' );
 		if ( $label === $default_label_hardcoded && ! empty( $settings['default_label'] ) ) {
 			$label = $settings['default_label'];
 		}
@@ -343,7 +343,7 @@ class BookIt_Shortcode {
 				$inner = sprintf(
 					'<div class="bookit-inline" style="min-height:%dpx;width:100%%;" aria-label="%s"></div>',
 					$height,
-					esc_attr__( 'Booking calendar', 'bookit-for-calcom' )
+					esc_attr__( 'Booking calendar', 'bookit-for-cal-com' )
 				);
 				break;
 		}

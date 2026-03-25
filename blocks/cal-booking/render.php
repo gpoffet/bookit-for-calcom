@@ -39,7 +39,7 @@ if ( '' !== (string) $label_raw ) {
 } elseif ( null !== $s( 'default_label' ) ) {
 	$label = sanitize_text_field( $settings['default_label'] );
 } else {
-	$label = __( 'Book a meeting', 'bookit-for-calcom' );
+	$label = __( 'Book a meeting', 'bookit-for-cal-com' );
 }
 
 // inlineHeight: block attr → global inline_height → 600.

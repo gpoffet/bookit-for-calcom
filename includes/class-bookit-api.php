@@ -56,7 +56,7 @@ class BookIt_API {
 		if ( empty( $api_key ) ) {
 			return new \WP_Error(
 				'bookit_no_api_key',
-				__( 'No Cal.com API key configured.', 'bookit-for-calcom' )
+				__( 'No Cal.com API key configured.', 'bookit-for-cal-com' )
 			);
 		}
 
@@ -107,7 +107,7 @@ class BookIt_API {
 				'bookit_api_error',
 				sprintf(
 					/* translators: 1: HTTP status code, 2: error message from API */
-					__( 'Cal.com API returned HTTP %1$d: %2$s', 'bookit-for-calcom' ),
+					__( 'Cal.com API returned HTTP %1$d: %2$s', 'bookit-for-cal-com' ),
 					$status,
 					$message
 				)
@@ -120,7 +120,7 @@ class BookIt_API {
 		if ( ! is_array( $data ) || ! isset( $data['data'] ) || ! is_array( $data['data'] ) ) {
 			return new \WP_Error(
 				'bookit_api_parse_error',
-				__( 'Could not parse Cal.com API response.', 'bookit-for-calcom' )
+				__( 'Could not parse Cal.com API response.', 'bookit-for-cal-com' )
 			);
 		}
 

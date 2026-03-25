@@ -43,10 +43,10 @@ class BookIt_Admin {
 	 */
 	public static function add_menu_page(): void {
 		add_options_page(
-			esc_html__( 'BookIt for Cal.com', 'bookit-for-calcom' ),
-			esc_html__( 'BookIt', 'bookit-for-calcom' ),
+			esc_html__( 'BookIt for Cal.com', 'bookit-for-cal-com' ),
+			esc_html__( 'BookIt', 'bookit-for-cal-com' ),
 			'manage_options',
-			'bookit-for-calcom',
+			'bookit-for-cal-com',
 			array( __CLASS__, 'render_settings_page' )
 		);
 	}
@@ -68,88 +68,88 @@ class BookIt_Admin {
 		// Section: Cal.com Account.
 		add_settings_section(
 			'bookit_section_account',
-			esc_html__( 'Cal.com Account', 'bookit-for-calcom' ),
+			esc_html__( 'Cal.com Account', 'bookit-for-cal-com' ),
 			'__return_false',
-			'bookit-for-calcom'
+			'bookit-for-cal-com'
 		);
 
 		add_settings_field(
 			'bookit_api_key',
-			esc_html__( 'API Key', 'bookit-for-calcom' ),
+			esc_html__( 'API Key', 'bookit-for-cal-com' ),
 			array( __CLASS__, 'field_api_key' ),
-			'bookit-for-calcom',
+			'bookit-for-cal-com',
 			'bookit_section_account'
 		);
 
 		add_settings_field(
 			'bookit_api_base',
-			esc_html__( 'API Base URL', 'bookit-for-calcom' ),
+			esc_html__( 'API Base URL', 'bookit-for-cal-com' ),
 			array( __CLASS__, 'field_api_base' ),
-			'bookit-for-calcom',
+			'bookit-for-cal-com',
 			'bookit_section_account'
 		);
 
 		add_settings_field(
 			'bookit_username',
-			esc_html__( 'Cal.com Username', 'bookit-for-calcom' ),
+			esc_html__( 'Cal.com Username', 'bookit-for-cal-com' ),
 			array( __CLASS__, 'field_username' ),
-			'bookit-for-calcom',
+			'bookit-for-cal-com',
 			'bookit_section_account'
 		);
 
 		// Section: Widget Defaults.
 		add_settings_section(
 			'bookit_section_widget',
-			esc_html__( 'Widget Defaults', 'bookit-for-calcom' ),
+			esc_html__( 'Widget Defaults', 'bookit-for-cal-com' ),
 			'__return_false',
-			'bookit-for-calcom'
+			'bookit-for-cal-com'
 		);
 
 		add_settings_field(
 			'bookit_namespace',
-			esc_html__( 'Cal.com JS Namespace', 'bookit-for-calcom' ),
+			esc_html__( 'Cal.com JS Namespace', 'bookit-for-cal-com' ),
 			array( __CLASS__, 'field_namespace' ),
-			'bookit-for-calcom',
+			'bookit-for-cal-com',
 			'bookit_section_widget'
 		);
 
 		add_settings_field(
 			'bookit_theme',
-			esc_html__( 'Theme', 'bookit-for-calcom' ),
+			esc_html__( 'Theme', 'bookit-for-cal-com' ),
 			array( __CLASS__, 'field_theme' ),
-			'bookit-for-calcom',
+			'bookit-for-cal-com',
 			'bookit_section_widget'
 		);
 
 		add_settings_field(
 			'bookit_accent_color',
-			esc_html__( 'Accent Color', 'bookit-for-calcom' ),
+			esc_html__( 'Accent Color', 'bookit-for-cal-com' ),
 			array( __CLASS__, 'field_accent_color' ),
-			'bookit-for-calcom',
+			'bookit-for-cal-com',
 			'bookit_section_widget'
 		);
 
 		add_settings_field(
 			'bookit_hide_branding',
-			esc_html__( 'Hide Cal.com Branding', 'bookit-for-calcom' ),
+			esc_html__( 'Hide Cal.com Branding', 'bookit-for-cal-com' ),
 			array( __CLASS__, 'field_hide_branding' ),
-			'bookit-for-calcom',
+			'bookit-for-cal-com',
 			'bookit_section_widget'
 		);
 
 		// Section: Performance.
 		add_settings_section(
 			'bookit_section_perf',
-			esc_html__( 'Performance', 'bookit-for-calcom' ),
+			esc_html__( 'Performance', 'bookit-for-cal-com' ),
 			'__return_false',
-			'bookit-for-calcom'
+			'bookit-for-cal-com'
 		);
 
 		add_settings_field(
 			'bookit_load_strategy',
-			esc_html__( 'Script Loading Strategy', 'bookit-for-calcom' ),
+			esc_html__( 'Script Loading Strategy', 'bookit-for-cal-com' ),
 			array( __CLASS__, 'field_load_strategy' ),
-			'bookit-for-calcom',
+			'bookit-for-cal-com',
 			'bookit_section_perf'
 		);
 
@@ -158,74 +158,74 @@ class BookIt_Admin {
 		// Section: Button — General.
 		add_settings_section(
 			'bookit_section_style_button',
-			esc_html__( 'Button — General', 'bookit-for-calcom' ),
+			esc_html__( 'Button — General', 'bookit-for-cal-com' ),
 			'__return_false',
 			'bookit-settings-style'
 		);
 
-		add_settings_field( 'bookit_default_label',  esc_html__( 'Default Label', 'bookit-for-calcom' ),       array( __CLASS__, 'field_default_label' ),  'bookit-settings-style', 'bookit_section_style_button' );
-		add_settings_field( 'bookit_btn_bg',         esc_html__( 'Background Color', 'bookit-for-calcom' ),    array( __CLASS__, 'field_btn_bg' ),         'bookit-settings-style', 'bookit_section_style_button' );
-		add_settings_field( 'bookit_btn_text',       esc_html__( 'Text Color', 'bookit-for-calcom' ),          array( __CLASS__, 'field_btn_text' ),       'bookit-settings-style', 'bookit_section_style_button' );
-		add_settings_field( 'bookit_btn_full_width', esc_html__( 'Full Width', 'bookit-for-calcom' ),          array( __CLASS__, 'field_btn_full_width' ), 'bookit-settings-style', 'bookit_section_style_button' );
+		add_settings_field( 'bookit_default_label',  esc_html__( 'Default Label', 'bookit-for-cal-com' ),       array( __CLASS__, 'field_default_label' ),  'bookit-settings-style', 'bookit_section_style_button' );
+		add_settings_field( 'bookit_btn_bg',         esc_html__( 'Background Color', 'bookit-for-cal-com' ),    array( __CLASS__, 'field_btn_bg' ),         'bookit-settings-style', 'bookit_section_style_button' );
+		add_settings_field( 'bookit_btn_text',       esc_html__( 'Text Color', 'bookit-for-cal-com' ),          array( __CLASS__, 'field_btn_text' ),       'bookit-settings-style', 'bookit_section_style_button' );
+		add_settings_field( 'bookit_btn_full_width', esc_html__( 'Full Width', 'bookit-for-cal-com' ),          array( __CLASS__, 'field_btn_full_width' ), 'bookit-settings-style', 'bookit_section_style_button' );
 
 		// Section: Button — Border.
 		add_settings_section(
 			'bookit_section_style_border',
-			esc_html__( 'Button — Border', 'bookit-for-calcom' ),
+			esc_html__( 'Button — Border', 'bookit-for-cal-com' ),
 			'__return_false',
 			'bookit-settings-style'
 		);
 
-		add_settings_field( 'bookit_btn_border_width', esc_html__( 'Border Width', 'bookit-for-calcom' ),       array( __CLASS__, 'field_btn_border_width' ), 'bookit-settings-style', 'bookit_section_style_border' );
-		add_settings_field( 'bookit_btn_border_style', esc_html__( 'Border Style', 'bookit-for-calcom' ),       array( __CLASS__, 'field_btn_border_style' ), 'bookit-settings-style', 'bookit_section_style_border' );
-		add_settings_field( 'bookit_btn_border_color', esc_html__( 'Border Color', 'bookit-for-calcom' ),       array( __CLASS__, 'field_btn_border_color' ), 'bookit-settings-style', 'bookit_section_style_border' );
-		add_settings_field( 'bookit_btn_radius',       esc_html__( 'Border Radius', 'bookit-for-calcom' ),      array( __CLASS__, 'field_btn_radius' ),       'bookit-settings-style', 'bookit_section_style_border' );
+		add_settings_field( 'bookit_btn_border_width', esc_html__( 'Border Width', 'bookit-for-cal-com' ),       array( __CLASS__, 'field_btn_border_width' ), 'bookit-settings-style', 'bookit_section_style_border' );
+		add_settings_field( 'bookit_btn_border_style', esc_html__( 'Border Style', 'bookit-for-cal-com' ),       array( __CLASS__, 'field_btn_border_style' ), 'bookit-settings-style', 'bookit_section_style_border' );
+		add_settings_field( 'bookit_btn_border_color', esc_html__( 'Border Color', 'bookit-for-cal-com' ),       array( __CLASS__, 'field_btn_border_color' ), 'bookit-settings-style', 'bookit_section_style_border' );
+		add_settings_field( 'bookit_btn_radius',       esc_html__( 'Border Radius', 'bookit-for-cal-com' ),      array( __CLASS__, 'field_btn_radius' ),       'bookit-settings-style', 'bookit_section_style_border' );
 
 		// Section: Button — Typography.
 		add_settings_section(
 			'bookit_section_style_typo',
-			esc_html__( 'Button — Typography', 'bookit-for-calcom' ),
+			esc_html__( 'Button — Typography', 'bookit-for-cal-com' ),
 			'__return_false',
 			'bookit-settings-style'
 		);
 
-		add_settings_field( 'bookit_btn_font_size',      esc_html__( 'Font Size', 'bookit-for-calcom' ),        array( __CLASS__, 'field_btn_font_size' ),      'bookit-settings-style', 'bookit_section_style_typo' );
-		add_settings_field( 'bookit_btn_font_weight',    esc_html__( 'Font Weight', 'bookit-for-calcom' ),      array( __CLASS__, 'field_btn_font_weight' ),    'bookit-settings-style', 'bookit_section_style_typo' );
-		add_settings_field( 'bookit_btn_text_transform', esc_html__( 'Text Transform', 'bookit-for-calcom' ),   array( __CLASS__, 'field_btn_text_transform' ), 'bookit-settings-style', 'bookit_section_style_typo' );
-		add_settings_field( 'bookit_btn_letter_spacing', esc_html__( 'Letter Spacing', 'bookit-for-calcom' ),   array( __CLASS__, 'field_btn_letter_spacing' ), 'bookit-settings-style', 'bookit_section_style_typo' );
+		add_settings_field( 'bookit_btn_font_size',      esc_html__( 'Font Size', 'bookit-for-cal-com' ),        array( __CLASS__, 'field_btn_font_size' ),      'bookit-settings-style', 'bookit_section_style_typo' );
+		add_settings_field( 'bookit_btn_font_weight',    esc_html__( 'Font Weight', 'bookit-for-cal-com' ),      array( __CLASS__, 'field_btn_font_weight' ),    'bookit-settings-style', 'bookit_section_style_typo' );
+		add_settings_field( 'bookit_btn_text_transform', esc_html__( 'Text Transform', 'bookit-for-cal-com' ),   array( __CLASS__, 'field_btn_text_transform' ), 'bookit-settings-style', 'bookit_section_style_typo' );
+		add_settings_field( 'bookit_btn_letter_spacing', esc_html__( 'Letter Spacing', 'bookit-for-cal-com' ),   array( __CLASS__, 'field_btn_letter_spacing' ), 'bookit-settings-style', 'bookit_section_style_typo' );
 
 		// Section: Button — Padding.
 		add_settings_section(
 			'bookit_section_style_padding',
-			esc_html__( 'Button — Padding', 'bookit-for-calcom' ),
+			esc_html__( 'Button — Padding', 'bookit-for-cal-com' ),
 			'__return_false',
 			'bookit-settings-style'
 		);
 
-		add_settings_field( 'bookit_btn_padding', esc_html__( 'Padding', 'bookit-for-calcom' ), array( __CLASS__, 'field_btn_padding' ), 'bookit-settings-style', 'bookit_section_style_padding' );
+		add_settings_field( 'bookit_btn_padding', esc_html__( 'Padding', 'bookit-for-cal-com' ), array( __CLASS__, 'field_btn_padding' ), 'bookit-settings-style', 'bookit_section_style_padding' );
 
 		// Section: Button — Hover Effects.
 		add_settings_section(
 			'bookit_section_style_hover',
-			esc_html__( 'Button — Hover Effects', 'bookit-for-calcom' ),
+			esc_html__( 'Button — Hover Effects', 'bookit-for-cal-com' ),
 			'__return_false',
 			'bookit-settings-style'
 		);
 
-		add_settings_field( 'bookit_btn_hover_bg',           esc_html__( 'Hover Background Color', 'bookit-for-calcom' ), array( __CLASS__, 'field_btn_hover_bg' ),           'bookit-settings-style', 'bookit_section_style_hover' );
-		add_settings_field( 'bookit_btn_hover_text',         esc_html__( 'Hover Text Color', 'bookit-for-calcom' ),       array( __CLASS__, 'field_btn_hover_text' ),         'bookit-settings-style', 'bookit_section_style_hover' );
-		add_settings_field( 'bookit_btn_hover_border_color', esc_html__( 'Hover Border Color', 'bookit-for-calcom' ),     array( __CLASS__, 'field_btn_hover_border_color' ), 'bookit-settings-style', 'bookit_section_style_hover' );
-		add_settings_field( 'bookit_btn_transition_duration', esc_html__( 'Transition Duration', 'bookit-for-calcom' ),   array( __CLASS__, 'field_btn_transition_duration' ), 'bookit-settings-style', 'bookit_section_style_hover' );
+		add_settings_field( 'bookit_btn_hover_bg',           esc_html__( 'Hover Background Color', 'bookit-for-cal-com' ), array( __CLASS__, 'field_btn_hover_bg' ),           'bookit-settings-style', 'bookit_section_style_hover' );
+		add_settings_field( 'bookit_btn_hover_text',         esc_html__( 'Hover Text Color', 'bookit-for-cal-com' ),       array( __CLASS__, 'field_btn_hover_text' ),         'bookit-settings-style', 'bookit_section_style_hover' );
+		add_settings_field( 'bookit_btn_hover_border_color', esc_html__( 'Hover Border Color', 'bookit-for-cal-com' ),     array( __CLASS__, 'field_btn_hover_border_color' ), 'bookit-settings-style', 'bookit_section_style_hover' );
+		add_settings_field( 'bookit_btn_transition_duration', esc_html__( 'Transition Duration', 'bookit-for-cal-com' ),   array( __CLASS__, 'field_btn_transition_duration' ), 'bookit-settings-style', 'bookit_section_style_hover' );
 
 		// Section: Inline Calendar.
 		add_settings_section(
 			'bookit_section_style_inline',
-			esc_html__( 'Inline Calendar', 'bookit-for-calcom' ),
+			esc_html__( 'Inline Calendar', 'bookit-for-cal-com' ),
 			'__return_false',
 			'bookit-settings-style'
 		);
 
-		add_settings_field( 'bookit_inline_height', esc_html__( 'Default Height', 'bookit-for-calcom' ), array( __CLASS__, 'field_inline_height' ), 'bookit-settings-style', 'bookit_section_style_inline' );
+		add_settings_field( 'bookit_inline_height', esc_html__( 'Default Height', 'bookit-for-cal-com' ), array( __CLASS__, 'field_inline_height' ), 'bookit-settings-style', 'bookit_section_style_inline' );
 	}
 
 	/**
@@ -421,7 +421,7 @@ class BookIt_Admin {
 			autocomplete="off"
 		/>
 		<p class="description">
-			<?php esc_html_e( 'Your Cal.com API key. Found in Cal.com → Settings → Developer → API Keys.', 'bookit-for-calcom' ); ?>
+			<?php esc_html_e( 'Your Cal.com API key. Found in Cal.com → Settings → Developer → API Keys.', 'bookit-for-cal-com' ); ?>
 		</p>
 		<button
 			type="button"
@@ -430,7 +430,7 @@ class BookIt_Admin {
 			style="margin-top:8px;"
 			data-nonce="<?php echo esc_attr( wp_create_nonce( 'bookit_refresh_event_types' ) ); ?>"
 		>
-			<?php esc_html_e( 'Refresh event types', 'bookit-for-calcom' ); ?>
+			<?php esc_html_e( 'Refresh event types', 'bookit-for-cal-com' ); ?>
 		</button>
 		<span id="bookit-refresh-status" style="margin-left:10px;"></span>
 		<?php
@@ -463,13 +463,13 @@ class BookIt_Admin {
 		<!-- Instance selector — name attribute lets PHP derive api_base on save -->
 		<select id="bookit_api_instance" name="bookit_settings[api_instance]">
 			<option value="global" <?php selected( $current_preset, 'global' ); ?>>
-				<?php esc_html_e( 'Global — app.cal.com', 'bookit-for-calcom' ); ?>
+				<?php esc_html_e( 'Global — app.cal.com', 'bookit-for-cal-com' ); ?>
 			</option>
 			<option value="eu" <?php selected( $current_preset, 'eu' ); ?>>
-				<?php esc_html_e( 'Europe — app.cal.eu', 'bookit-for-calcom' ); ?>
+				<?php esc_html_e( 'Europe — app.cal.eu', 'bookit-for-cal-com' ); ?>
 			</option>
 			<option value="custom" <?php selected( $current_preset, 'custom' ); ?>>
-				<?php esc_html_e( 'Custom&hellip;', 'bookit-for-calcom' ); ?>
+				<?php esc_html_e( 'Custom&hellip;', 'bookit-for-cal-com' ); ?>
 			</option>
 		</select>
 
@@ -485,7 +485,7 @@ class BookIt_Admin {
 		/>
 
 		<p class="description">
-			<?php esc_html_e( 'Select your Cal.com instance. To find out which one you use: log in to Cal.com — if your URL starts with app.cal.eu, choose "Europe", otherwise choose "Global".', 'bookit-for-calcom' ); ?>
+			<?php esc_html_e( 'Select your Cal.com instance. To find out which one you use: log in to Cal.com — if your URL starts with app.cal.eu, choose "Europe", otherwise choose "Global".', 'bookit-for-cal-com' ); ?>
 		</p>
 		<?php
 	}
@@ -512,9 +512,9 @@ class BookIt_Admin {
 		/>
 		<p class="description" id="bookit-username-desc">
 			<?php if ( $has_api_key ) : ?>
-				<?php esc_html_e( 'Auto-detected from your API key. Click "Refresh event types" to update.', 'bookit-for-calcom' ); ?>
+				<?php esc_html_e( 'Auto-detected from your API key. Click "Refresh event types" to update.', 'bookit-for-cal-com' ); ?>
 			<?php else : ?>
-				<?php esc_html_e( 'Your Cal.com username (used as URL prefix). Required when no API key is set.', 'bookit-for-calcom' ); ?>
+				<?php esc_html_e( 'Your Cal.com username (used as URL prefix). Required when no API key is set.', 'bookit-for-cal-com' ); ?>
 			<?php endif; ?>
 		</p>
 		<?php
@@ -536,7 +536,7 @@ class BookIt_Admin {
 			class="small-text"
 		/>
 		<p class="description">
-			<?php esc_html_e( 'Cal.com JS namespace (default: cal). Change only if you have conflicts.', 'bookit-for-calcom' ); ?>
+			<?php esc_html_e( 'Cal.com JS namespace (default: cal). Change only if you have conflicts.', 'bookit-for-cal-com' ); ?>
 		</p>
 		<?php
 	}
@@ -549,9 +549,9 @@ class BookIt_Admin {
 	public static function field_theme(): void {
 		$settings = self::get_settings();
 		$options  = array(
-			'auto'  => __( 'Auto (follow browser)', 'bookit-for-calcom' ),
-			'light' => __( 'Light', 'bookit-for-calcom' ),
-			'dark'  => __( 'Dark', 'bookit-for-calcom' ),
+			'auto'  => __( 'Auto (follow browser)', 'bookit-for-cal-com' ),
+			'light' => __( 'Light', 'bookit-for-cal-com' ),
+			'dark'  => __( 'Dark', 'bookit-for-cal-com' ),
 		);
 		?>
 		<select id="bookit_theme" name="bookit_settings[theme]">
@@ -597,7 +597,7 @@ class BookIt_Admin {
 				value="1"
 				<?php checked( $settings['hide_branding'] ); ?>
 			/>
-			<?php esc_html_e( 'Hide "Powered by Cal.com" branding (requires Cal.com Pro).', 'bookit-for-calcom' ); ?>
+			<?php esc_html_e( 'Hide "Powered by Cal.com" branding (requires Cal.com Pro).', 'bookit-for-cal-com' ); ?>
 		</label>
 		<?php
 	}
@@ -610,8 +610,8 @@ class BookIt_Admin {
 	public static function field_load_strategy(): void {
 		$settings = self::get_settings();
 		$options  = array(
-			'smart'  => __( 'Smart — only on pages with a booking widget', 'bookit-for-calcom' ),
-			'always' => __( 'Always — on every frontend page', 'bookit-for-calcom' ),
+			'smart'  => __( 'Smart — only on pages with a booking widget', 'bookit-for-cal-com' ),
+			'always' => __( 'Always — on every frontend page', 'bookit-for-cal-com' ),
 		);
 		?>
 		<select id="bookit_load_strategy" name="bookit_settings[load_strategy]">
@@ -622,7 +622,7 @@ class BookIt_Admin {
 			<?php endforeach; ?>
 		</select>
 		<p class="description">
-			<?php esc_html_e( '"Smart" reduces page weight by loading the Cal.com script only where needed.', 'bookit-for-calcom' ); ?>
+			<?php esc_html_e( '"Smart" reduces page weight by loading the Cal.com script only where needed.', 'bookit-for-cal-com' ); ?>
 		</p>
 		<?php
 	}
@@ -643,23 +643,23 @@ class BookIt_Admin {
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only tab routing, no data mutation.
 		$current_tab = isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : 'settings';
-		$page        = 'bookit-for-calcom';
+		$page        = 'bookit-for-cal-com';
 		?>
 		<div class="wrap bookit-admin-wrap">
-			<h1><?php esc_html_e( 'BookIt for Cal.com', 'bookit-for-calcom' ); ?></h1>
+			<h1><?php esc_html_e( 'BookIt for Cal.com', 'bookit-for-cal-com' ); ?></h1>
 
-			<nav class="nav-tab-wrapper" aria-label="<?php esc_attr_e( 'BookIt settings tabs', 'bookit-for-calcom' ); ?>">
+			<nav class="nav-tab-wrapper" aria-label="<?php esc_attr_e( 'BookIt settings tabs', 'bookit-for-cal-com' ); ?>">
 				<a href="<?php echo esc_url( admin_url( 'options-general.php?page=' . $page . '&tab=settings' ) ); ?>"
 				   class="nav-tab<?php echo 'settings' === $current_tab ? ' nav-tab-active' : ''; ?>">
-					<?php esc_html_e( 'Settings', 'bookit-for-calcom' ); ?>
+					<?php esc_html_e( 'Settings', 'bookit-for-cal-com' ); ?>
 				</a>
 				<a href="<?php echo esc_url( admin_url( 'options-general.php?page=' . $page . '&tab=shortcode' ) ); ?>"
 				   class="nav-tab<?php echo 'shortcode' === $current_tab ? ' nav-tab-active' : ''; ?>">
-					<?php esc_html_e( 'Shortcode Helper', 'bookit-for-calcom' ); ?>
+					<?php esc_html_e( 'Shortcode Helper', 'bookit-for-cal-com' ); ?>
 				</a>
 				<a href="<?php echo esc_url( admin_url( 'options-general.php?page=' . $page . '&tab=style' ) ); ?>"
 				   class="nav-tab<?php echo 'style' === $current_tab ? ' nav-tab-active' : ''; ?>">
-					<?php esc_html_e( 'Style', 'bookit-for-calcom' ); ?>
+					<?php esc_html_e( 'Style', 'bookit-for-cal-com' ); ?>
 				</a>
 			</nav>
 
@@ -687,8 +687,8 @@ class BookIt_Admin {
 			<?php settings_fields( 'bookit_settings_group' ); ?>
 			<input type="hidden" name="bookit_settings[_tab]" value="settings" />
 			<?php
-			do_settings_sections( 'bookit-for-calcom' );
-			submit_button( esc_html__( 'Save Settings', 'bookit-for-calcom' ) );
+			do_settings_sections( 'bookit-for-cal-com' );
+			submit_button( esc_html__( 'Save Settings', 'bookit-for-cal-com' ) );
 			?>
 		</form>
 		<?php
@@ -704,14 +704,14 @@ class BookIt_Admin {
 		<div class="bookit-shortcode-helper">
 
 			<p class="description">
-				<?php esc_html_e( 'Configure your shortcode options below. The shortcode updates in real time — only non-default values are included to keep it clean.', 'bookit-for-calcom' ); ?>
+				<?php esc_html_e( 'Configure your shortcode options below. The shortcode updates in real time — only non-default values are included to keep it clean.', 'bookit-for-cal-com' ); ?>
 			</p>
 
 			<!-- Output bar -->
 			<div class="bookit-sh-output">
 				<code id="bookit-sh-result" class="bookit-sh-code">[bookit event=""]</code>
 				<button type="button" id="bookit-sh-copy" class="button button-secondary">
-					<?php esc_html_e( 'Copy', 'bookit-for-calcom' ); ?>
+					<?php esc_html_e( 'Copy', 'bookit-for-cal-com' ); ?>
 				</button>
 				<span id="bookit-sh-copy-status" aria-live="polite"></span>
 			</div>
@@ -724,13 +724,13 @@ class BookIt_Admin {
 						<!-- Event -->
 						<tr>
 							<th scope="row">
-								<label for="bookit-sh-event"><?php esc_html_e( 'Event', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-event"><?php esc_html_e( 'Event', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<input type="text" id="bookit-sh-event" data-bookit-attr="event"
 									class="regular-text" placeholder="username/slug" />
 								<p class="description">
-									<?php esc_html_e( 'Your Cal.com event type. Format: username/slug (e.g. jane/consultation-30min).', 'bookit-for-calcom' ); ?>
+									<?php esc_html_e( 'Your Cal.com event type. Format: username/slug (e.g. jane/consultation-30min).', 'bookit-for-cal-com' ); ?>
 								</p>
 							</td>
 						</tr>
@@ -738,13 +738,13 @@ class BookIt_Admin {
 						<!-- Display type -->
 						<tr>
 							<th scope="row">
-								<label for="bookit-sh-type"><?php esc_html_e( 'Display Type', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-type"><?php esc_html_e( 'Display Type', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<select id="bookit-sh-type" data-bookit-attr="type">
-									<option value="popup-button"><?php esc_html_e( 'Popup Button', 'bookit-for-calcom' ); ?></option>
-									<option value="popup-text"><?php esc_html_e( 'Popup Text Link', 'bookit-for-calcom' ); ?></option>
-									<option value="inline"><?php esc_html_e( 'Inline Embed', 'bookit-for-calcom' ); ?></option>
+									<option value="popup-button"><?php esc_html_e( 'Popup Button', 'bookit-for-cal-com' ); ?></option>
+									<option value="popup-text"><?php esc_html_e( 'Popup Text Link', 'bookit-for-cal-com' ); ?></option>
+									<option value="inline"><?php esc_html_e( 'Inline Embed', 'bookit-for-cal-com' ); ?></option>
 								</select>
 							</td>
 						</tr>
@@ -752,7 +752,7 @@ class BookIt_Admin {
 						<!-- Label (popup types only) -->
 						<tr data-bookit-show="popup">
 							<th scope="row">
-								<label for="bookit-sh-label"><?php esc_html_e( 'Button / Link Label', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-label"><?php esc_html_e( 'Button / Link Label', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<input type="text" id="bookit-sh-label" data-bookit-attr="label"
@@ -763,7 +763,7 @@ class BookIt_Admin {
 						<!-- Height (inline only) -->
 						<tr data-bookit-show="inline" class="bookit-sh-hidden">
 							<th scope="row">
-								<label for="bookit-sh-height"><?php esc_html_e( 'Height (px)', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-height"><?php esc_html_e( 'Height (px)', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<input type="number" id="bookit-sh-height" data-bookit-attr="height"
@@ -774,14 +774,14 @@ class BookIt_Admin {
 						<!-- Theme -->
 						<tr>
 							<th scope="row">
-								<label for="bookit-sh-theme"><?php esc_html_e( 'Theme', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-theme"><?php esc_html_e( 'Theme', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<select id="bookit-sh-theme" data-bookit-attr="theme">
-									<option value="global"><?php esc_html_e( 'Global (use plugin setting)', 'bookit-for-calcom' ); ?></option>
-									<option value="auto"><?php esc_html_e( 'Auto (browser preference)', 'bookit-for-calcom' ); ?></option>
-									<option value="light"><?php esc_html_e( 'Light', 'bookit-for-calcom' ); ?></option>
-									<option value="dark"><?php esc_html_e( 'Dark', 'bookit-for-calcom' ); ?></option>
+									<option value="global"><?php esc_html_e( 'Global (use plugin setting)', 'bookit-for-cal-com' ); ?></option>
+									<option value="auto"><?php esc_html_e( 'Auto (browser preference)', 'bookit-for-cal-com' ); ?></option>
+									<option value="light"><?php esc_html_e( 'Light', 'bookit-for-cal-com' ); ?></option>
+									<option value="dark"><?php esc_html_e( 'Dark', 'bookit-for-cal-com' ); ?></option>
 								</select>
 							</td>
 						</tr>
@@ -789,38 +789,38 @@ class BookIt_Admin {
 						<!-- Accent color -->
 						<tr>
 							<th scope="row">
-								<label for="bookit-sh-accent-picker"><?php esc_html_e( 'Accent Color', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-accent-picker"><?php esc_html_e( 'Accent Color', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<input type="hidden" id="bookit-sh-accent" data-bookit-attr="accent" value="" />
 								<input type="color" id="bookit-sh-accent-picker" value="#000000" />
 								<button type="button" id="bookit-sh-accent-clear" class="button button-small">
-									<?php esc_html_e( 'Clear', 'bookit-for-calcom' ); ?>
+									<?php esc_html_e( 'Clear', 'bookit-for-cal-com' ); ?>
 								</button>
 								<p class="description">
-									<?php esc_html_e( 'Leave unset to use the global accent color from Settings.', 'bookit-for-calcom' ); ?>
+									<?php esc_html_e( 'Leave unset to use the global accent color from Settings.', 'bookit-for-cal-com' ); ?>
 								</p>
 							</td>
 						</tr>
 
 						<!-- Hide details -->
 						<tr>
-							<th scope="row"><?php esc_html_e( 'Hide Details', 'bookit-for-calcom' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Hide Details', 'bookit-for-cal-com' ); ?></th>
 							<td>
 								<label>
 									<input type="checkbox" id="bookit-sh-hide-details" data-bookit-attr="hide_details" />
-									<?php esc_html_e( 'Hide the event details panel in the booking modal', 'bookit-for-calcom' ); ?>
+									<?php esc_html_e( 'Hide the event details panel in the booking modal', 'bookit-for-cal-com' ); ?>
 								</label>
 							</td>
 						</tr>
 
 						<!-- Prefill -->
 						<tr>
-							<th scope="row"><?php esc_html_e( 'Prefill User Data', 'bookit-for-calcom' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Prefill User Data', 'bookit-for-cal-com' ); ?></th>
 							<td>
 								<label>
 									<input type="checkbox" id="bookit-sh-prefill" data-bookit-attr="prefill" />
-									<?php esc_html_e( 'Pre-fill the logged-in user\'s name and email', 'bookit-for-calcom' ); ?>
+									<?php esc_html_e( 'Pre-fill the logged-in user\'s name and email', 'bookit-for-cal-com' ); ?>
 								</label>
 							</td>
 						</tr>
@@ -829,39 +829,39 @@ class BookIt_Admin {
 
 						<tr data-bookit-show="popup-button">
 							<td colspan="2" class="bookit-sh-section-heading">
-								<h3><?php esc_html_e( 'Button Styles', 'bookit-for-calcom' ); ?></h3>
+								<h3><?php esc_html_e( 'Button Styles', 'bookit-for-cal-com' ); ?></h3>
 							</td>
 						</tr>
 
 						<tr data-bookit-show="popup-button">
 							<th scope="row">
-								<label for="bookit-sh-btn-bg-picker"><?php esc_html_e( 'Background Color', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-btn-bg-picker"><?php esc_html_e( 'Background Color', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<input type="hidden" id="bookit-sh-btn-bg" data-bookit-attr="btn_bg" value="" />
 								<input type="color" id="bookit-sh-btn-bg-picker" value="#000000" />
 								<button type="button" class="button button-small bookit-sh-color-clear" data-target="bookit-sh-btn-bg">
-									<?php esc_html_e( 'Clear', 'bookit-for-calcom' ); ?>
+									<?php esc_html_e( 'Clear', 'bookit-for-cal-com' ); ?>
 								</button>
 							</td>
 						</tr>
 
 						<tr data-bookit-show="popup-button">
 							<th scope="row">
-								<label for="bookit-sh-btn-text-picker"><?php esc_html_e( 'Text Color', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-btn-text-picker"><?php esc_html_e( 'Text Color', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<input type="hidden" id="bookit-sh-btn-text" data-bookit-attr="btn_text" value="" />
 								<input type="color" id="bookit-sh-btn-text-picker" value="#ffffff" />
 								<button type="button" class="button button-small bookit-sh-color-clear" data-target="bookit-sh-btn-text">
-									<?php esc_html_e( 'Clear', 'bookit-for-calcom' ); ?>
+									<?php esc_html_e( 'Clear', 'bookit-for-cal-com' ); ?>
 								</button>
 							</td>
 						</tr>
 
 						<tr data-bookit-show="popup-button">
 							<th scope="row">
-								<label for="bookit-sh-btn-radius"><?php esc_html_e( 'Border Radius (px)', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-btn-radius"><?php esc_html_e( 'Border Radius (px)', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<input type="number" id="bookit-sh-btn-radius" data-bookit-attr="btn_radius"
@@ -871,7 +871,7 @@ class BookIt_Admin {
 
 						<tr data-bookit-show="popup-button">
 							<th scope="row">
-								<label for="bookit-sh-btn-border-width"><?php esc_html_e( 'Border Width (px)', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-btn-border-width"><?php esc_html_e( 'Border Width (px)', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<input type="number" id="bookit-sh-btn-border-width" data-bookit-attr="btn_border_width"
@@ -881,43 +881,43 @@ class BookIt_Admin {
 
 						<tr data-bookit-show="popup-button" data-bookit-border-conditional class="bookit-sh-hidden">
 							<th scope="row">
-								<label for="bookit-sh-btn-border-style"><?php esc_html_e( 'Border Style', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-btn-border-style"><?php esc_html_e( 'Border Style', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<select id="bookit-sh-btn-border-style" data-bookit-attr="btn_border_style">
-									<option value="solid"><?php esc_html_e( 'Solid', 'bookit-for-calcom' ); ?></option>
-									<option value="dashed"><?php esc_html_e( 'Dashed', 'bookit-for-calcom' ); ?></option>
-									<option value="dotted"><?php esc_html_e( 'Dotted', 'bookit-for-calcom' ); ?></option>
+									<option value="solid"><?php esc_html_e( 'Solid', 'bookit-for-cal-com' ); ?></option>
+									<option value="dashed"><?php esc_html_e( 'Dashed', 'bookit-for-cal-com' ); ?></option>
+									<option value="dotted"><?php esc_html_e( 'Dotted', 'bookit-for-cal-com' ); ?></option>
 								</select>
 							</td>
 						</tr>
 
 						<tr data-bookit-show="popup-button" data-bookit-border-conditional class="bookit-sh-hidden">
 							<th scope="row">
-								<label for="bookit-sh-btn-border-color-picker"><?php esc_html_e( 'Border Color', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-btn-border-color-picker"><?php esc_html_e( 'Border Color', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<input type="hidden" id="bookit-sh-btn-border-color" data-bookit-attr="btn_border_color" value="" />
 								<input type="color" id="bookit-sh-btn-border-color-picker" value="#000000" />
 								<button type="button" class="button button-small bookit-sh-color-clear" data-target="bookit-sh-btn-border-color">
-									<?php esc_html_e( 'Clear', 'bookit-for-calcom' ); ?>
+									<?php esc_html_e( 'Clear', 'bookit-for-cal-com' ); ?>
 								</button>
 							</td>
 						</tr>
 
 						<tr data-bookit-show="popup-button">
-							<th scope="row"><?php esc_html_e( 'Padding (px)', 'bookit-for-calcom' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Padding (px)', 'bookit-for-cal-com' ); ?></th>
 							<td class="bookit-sh-padding-row">
-								<label><?php esc_html_e( 'Top', 'bookit-for-calcom' ); ?>
+								<label><?php esc_html_e( 'Top', 'bookit-for-cal-com' ); ?>
 									<input type="number" data-bookit-attr="btn_padding_top" class="small-text" value="10" min="0" />
 								</label>
-								<label><?php esc_html_e( 'Right', 'bookit-for-calcom' ); ?>
+								<label><?php esc_html_e( 'Right', 'bookit-for-cal-com' ); ?>
 									<input type="number" data-bookit-attr="btn_padding_right" class="small-text" value="20" min="0" />
 								</label>
-								<label><?php esc_html_e( 'Bottom', 'bookit-for-calcom' ); ?>
+								<label><?php esc_html_e( 'Bottom', 'bookit-for-cal-com' ); ?>
 									<input type="number" data-bookit-attr="btn_padding_bottom" class="small-text" value="10" min="0" />
 								</label>
-								<label><?php esc_html_e( 'Left', 'bookit-for-calcom' ); ?>
+								<label><?php esc_html_e( 'Left', 'bookit-for-cal-com' ); ?>
 									<input type="number" data-bookit-attr="btn_padding_left" class="small-text" value="20" min="0" />
 								</label>
 							</td>
@@ -925,19 +925,19 @@ class BookIt_Admin {
 
 						<tr data-bookit-show="popup-button">
 							<th scope="row">
-								<label for="bookit-sh-btn-full-width"><?php esc_html_e( 'Full Width', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-btn-full-width"><?php esc_html_e( 'Full Width', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<label>
 									<input type="checkbox" id="bookit-sh-btn-full-width" data-bookit-attr="btn_full_width" />
-									<?php esc_html_e( 'Stretch button to full container width', 'bookit-for-calcom' ); ?>
+									<?php esc_html_e( 'Stretch button to full container width', 'bookit-for-cal-com' ); ?>
 								</label>
 							</td>
 						</tr>
 
 						<tr data-bookit-show="popup-button">
 							<th scope="row">
-								<label for="bookit-sh-btn-font-size"><?php esc_html_e( 'Font Size (px)', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-btn-font-size"><?php esc_html_e( 'Font Size (px)', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<input type="number" id="bookit-sh-btn-font-size" data-bookit-attr="btn_font_size"
@@ -947,38 +947,38 @@ class BookIt_Admin {
 
 						<tr data-bookit-show="popup-button">
 							<th scope="row">
-								<label for="bookit-sh-btn-font-weight"><?php esc_html_e( 'Font Weight', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-btn-font-weight"><?php esc_html_e( 'Font Weight', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<select id="bookit-sh-btn-font-weight" data-bookit-attr="btn_font_weight">
-									<option value=""><?php esc_html_e( 'Default', 'bookit-for-calcom' ); ?></option>
-									<option value="300"><?php esc_html_e( '300 — Light', 'bookit-for-calcom' ); ?></option>
-									<option value="400"><?php esc_html_e( '400 — Normal', 'bookit-for-calcom' ); ?></option>
-									<option value="500"><?php esc_html_e( '500 — Medium', 'bookit-for-calcom' ); ?></option>
-									<option value="600"><?php esc_html_e( '600 — Semi Bold', 'bookit-for-calcom' ); ?></option>
-									<option value="700"><?php esc_html_e( '700 — Bold', 'bookit-for-calcom' ); ?></option>
-									<option value="800"><?php esc_html_e( '800 — Extra Bold', 'bookit-for-calcom' ); ?></option>
+									<option value=""><?php esc_html_e( 'Default', 'bookit-for-cal-com' ); ?></option>
+									<option value="300"><?php esc_html_e( '300 — Light', 'bookit-for-cal-com' ); ?></option>
+									<option value="400"><?php esc_html_e( '400 — Normal', 'bookit-for-cal-com' ); ?></option>
+									<option value="500"><?php esc_html_e( '500 — Medium', 'bookit-for-cal-com' ); ?></option>
+									<option value="600"><?php esc_html_e( '600 — Semi Bold', 'bookit-for-cal-com' ); ?></option>
+									<option value="700"><?php esc_html_e( '700 — Bold', 'bookit-for-cal-com' ); ?></option>
+									<option value="800"><?php esc_html_e( '800 — Extra Bold', 'bookit-for-cal-com' ); ?></option>
 								</select>
 							</td>
 						</tr>
 
 						<tr data-bookit-show="popup-button">
 							<th scope="row">
-								<label for="bookit-sh-btn-text-transform"><?php esc_html_e( 'Text Transform', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-btn-text-transform"><?php esc_html_e( 'Text Transform', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<select id="bookit-sh-btn-text-transform" data-bookit-attr="btn_text_transform">
-									<option value=""><?php esc_html_e( 'None', 'bookit-for-calcom' ); ?></option>
-									<option value="uppercase"><?php esc_html_e( 'Uppercase', 'bookit-for-calcom' ); ?></option>
-									<option value="lowercase"><?php esc_html_e( 'Lowercase', 'bookit-for-calcom' ); ?></option>
-									<option value="capitalize"><?php esc_html_e( 'Capitalize', 'bookit-for-calcom' ); ?></option>
+									<option value=""><?php esc_html_e( 'None', 'bookit-for-cal-com' ); ?></option>
+									<option value="uppercase"><?php esc_html_e( 'Uppercase', 'bookit-for-cal-com' ); ?></option>
+									<option value="lowercase"><?php esc_html_e( 'Lowercase', 'bookit-for-cal-com' ); ?></option>
+									<option value="capitalize"><?php esc_html_e( 'Capitalize', 'bookit-for-cal-com' ); ?></option>
 								</select>
 							</td>
 						</tr>
 
 						<tr data-bookit-show="popup-button">
 							<th scope="row">
-								<label for="bookit-sh-btn-letter-spacing"><?php esc_html_e( 'Letter Spacing (px)', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-btn-letter-spacing"><?php esc_html_e( 'Letter Spacing (px)', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<input type="number" id="bookit-sh-btn-letter-spacing" data-bookit-attr="btn_letter_spacing"
@@ -989,52 +989,52 @@ class BookIt_Admin {
 						<!-- Hover effects -->
 						<tr data-bookit-show="popup-button">
 							<td colspan="2" class="bookit-sh-section-heading">
-								<h3><?php esc_html_e( 'Hover Effects', 'bookit-for-calcom' ); ?></h3>
+								<h3><?php esc_html_e( 'Hover Effects', 'bookit-for-cal-com' ); ?></h3>
 							</td>
 						</tr>
 
 						<tr data-bookit-show="popup-button">
 							<th scope="row">
-								<label for="bookit-sh-btn-hover-bg-picker"><?php esc_html_e( 'Hover Background', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-btn-hover-bg-picker"><?php esc_html_e( 'Hover Background', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<input type="hidden" id="bookit-sh-btn-hover-bg" data-bookit-attr="btn_hover_bg" value="" />
 								<input type="color" id="bookit-sh-btn-hover-bg-picker" value="#000000" />
 								<button type="button" class="button button-small bookit-sh-color-clear" data-target="bookit-sh-btn-hover-bg">
-									<?php esc_html_e( 'Clear', 'bookit-for-calcom' ); ?>
+									<?php esc_html_e( 'Clear', 'bookit-for-cal-com' ); ?>
 								</button>
 							</td>
 						</tr>
 
 						<tr data-bookit-show="popup-button">
 							<th scope="row">
-								<label for="bookit-sh-btn-hover-text-picker"><?php esc_html_e( 'Hover Text Color', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-btn-hover-text-picker"><?php esc_html_e( 'Hover Text Color', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<input type="hidden" id="bookit-sh-btn-hover-text" data-bookit-attr="btn_hover_text" value="" />
 								<input type="color" id="bookit-sh-btn-hover-text-picker" value="#ffffff" />
 								<button type="button" class="button button-small bookit-sh-color-clear" data-target="bookit-sh-btn-hover-text">
-									<?php esc_html_e( 'Clear', 'bookit-for-calcom' ); ?>
+									<?php esc_html_e( 'Clear', 'bookit-for-cal-com' ); ?>
 								</button>
 							</td>
 						</tr>
 
 						<tr data-bookit-show="popup-button" data-bookit-border-conditional class="bookit-sh-hidden">
 							<th scope="row">
-								<label for="bookit-sh-btn-hover-border-picker"><?php esc_html_e( 'Hover Border Color', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-btn-hover-border-picker"><?php esc_html_e( 'Hover Border Color', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<input type="hidden" id="bookit-sh-btn-hover-border-color" data-bookit-attr="btn_hover_border_color" value="" />
 								<input type="color" id="bookit-sh-btn-hover-border-picker" value="#000000" />
 								<button type="button" class="button button-small bookit-sh-color-clear" data-target="bookit-sh-btn-hover-border-color">
-									<?php esc_html_e( 'Clear', 'bookit-for-calcom' ); ?>
+									<?php esc_html_e( 'Clear', 'bookit-for-cal-com' ); ?>
 								</button>
 							</td>
 						</tr>
 
 						<tr data-bookit-show="popup-button">
 							<th scope="row">
-								<label for="bookit-sh-btn-transition"><?php esc_html_e( 'Transition Duration (ms)', 'bookit-for-calcom' ); ?></label>
+								<label for="bookit-sh-btn-transition"><?php esc_html_e( 'Transition Duration (ms)', 'bookit-for-cal-com' ); ?></label>
 							</th>
 							<td>
 								<input type="number" id="bookit-sh-btn-transition" data-bookit-attr="btn_transition_duration"
@@ -1049,44 +1049,44 @@ class BookIt_Admin {
 			<!-- Reference table -->
 			<div class="bookit-sh-reference">
 				<details>
-					<summary><?php esc_html_e( 'Shortcode attribute reference', 'bookit-for-calcom' ); ?></summary>
+					<summary><?php esc_html_e( 'Shortcode attribute reference', 'bookit-for-cal-com' ); ?></summary>
 					<table>
 						<thead>
 							<tr>
-								<th><?php esc_html_e( 'Attribute', 'bookit-for-calcom' ); ?></th>
-								<th><?php esc_html_e( 'Accepted values', 'bookit-for-calcom' ); ?></th>
-								<th><?php esc_html_e( 'Default', 'bookit-for-calcom' ); ?></th>
-								<th><?php esc_html_e( 'Description', 'bookit-for-calcom' ); ?></th>
+								<th><?php esc_html_e( 'Attribute', 'bookit-for-cal-com' ); ?></th>
+								<th><?php esc_html_e( 'Accepted values', 'bookit-for-cal-com' ); ?></th>
+								<th><?php esc_html_e( 'Default', 'bookit-for-cal-com' ); ?></th>
+								<th><?php esc_html_e( 'Description', 'bookit-for-cal-com' ); ?></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr><td><code>event</code></td><td><?php esc_html_e( 'username/slug', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( '(required)', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( 'Cal.com event type identifier.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>type</code></td><td><code>popup-button</code> | <code>popup-text</code> | <code>inline</code></td><td><code>popup-button</code></td><td><?php esc_html_e( 'Widget display mode.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>label</code></td><td><?php esc_html_e( 'text', 'bookit-for-calcom' ); ?></td><td><code>Book a meeting</code></td><td><?php esc_html_e( 'Button or link text (popup types only).', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>height</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-calcom' ); ?></td><td><code>600</code></td><td><?php esc_html_e( 'Iframe height in pixels (inline type only).', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>theme</code></td><td><code>global</code> | <code>auto</code> | <code>light</code> | <code>dark</code></td><td><code>global</code></td><td><?php esc_html_e( 'Cal.com UI theme.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>accent</code></td><td><?php esc_html_e( 'hex color', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( '(global setting)', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( 'Accent color override.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>hide_details</code></td><td><code>0</code> | <code>1</code></td><td><code>0</code></td><td><?php esc_html_e( 'Hide the booking details panel.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>prefill</code></td><td><code>0</code> | <code>1</code></td><td><code>0</code></td><td><?php esc_html_e( 'Pre-fill logged-in user name and email.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_bg</code></td><td><?php esc_html_e( 'hex color', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( '(none)', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( 'Button background color.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_text</code></td><td><?php esc_html_e( 'hex color', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( '(none)', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( 'Button text color.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_radius</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-calcom' ); ?></td><td><code>4</code></td><td><?php esc_html_e( 'Button border radius.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_border_width</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-calcom' ); ?></td><td><code>0</code></td><td><?php esc_html_e( 'Button border width.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_border_style</code></td><td><code>solid</code> | <code>dashed</code> | <code>dotted</code></td><td><code>solid</code></td><td><?php esc_html_e( 'Button border style (requires border width &gt; 0).', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_border_color</code></td><td><?php esc_html_e( 'hex color', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( '(none)', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( 'Button border color (requires border width &gt; 0).', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_padding_top</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-calcom' ); ?></td><td><code>10</code></td><td><?php esc_html_e( 'Button top padding.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_padding_right</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-calcom' ); ?></td><td><code>20</code></td><td><?php esc_html_e( 'Button right padding.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_padding_bottom</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-calcom' ); ?></td><td><code>10</code></td><td><?php esc_html_e( 'Button bottom padding.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_padding_left</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-calcom' ); ?></td><td><code>20</code></td><td><?php esc_html_e( 'Button left padding.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_font_size</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-calcom' ); ?></td><td><code>14</code></td><td><?php esc_html_e( 'Button font size.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_font_weight</code></td><td><code>300</code> | <code>400</code> | <code>500</code> | <code>600</code> | <code>700</code> | <code>800</code></td><td><?php esc_html_e( '(inherit)', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( 'Button font weight.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_text_transform</code></td><td><code>uppercase</code> | <code>lowercase</code> | <code>capitalize</code></td><td><?php esc_html_e( '(none)', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( 'Button text transform.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_letter_spacing</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-calcom' ); ?></td><td><code>0</code></td><td><?php esc_html_e( 'Button letter spacing.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_full_width</code></td><td><code>0</code> | <code>1</code></td><td><code>0</code></td><td><?php esc_html_e( 'Stretch button to full width.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_hover_bg</code></td><td><?php esc_html_e( 'hex color', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( '(none)', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( 'Button hover background color.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_hover_text</code></td><td><?php esc_html_e( 'hex color', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( '(none)', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( 'Button hover text color.', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_hover_border_color</code></td><td><?php esc_html_e( 'hex color', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( '(none)', 'bookit-for-calcom' ); ?></td><td><?php esc_html_e( 'Button hover border color (requires border width &gt; 0).', 'bookit-for-calcom' ); ?></td></tr>
-							<tr><td><code>btn_transition_duration</code></td><td><?php esc_html_e( 'number (ms)', 'bookit-for-calcom' ); ?></td><td><code>200</code></td><td><?php esc_html_e( 'Hover transition duration in milliseconds.', 'bookit-for-calcom' ); ?></td></tr>
+							<tr><td><code>event</code></td><td><?php esc_html_e( 'username/slug', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( '(required)', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( 'Cal.com event type identifier.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>type</code></td><td><code>popup-button</code> | <code>popup-text</code> | <code>inline</code></td><td><code>popup-button</code></td><td><?php esc_html_e( 'Widget display mode.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>label</code></td><td><?php esc_html_e( 'text', 'bookit-for-cal-com' ); ?></td><td><code>Book a meeting</code></td><td><?php esc_html_e( 'Button or link text (popup types only).', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>height</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-cal-com' ); ?></td><td><code>600</code></td><td><?php esc_html_e( 'Iframe height in pixels (inline type only).', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>theme</code></td><td><code>global</code> | <code>auto</code> | <code>light</code> | <code>dark</code></td><td><code>global</code></td><td><?php esc_html_e( 'Cal.com UI theme.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>accent</code></td><td><?php esc_html_e( 'hex color', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( '(global setting)', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( 'Accent color override.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>hide_details</code></td><td><code>0</code> | <code>1</code></td><td><code>0</code></td><td><?php esc_html_e( 'Hide the booking details panel.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>prefill</code></td><td><code>0</code> | <code>1</code></td><td><code>0</code></td><td><?php esc_html_e( 'Pre-fill logged-in user name and email.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_bg</code></td><td><?php esc_html_e( 'hex color', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( '(none)', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( 'Button background color.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_text</code></td><td><?php esc_html_e( 'hex color', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( '(none)', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( 'Button text color.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_radius</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-cal-com' ); ?></td><td><code>4</code></td><td><?php esc_html_e( 'Button border radius.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_border_width</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-cal-com' ); ?></td><td><code>0</code></td><td><?php esc_html_e( 'Button border width.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_border_style</code></td><td><code>solid</code> | <code>dashed</code> | <code>dotted</code></td><td><code>solid</code></td><td><?php esc_html_e( 'Button border style (requires border width &gt; 0).', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_border_color</code></td><td><?php esc_html_e( 'hex color', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( '(none)', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( 'Button border color (requires border width &gt; 0).', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_padding_top</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-cal-com' ); ?></td><td><code>10</code></td><td><?php esc_html_e( 'Button top padding.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_padding_right</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-cal-com' ); ?></td><td><code>20</code></td><td><?php esc_html_e( 'Button right padding.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_padding_bottom</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-cal-com' ); ?></td><td><code>10</code></td><td><?php esc_html_e( 'Button bottom padding.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_padding_left</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-cal-com' ); ?></td><td><code>20</code></td><td><?php esc_html_e( 'Button left padding.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_font_size</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-cal-com' ); ?></td><td><code>14</code></td><td><?php esc_html_e( 'Button font size.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_font_weight</code></td><td><code>300</code> | <code>400</code> | <code>500</code> | <code>600</code> | <code>700</code> | <code>800</code></td><td><?php esc_html_e( '(inherit)', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( 'Button font weight.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_text_transform</code></td><td><code>uppercase</code> | <code>lowercase</code> | <code>capitalize</code></td><td><?php esc_html_e( '(none)', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( 'Button text transform.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_letter_spacing</code></td><td><?php esc_html_e( 'number (px)', 'bookit-for-cal-com' ); ?></td><td><code>0</code></td><td><?php esc_html_e( 'Button letter spacing.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_full_width</code></td><td><code>0</code> | <code>1</code></td><td><code>0</code></td><td><?php esc_html_e( 'Stretch button to full width.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_hover_bg</code></td><td><?php esc_html_e( 'hex color', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( '(none)', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( 'Button hover background color.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_hover_text</code></td><td><?php esc_html_e( 'hex color', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( '(none)', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( 'Button hover text color.', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_hover_border_color</code></td><td><?php esc_html_e( 'hex color', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( '(none)', 'bookit-for-cal-com' ); ?></td><td><?php esc_html_e( 'Button hover border color (requires border width &gt; 0).', 'bookit-for-cal-com' ); ?></td></tr>
+							<tr><td><code>btn_transition_duration</code></td><td><?php esc_html_e( 'number (ms)', 'bookit-for-cal-com' ); ?></td><td><code>200</code></td><td><?php esc_html_e( 'Hover transition duration in milliseconds.', 'bookit-for-cal-com' ); ?></td></tr>
 						</tbody>
 					</table>
 				</details>
@@ -1172,13 +1172,13 @@ class BookIt_Admin {
 				'hasApiKey'        => ! empty( $settings['api_key'] ) ? '1' : '0',
 				// Return cached username only — no HTTP call on page load.
 				'autoUsername'     => (string) ( get_transient( BookIt_API::TRANSIENT_USERNAME ) ?: '' ),
-				'msgSuccess'       => __( 'Event types refreshed successfully.', 'bookit-for-calcom' ),
-				'msgError'         => __( 'Could not refresh event types.', 'bookit-for-calcom' ),
-				'msgUsernameAuto'   => __( 'Auto-detected from your API key. Click "Refresh event types" to update.', 'bookit-for-calcom' ),
-				'msgUsernameManual' => __( 'Your Cal.com username (used as URL prefix). Required when no API key is set.', 'bookit-for-calcom' ),
+				'msgSuccess'       => __( 'Event types refreshed successfully.', 'bookit-for-cal-com' ),
+				'msgError'         => __( 'Could not refresh event types.', 'bookit-for-cal-com' ),
+				'msgUsernameAuto'   => __( 'Auto-detected from your API key. Click "Refresh event types" to update.', 'bookit-for-cal-com' ),
+				'msgUsernameManual' => __( 'Your Cal.com username (used as URL prefix). Required when no API key is set.', 'bookit-for-cal-com' ),
 				'eventTypes'        => self::get_localized_event_types(),
-				'msgCopied'         => __( 'Copied!', 'bookit-for-calcom' ),
-				'msgCopyFailed'     => __( 'Copy failed.', 'bookit-for-calcom' ),
+				'msgCopied'         => __( 'Copied!', 'bookit-for-cal-com' ),
+				'msgCopyFailed'     => __( 'Copy failed.', 'bookit-for-cal-com' ),
 			)
 		);
 
@@ -1204,7 +1204,7 @@ class BookIt_Admin {
 		check_ajax_referer( 'bookit_refresh_event_types', 'nonce' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( __( 'Insufficient permissions.', 'bookit-for-calcom' ), 403 );
+			wp_send_json_error( __( 'Insufficient permissions.', 'bookit-for-cal-com' ), 403 );
 		}
 
 		BookIt_API::flush_cache();
@@ -1266,7 +1266,7 @@ class BookIt_Admin {
 			<input type="hidden" name="bookit_settings[_tab]" value="style" />
 			<?php
 			do_settings_sections( 'bookit-settings-style' );
-			submit_button( esc_html__( 'Save Style Defaults', 'bookit-for-calcom' ) );
+			submit_button( esc_html__( 'Save Style Defaults', 'bookit-for-cal-com' ) );
 			?>
 		</form>
 		<?php
@@ -1304,7 +1304,7 @@ class BookIt_Admin {
 				tabindex="-1"
 			/>
 			<button type="button" class="button button-small bookit-color-clear">
-				<?php esc_html_e( 'Clear', 'bookit-for-calcom' ); ?>
+				<?php esc_html_e( 'Clear', 'bookit-for-cal-com' ); ?>
 			</button>
 		</span>
 		<?php
@@ -1357,10 +1357,10 @@ class BookIt_Admin {
 			name="bookit_settings[default_label]"
 			value="<?php echo esc_attr( $settings['default_label'] ); ?>"
 			class="regular-text"
-			placeholder="<?php esc_attr_e( 'Book a meeting', 'bookit-for-calcom' ); ?>"
+			placeholder="<?php esc_attr_e( 'Book a meeting', 'bookit-for-cal-com' ); ?>"
 		/>
 		<p class="description">
-			<?php esc_html_e( 'Default button / link label. Leave empty to use "Book a meeting".', 'bookit-for-calcom' ); ?>
+			<?php esc_html_e( 'Default button / link label. Leave empty to use "Book a meeting".', 'bookit-for-cal-com' ); ?>
 		</p>
 		<?php
 	}
@@ -1373,7 +1373,7 @@ class BookIt_Admin {
 	public static function field_btn_bg(): void {
 		$settings = self::get_settings();
 		self::render_color_control( 'btn_bg', $settings['btn_bg'] );
-		echo '<p class="description">' . esc_html__( 'Leave empty to inherit theme default.', 'bookit-for-calcom' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'Leave empty to inherit theme default.', 'bookit-for-cal-com' ) . '</p>';
 	}
 
 	/**
@@ -1384,7 +1384,7 @@ class BookIt_Admin {
 	public static function field_btn_text(): void {
 		$settings = self::get_settings();
 		self::render_color_control( 'btn_text', $settings['btn_text'] );
-		echo '<p class="description">' . esc_html__( 'Leave empty to inherit theme default.', 'bookit-for-calcom' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'Leave empty to inherit theme default.', 'bookit-for-cal-com' ) . '</p>';
 	}
 
 	/**
@@ -1403,7 +1403,7 @@ class BookIt_Admin {
 				value="1"
 				<?php checked( $settings['btn_full_width'] ); ?>
 			/>
-			<?php esc_html_e( 'Stretch button to full container width by default.', 'bookit-for-calcom' ); ?>
+			<?php esc_html_e( 'Stretch button to full container width by default.', 'bookit-for-cal-com' ); ?>
 		</label>
 		<?php
 	}
@@ -1426,9 +1426,9 @@ class BookIt_Admin {
 	public static function field_btn_border_style(): void {
 		$settings = self::get_settings();
 		$options  = array(
-			'solid'  => __( 'Solid', 'bookit-for-calcom' ),
-			'dashed' => __( 'Dashed', 'bookit-for-calcom' ),
-			'dotted' => __( 'Dotted', 'bookit-for-calcom' ),
+			'solid'  => __( 'Solid', 'bookit-for-cal-com' ),
+			'dashed' => __( 'Dashed', 'bookit-for-cal-com' ),
+			'dotted' => __( 'Dotted', 'bookit-for-cal-com' ),
 		);
 		?>
 		<select id="bookit_btn_border_style" name="bookit_settings[btn_border_style]">
@@ -1479,13 +1479,13 @@ class BookIt_Admin {
 	public static function field_btn_font_weight(): void {
 		$settings = self::get_settings();
 		$options  = array(
-			''    => __( 'Default (inherit)', 'bookit-for-calcom' ),
-			'300' => __( '300 — Light', 'bookit-for-calcom' ),
-			'400' => __( '400 — Normal', 'bookit-for-calcom' ),
-			'500' => __( '500 — Medium', 'bookit-for-calcom' ),
-			'600' => __( '600 — Semi Bold', 'bookit-for-calcom' ),
-			'700' => __( '700 — Bold', 'bookit-for-calcom' ),
-			'800' => __( '800 — Extra Bold', 'bookit-for-calcom' ),
+			''    => __( 'Default (inherit)', 'bookit-for-cal-com' ),
+			'300' => __( '300 — Light', 'bookit-for-cal-com' ),
+			'400' => __( '400 — Normal', 'bookit-for-cal-com' ),
+			'500' => __( '500 — Medium', 'bookit-for-cal-com' ),
+			'600' => __( '600 — Semi Bold', 'bookit-for-cal-com' ),
+			'700' => __( '700 — Bold', 'bookit-for-cal-com' ),
+			'800' => __( '800 — Extra Bold', 'bookit-for-cal-com' ),
 		);
 		?>
 		<select id="bookit_btn_font_weight" name="bookit_settings[btn_font_weight]">
@@ -1506,10 +1506,10 @@ class BookIt_Admin {
 	public static function field_btn_text_transform(): void {
 		$settings = self::get_settings();
 		$options  = array(
-			''           => __( 'None', 'bookit-for-calcom' ),
-			'uppercase'  => __( 'Uppercase', 'bookit-for-calcom' ),
-			'lowercase'  => __( 'Lowercase', 'bookit-for-calcom' ),
-			'capitalize' => __( 'Capitalize', 'bookit-for-calcom' ),
+			''           => __( 'None', 'bookit-for-cal-com' ),
+			'uppercase'  => __( 'Uppercase', 'bookit-for-cal-com' ),
+			'lowercase'  => __( 'Lowercase', 'bookit-for-cal-com' ),
+			'capitalize' => __( 'Capitalize', 'bookit-for-cal-com' ),
 		);
 		?>
 		<select id="bookit_btn_text_transform" name="bookit_settings[btn_text_transform]">
@@ -1540,10 +1540,10 @@ class BookIt_Admin {
 	public static function field_btn_padding(): void {
 		$settings = self::get_settings();
 		$sides    = array(
-			'btn_padding_top'    => __( 'Top', 'bookit-for-calcom' ),
-			'btn_padding_right'  => __( 'Right', 'bookit-for-calcom' ),
-			'btn_padding_bottom' => __( 'Bottom', 'bookit-for-calcom' ),
-			'btn_padding_left'   => __( 'Left', 'bookit-for-calcom' ),
+			'btn_padding_top'    => __( 'Top', 'bookit-for-cal-com' ),
+			'btn_padding_right'  => __( 'Right', 'bookit-for-cal-com' ),
+			'btn_padding_bottom' => __( 'Bottom', 'bookit-for-cal-com' ),
+			'btn_padding_left'   => __( 'Left', 'bookit-for-cal-com' ),
 		);
 		$placeholders = array( 'btn_padding_top' => '10', 'btn_padding_right' => '20', 'btn_padding_bottom' => '10', 'btn_padding_left' => '20' );
 		?>
@@ -1575,7 +1575,7 @@ class BookIt_Admin {
 	public static function field_btn_hover_bg(): void {
 		$settings = self::get_settings();
 		self::render_color_control( 'btn_hover_bg', $settings['btn_hover_bg'] );
-		echo '<p class="description">' . esc_html__( 'Leave empty to disable hover background change.', 'bookit-for-calcom' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'Leave empty to disable hover background change.', 'bookit-for-cal-com' ) . '</p>';
 	}
 
 	/**
@@ -1586,7 +1586,7 @@ class BookIt_Admin {
 	public static function field_btn_hover_text(): void {
 		$settings = self::get_settings();
 		self::render_color_control( 'btn_hover_text', $settings['btn_hover_text'] );
-		echo '<p class="description">' . esc_html__( 'Leave empty to disable hover text colour change.', 'bookit-for-calcom' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'Leave empty to disable hover text colour change.', 'bookit-for-cal-com' ) . '</p>';
 	}
 
 	/**
@@ -1597,7 +1597,7 @@ class BookIt_Admin {
 	public static function field_btn_hover_border_color(): void {
 		$settings = self::get_settings();
 		self::render_color_control( 'btn_hover_border_color', $settings['btn_hover_border_color'] );
-		echo '<p class="description">' . esc_html__( 'Leave empty to disable hover border colour change.', 'bookit-for-calcom' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'Leave empty to disable hover border colour change.', 'bookit-for-cal-com' ) . '</p>';
 	}
 
 	/**
@@ -1608,7 +1608,7 @@ class BookIt_Admin {
 	public static function field_btn_transition_duration(): void {
 		$settings = self::get_settings();
 		self::render_number_unit( 'btn_transition_duration', $settings['btn_transition_duration'], 'ms', 0, 1000, '200', 50 );
-		echo '<p class="description">' . esc_html__( 'Duration of the hover transition. Set 0 to disable.', 'bookit-for-calcom' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'Duration of the hover transition. Set 0 to disable.', 'bookit-for-cal-com' ) . '</p>';
 	}
 
 	/**
@@ -1619,6 +1619,6 @@ class BookIt_Admin {
 	public static function field_inline_height(): void {
 		$settings = self::get_settings();
 		self::render_number_unit( 'inline_height', $settings['inline_height'], 'px', 100, 2000, '600' );
-		echo '<p class="description">' . esc_html__( 'Default iframe height for inline embeds.', 'bookit-for-calcom' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'Default iframe height for inline embeds.', 'bookit-for-cal-com' ) . '</p>';
 	}
 }

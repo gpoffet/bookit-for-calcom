@@ -34,7 +34,7 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title(): string {
-		return esc_html__( 'Cal.com Booking', 'bookit-for-calcom' );
+		return esc_html__( 'Cal.com Booking', 'bookit-for-cal-com' );
 	}
 
 	/**
@@ -86,13 +86,13 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_event',
 			array(
-				'label' => esc_html__( 'Event', 'bookit-for-calcom' ),
+				'label' => esc_html__( 'Event', 'bookit-for-cal-com' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
 			)
 		);
 
 		if ( $has_api_key && ! empty( $event_types ) ) {
-			$options = array( '' => esc_html__( '— Select an event —', 'bookit-for-calcom' ) );
+			$options = array( '' => esc_html__( '— Select an event —', 'bookit-for-cal-com' ) );
 			foreach ( $event_types as $et ) {
 				$slug  = isset( $et['username'] ) ? $et['username'] . '/' . $et['slug'] : $et['slug'];
 				$label = $et['title'] . ' — ' . $et['slug'];
@@ -102,7 +102,7 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 			$this->add_control(
 				'event_type',
 				array(
-					'label'   => esc_html__( 'Event type', 'bookit-for-calcom' ),
+					'label'   => esc_html__( 'Event type', 'bookit-for-cal-com' ),
 					'type'    => \Elementor\Controls_Manager::SELECT,
 					'options' => $options,
 					'default' => '',
@@ -112,10 +112,10 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 			$this->add_control(
 				'event_type',
 				array(
-					'label'       => esc_html__( 'Event slug', 'bookit-for-calcom' ),
+					'label'       => esc_html__( 'Event slug', 'bookit-for-cal-com' ),
 					'type'        => \Elementor\Controls_Manager::TEXT,
 					'placeholder' => 'username/event-slug',
-					'description' => esc_html__( 'Configure an API key in BookIt settings to use a dropdown.', 'bookit-for-calcom' ),
+					'description' => esc_html__( 'Configure an API key in BookIt settings to use a dropdown.', 'bookit-for-cal-com' ),
 					'default'     => '',
 				)
 			);
@@ -124,12 +124,12 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'display_type',
 			array(
-				'label'   => esc_html__( 'Display type', 'bookit-for-calcom' ),
+				'label'   => esc_html__( 'Display type', 'bookit-for-cal-com' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'options' => array(
-					'popup-button' => esc_html__( 'Popup button', 'bookit-for-calcom' ),
-					'popup-text'   => esc_html__( 'Popup text link', 'bookit-for-calcom' ),
-					'inline'       => esc_html__( 'Inline calendar', 'bookit-for-calcom' ),
+					'popup-button' => esc_html__( 'Popup button', 'bookit-for-cal-com' ),
+					'popup-text'   => esc_html__( 'Popup text link', 'bookit-for-cal-com' ),
+					'inline'       => esc_html__( 'Inline calendar', 'bookit-for-cal-com' ),
 				),
 				'default' => 'popup-button',
 			)
@@ -138,9 +138,9 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'label',
 			array(
-				'label'     => esc_html__( 'Button / link label', 'bookit-for-calcom' ),
+				'label'     => esc_html__( 'Button / link label', 'bookit-for-cal-com' ),
 				'type'      => \Elementor\Controls_Manager::TEXT,
-				'default'   => esc_html__( 'Book a meeting', 'bookit-for-calcom' ),
+				'default'   => esc_html__( 'Book a meeting', 'bookit-for-cal-com' ),
 				'condition' => array( 'display_type!' => 'inline' ),
 			)
 		);
@@ -148,7 +148,7 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'inline_height',
 			array(
-				'label'     => esc_html__( 'Inline height (px)', 'bookit-for-calcom' ),
+				'label'     => esc_html__( 'Inline height (px)', 'bookit-for-cal-com' ),
 				'type'      => \Elementor\Controls_Manager::NUMBER,
 				'min'       => 300,
 				'max'       => 1200,
@@ -165,7 +165,7 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_calcom',
 			array(
-				'label' => esc_html__( 'Cal.com options', 'bookit-for-calcom' ),
+				'label' => esc_html__( 'Cal.com options', 'bookit-for-cal-com' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -173,13 +173,13 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'theme',
 			array(
-				'label'   => esc_html__( 'Theme', 'bookit-for-calcom' ),
+				'label'   => esc_html__( 'Theme', 'bookit-for-cal-com' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'options' => array(
-					'global' => esc_html__( 'Use global setting', 'bookit-for-calcom' ),
-					'auto'   => esc_html__( 'Auto (follow browser)', 'bookit-for-calcom' ),
-					'light'  => esc_html__( 'Light', 'bookit-for-calcom' ),
-					'dark'   => esc_html__( 'Dark', 'bookit-for-calcom' ),
+					'global' => esc_html__( 'Use global setting', 'bookit-for-cal-com' ),
+					'auto'   => esc_html__( 'Auto (follow browser)', 'bookit-for-cal-com' ),
+					'light'  => esc_html__( 'Light', 'bookit-for-cal-com' ),
+					'dark'   => esc_html__( 'Dark', 'bookit-for-cal-com' ),
 				),
 				'default' => 'global',
 			)
@@ -188,7 +188,7 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'accent_color',
 			array(
-				'label'   => esc_html__( 'Accent color', 'bookit-for-calcom' ),
+				'label'   => esc_html__( 'Accent color', 'bookit-for-cal-com' ),
 				'type'    => \Elementor\Controls_Manager::COLOR,
 				'default' => '',
 			)
@@ -197,10 +197,10 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'hide_details',
 			array(
-				'label'        => esc_html__( 'Hide booking details', 'bookit-for-calcom' ),
+				'label'        => esc_html__( 'Hide booking details', 'bookit-for-cal-com' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'bookit-for-calcom' ),
-				'label_off'    => esc_html__( 'No', 'bookit-for-calcom' ),
+				'label_on'     => esc_html__( 'Yes', 'bookit-for-cal-com' ),
+				'label_off'    => esc_html__( 'No', 'bookit-for-cal-com' ),
 				'return_value' => 'yes',
 				'default'      => '',
 			)
@@ -209,10 +209,10 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'prefill_user',
 			array(
-				'label'        => esc_html__( 'Pre-fill logged-in user data', 'bookit-for-calcom' ),
+				'label'        => esc_html__( 'Pre-fill logged-in user data', 'bookit-for-cal-com' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'bookit-for-calcom' ),
-				'label_off'    => esc_html__( 'No', 'bookit-for-calcom' ),
+				'label_on'     => esc_html__( 'Yes', 'bookit-for-cal-com' ),
+				'label_off'    => esc_html__( 'No', 'bookit-for-cal-com' ),
 				'return_value' => 'yes',
 				'default'      => '',
 			)
@@ -225,7 +225,7 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_button_style',
 			array(
-				'label'     => esc_html__( 'Button style', 'bookit-for-calcom' ),
+				'label'     => esc_html__( 'Button style', 'bookit-for-cal-com' ),
 				'tab'       => \Elementor\Controls_Manager::TAB_STYLE,
 				'condition' => array( 'display_type' => 'popup-button' ),
 			)
@@ -234,7 +234,7 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_bg_color',
 			array(
-				'label'   => esc_html__( 'Background color', 'bookit-for-calcom' ),
+				'label'   => esc_html__( 'Background color', 'bookit-for-cal-com' ),
 				'type'    => \Elementor\Controls_Manager::COLOR,
 				'default' => '',
 			)
@@ -243,7 +243,7 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_text_color',
 			array(
-				'label'   => esc_html__( 'Text color', 'bookit-for-calcom' ),
+				'label'   => esc_html__( 'Text color', 'bookit-for-cal-com' ),
 				'type'    => \Elementor\Controls_Manager::COLOR,
 				'default' => '',
 			)
@@ -252,7 +252,7 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_border_radius',
 			array(
-				'label'   => esc_html__( 'Border radius (px)', 'bookit-for-calcom' ),
+				'label'   => esc_html__( 'Border radius (px)', 'bookit-for-cal-com' ),
 				'type'    => \Elementor\Controls_Manager::NUMBER,
 				'min'     => 0,
 				'max'     => 50,
@@ -263,7 +263,7 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_hover_heading',
 			array(
-				'label'     => esc_html__( 'Hover state', 'bookit-for-calcom' ),
+				'label'     => esc_html__( 'Hover state', 'bookit-for-cal-com' ),
 				'type'      => \Elementor\Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -272,7 +272,7 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_hover_bg_color',
 			array(
-				'label'   => esc_html__( 'Hover background color', 'bookit-for-calcom' ),
+				'label'   => esc_html__( 'Hover background color', 'bookit-for-cal-com' ),
 				'type'    => \Elementor\Controls_Manager::COLOR,
 				'default' => '',
 			)
@@ -281,7 +281,7 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_hover_text_color',
 			array(
-				'label'   => esc_html__( 'Hover text color', 'bookit-for-calcom' ),
+				'label'   => esc_html__( 'Hover text color', 'bookit-for-cal-com' ),
 				'type'    => \Elementor\Controls_Manager::COLOR,
 				'default' => '',
 			)
@@ -290,7 +290,7 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'btn_transition_duration',
 			array(
-				'label'   => esc_html__( 'Hover transition (ms)', 'bookit-for-calcom' ),
+				'label'   => esc_html__( 'Hover transition (ms)', 'bookit-for-cal-com' ),
 				'type'    => \Elementor\Controls_Manager::NUMBER,
 				'min'     => 0,
 				'max'     => 1000,
@@ -324,12 +324,12 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 
 		$event_type = sanitize_text_field( $s['event_type'] ?? '' );
 		if ( empty( $event_type ) ) {
-			echo '<p>' . esc_html__( 'Please configure a Cal.com event in the widget settings.', 'bookit-for-calcom' ) . '</p>';
+			echo '<p>' . esc_html__( 'Please configure a Cal.com event in the widget settings.', 'bookit-for-cal-com' ) . '</p>';
 			return;
 		}
 
 		$display_type  = sanitize_text_field( $s['display_type']    ?? 'popup-button' );
-		$label         = sanitize_text_field( $s['label']           ?? __( 'Book a meeting', 'bookit-for-calcom' ) );
+		$label         = sanitize_text_field( $s['label']           ?? __( 'Book a meeting', 'bookit-for-cal-com' ) );
 		$inline_height = absint( $s['inline_height'] ?? 600 ) ?: 600;
 		$theme         = sanitize_text_field( $s['theme']           ?? 'global' );
 		$accent_color  = sanitize_hex_color( $s['accent_color']    ?? '' ) ?? '';

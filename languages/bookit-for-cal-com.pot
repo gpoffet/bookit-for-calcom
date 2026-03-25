@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BookIt for Cal.com 1.0.0\n"
-"Report-Msgid-Bugs-To: https://github.com/gpoffet/bookit-for-calcom/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/gpoffet/bookit-for-cal-com/issues\n"
 "POT-Creation-Date: 2024-01-01T00:00:00+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,14 +12,14 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: WP-CLI 2.x\n"
-"X-Domain: bookit-for-calcom\n"
+"X-Domain: bookit-for-cal-com\n"
 
 #. Plugin Name of the plugin
 msgid "BookIt for Cal.com"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://github.com/gpoffet/bookit-for-calcom"
+msgid "https://github.com/gpoffet/bookit-for-cal-com"
 msgstr ""
 
 #. Description of the plugin
@@ -254,6 +254,6 @@ msgstr ""
 msgid "Border radius (px)"
 msgstr ""
 
-#: bookit-for-calcom.php
+#: bookit-for-cal-com.php
 msgid "BookIt"
 msgstr ""

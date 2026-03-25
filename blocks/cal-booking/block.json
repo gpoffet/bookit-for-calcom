@@ -8,7 +8,7 @@
 	"icon": "calendar-alt",
 	"description": "Embed a Cal.com booking widget — popup button, popup text link, or inline calendar.",
 	"keywords": [ "cal.com", "booking", "calendar", "appointment" ],
-	"textdomain": "bookit-for-calcom",
+	"textdomain": "bookit-for-cal-com",
 	"supports": {
 		"html": false,
 		"align": [ "wide", "full" ]

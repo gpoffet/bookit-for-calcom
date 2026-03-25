@@ -10,7 +10,7 @@
  * Author URI:        https://poffet.net
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       bookit-for-calcom
+ * Text Domain:       bookit-for-cal-com
  * Domain Path:       /languages
  *
  * @package BookIt_For_CalCom
@@ -101,7 +101,7 @@ final class BookIt_Plugin {
 		$elements_manager->add_category(
 			'bookit',
 			array(
-				'title' => esc_html__( 'BookIt', 'bookit-for-calcom' ),
+				'title' => esc_html__( 'BookIt', 'bookit-for-cal-com' ),
 				'icon'  => 'eicon-calendar',
 			)
 		);
