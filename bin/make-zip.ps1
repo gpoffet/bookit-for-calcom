@@ -2,7 +2,7 @@ Add-Type -Assembly "System.IO.Compression"
 Add-Type -Assembly "System.IO.Compression.FileSystem"
 
 $src        = if ($PSScriptRoot) { Split-Path -Parent $PSScriptRoot } else { (Get-Location).Path }
-$dst        = "$HOME\Downloads\bookit-for-calcom.zip"
+$dst        = "$HOME\Downloads\bookit-for-cal-com.zip"
 $pluginSlug = "bookit-for-calcom"
 
 # Build JS assets before packaging.
