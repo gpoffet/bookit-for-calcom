@@ -1142,7 +1142,7 @@ class BookIt_Admin {
 	 * @return void
 	 */
 	public static function enqueue_admin_assets( string $hook ): void {
-		if ( 'settings_page_bookit-for-calcom' !== $hook ) {
+		if ( 'settings_page_bookit-for-cal-com' !== $hook ) {
 			return;
 		}
 

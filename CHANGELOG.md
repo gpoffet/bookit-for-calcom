@@ -5,6 +5,12 @@ All notable changes to BookIt for Cal.com will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] — 2026-03-30
+
+### Fixed
+
+- Admin JS not enqueued on the settings page due to incorrect hook name — "Refresh event types" button was unresponsive.
+
 ## [1.0.0] — 2024-01-01
 
 ### Added
