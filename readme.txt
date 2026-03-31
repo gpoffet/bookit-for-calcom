@@ -4,7 +4,7 @@ Tags: cal.com, booking, calendar, appointment, scheduling
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -105,6 +105,9 @@ All attributes:
 5. An inline calendar widget on the frontend.
 
 == Changelog ==
+
+= 1.0.3 =
+* Fix: Elementor widget showing 404 in Cal.com popup — event slug now correctly prefixed with username (Cal.com v2 API nests username under owner/profile/user, not at root level). Added username-resolution fallback in render() for slugs saved without prefix.
 
 = 1.0.2 =
 * Fix: Shortcode Helper event dropdown not populated on fresh installs — auto-fetches event types via AJAX if the cache is cold.

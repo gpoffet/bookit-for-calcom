@@ -5,6 +5,12 @@ All notable changes to BookIt for Cal.com will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3] — 2026-03-31
+
+### Fixed
+
+- Elementor widget: Cal.com popup showing 404 — event slug was missing the username prefix because the Cal.com v2 API nests the username under `owner`/`profile`/`user`, not at root level. Fixed slug construction in `register_controls()` and added username-resolution fallback in `render()` for slugs saved without a prefix.
+
 ## [1.0.2] — 2026-03-31
 
 ### Fixed

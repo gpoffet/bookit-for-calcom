@@ -3,7 +3,7 @@
  * Plugin Name:       BookIt for Cal.com
  * Plugin URI:        https://github.com/gpoffet/bookit-for-calcom
  * Description:       Integrate Cal.com booking widgets into WordPress via a Gutenberg block, Elementor widget, and shortcode.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Gaël Poffet
@@ -19,7 +19,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // Constants.
-define( 'BOOKIT_VERSION', '1.0.2' );
+define( 'BOOKIT_VERSION', '1.0.3' );
 define( 'BOOKIT_PLUGIN_FILE', __FILE__ );
 define( 'BOOKIT_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BOOKIT_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
