@@ -94,8 +94,10 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		if ( $has_api_key && ! empty( $event_types ) ) {
 			$options = array( '' => esc_html__( '— Select an event —', 'bookit-for-cal-com' ) );
 			foreach ( $event_types as $et ) {
-				$slug  = isset( $et['username'] ) ? $et['username'] . '/' . $et['slug'] : $et['slug'];
-				$label = $et['title'] . ' — ' . $et['slug'];
+				// The Cal.com v2 API nests the username under owner/profile/user — not at root level.
+				$username = $et['owner']['username'] ?? $et['profile']['username'] ?? $et['user']['username'] ?? '';
+				$slug     = ! empty( $username ) ? $username . '/' . $et['slug'] : $et['slug'];
+				$label    = $et['title'] . ' — ' . $et['slug'];
 				$options[ $slug ] = $label;
 			}
 
@@ -326,6 +328,16 @@ class BookIt_Elementor_Widget extends \Elementor\Widget_Base {
 		if ( empty( $event_type ) ) {
 			echo '<p>' . esc_html__( 'Please configure a Cal.com event in the widget settings.', 'bookit-for-cal-com' ) . '</p>';
 			return;
+		}
+
+		// If the stored slug has no username prefix, resolve it from settings or the API.
+		if ( false === strpos( $event_type, '/' ) ) {
+			$username = ! empty( $settings['username'] )
+				? $settings['username']
+				: BookIt_API::get_username( $settings['api_key'], $settings['api_base'] ?? '' );
+			if ( ! empty( $username ) ) {
+				$event_type = $username . '/' . $event_type;
+			}
 		}
 
 		$display_type  = sanitize_text_field( $s['display_type']    ?? 'popup-button' );
