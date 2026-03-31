@@ -54,8 +54,13 @@
 		copyStatus = document.getElementById( 'bookit-sh-copy-status' );
 		typeSelect = document.getElementById( 'bookit-sh-type' );
 
-		// Build event dropdown from cached event types if available.
-		buildEventField( bookitAdminData.eventTypes, '' );
+		// Build event dropdown from cached event types if available,
+		// otherwise fetch from API automatically if an API key is configured.
+		if ( Array.isArray( bookitAdminData.eventTypes ) && bookitAdminData.eventTypes.length > 0 ) {
+			buildEventField( bookitAdminData.eventTypes, '' );
+		} else if ( '1' === bookitAdminData.hasApiKey ) {
+			fetchEventTypes();
+		}
 
 		// Wire color pickers ↔ hidden inputs.
 		initColorPickers();
@@ -104,6 +109,34 @@
 			updateShortcode();
 		},
 	};
+
+	// ── fetchEventTypes ─────────────────────────────────────────────────────────
+
+	/**
+	 * Auto-fetch event types via AJAX when the transient is cold on page load.
+	 * Reuses the same AJAX action as the "Refresh" button.
+	 */
+	function fetchEventTypes() {
+		var data = new FormData();
+		data.append( 'action', 'bookit_refresh_event_types' );
+		data.append( 'nonce',  bookitAdminData.refreshNonce );
+
+		fetch( bookitAdminData.ajaxUrl, {
+			method:      'POST',
+			credentials: 'same-origin',
+			body:        data,
+		} )
+			.then( function ( response ) { return response.json(); } )
+			.then( function ( json ) {
+				if ( json.success && typeof window.bookitShortcodeHelper !== 'undefined' ) {
+					window.bookitShortcodeHelper.refreshEventTypes(
+						json.data.events,
+						json.data.username
+					);
+				}
+			} )
+			.catch( function () { /* silent fail — input field remains */ } );
+	}
 
 	// ── buildEventField ─────────────────────────────────────────────────────────
 
